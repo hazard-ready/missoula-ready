@@ -67,6 +67,15 @@ h5 {
 ::-moz-placeholder { color: #444444; }
 :-ms-input-placeholder { color: #444444; }
 
+.button {
+  border-color: #f03b20;
+  background-color: #f03b20;
+}
+
+.button:hover {
+  background-color: #f00;
+}
+
 #location-submit {
   background-image: url(../img/icon-search.png);
   background-position: center center;
