@@ -3,6 +3,25 @@ from collections import OrderedDict
 from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink
 from .fire_dial import make_icon
 
+likely_scenarios = {
+    'fire': {
+        'title': 'Likely Wildfire Scenario',
+        'text': "Wildfire season stretches from spring to fall in Missoula County. In a low snowpack year the potential for fires increases. Is the area where you live at risk for a potential burn?"
+    },
+    'flood': {
+        'title': 'Likely Flood Scenario',
+        'text': "It’s springtime in Missoula County and the temperature has been steadily rising causing the snowpack to melt. It has been raining for many days and the rivers begin flooding. Will you feel the flood effects?"
+    },
+    'landslide': {
+        'title': 'Landslide',
+        'text': "Landslides typically happen after rainstorms come through and especially in burned areas without vegetation to stabilize the slopes. Find out if you should be concerned in your area."
+    },
+    'earthquake': {
+        'title': 'Earthquake',
+        'text': {"Earthquakes can happen anytime. In Missoula County there are five faults that are considered active. It is most likely that a small earthquake of magnitude 4 to 5 would strike here. What kind of shaking might you experience?"
+    }
+}
+
 def app_view(request):
     location = Location.get_solo()
     important_links = ImportantLink.objects.all()
@@ -48,7 +67,8 @@ def app_view(request):
             'supply_kit': supply_kit,
             'important_links': important_links,
             'data_bounds': data_bounds,
-            'data': OrderedDict(sorted(data.items(), key=lambda t: t[0]))
+            'data': OrderedDict(sorted(data.items(), key=lambda t: t[0])),
+            'likely_scenarios': likely_scenarios
         })
 
 
