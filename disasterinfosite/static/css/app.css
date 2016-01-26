@@ -49,7 +49,11 @@ h5 {
   max-width: none;
 }
 
-/* header styles */
+.location-form {
+  background-color: #526B5C;
+  padding: 10px 0;
+}
+
 #location-text {
   color: #444444;
   font-weight: bold;
@@ -68,12 +72,12 @@ h5 {
 :-ms-input-placeholder { color: #444444; }
 
 .button {
-  border-color: #f03b20;
-  background-color: #f03b20;
+  border-color: #fd8d3c;
+  background-color: #fd8d3c;
 }
 
 .button:hover {
-  background-color: #f00;
+  background-color: #f03b20;
 }
 
 #location-submit {
@@ -307,6 +311,10 @@ h5 {
 
 /* adjustments for the smallest screens */
 @media only screen and (max-width: 26em) {
+  .button {
+    margin: 0;
+  }
+
   #location-text {
     color: #444444;
     font-weight: bold;
