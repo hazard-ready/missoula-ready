@@ -1,106 +1,49 @@
-# Disaster Preparedness Web Interactive
+# Missoula Ready
 
-The project will explore traditional and qualitative scoring assessments of “risk/resiliency factors” associated with regional crisis preparedness and demonstrate how actionable steps in community engagement can create a different portrait of resiliency. It is based on [a pioneering project from Oregon](https://github.com/Oregon-Public-Broadcasting/earthquake-preparedness) but has been generalized to make it easy to clone and tailor to other regions.
+The project is a custom istance of the [Disaster Preparedness][https://github.com/missoula-ready/disaster-preparedness] project, which is an adaptation of [a pioneering project from Oregon](https://github.com/Oregon-Public-Broadcasting/earthquake-preparedness) but has been generalized to make it easy to clone and tailor to other regions.
 
-# Dependencies
-* Django Web Framework
-* GeoDjango
-* PostgresSQL
-* PostGIS
-* Python modules listed in [requirements.txt](./requirements.txt)
-  * On a Linux machine you may need to install `python-dev` (through the Linux package manager) as a prerequisite, and if you have trouble getting `psycopg2` to install you may have better luck using the package manager's version of that module.
-  * GeoDjango has other dependencies, but if you install it from a package manager they will usually be included automatically.  [See this more complete list](https://docs.djangoproject.com/en/1.7/ref/contrib/gis/install/geolibs/) of required and optional additions.
+# To set it up, follow the instructions in the [Disaster Preparedness project README][https://github.com/missoula-ready/disaster-preparedness/blob/master/README.md].
 
-# Note about Python Command Usage
-Commands indicated are always just `python` but on some systems you might need to use `python3` in order to use a specific python version.  If so, other commands such as `pip` have a `pip3` equivalent.
+# Values to put in Django Admin
 
-Use whichever base command is appropriate for your environment.
+Important links:
 
-# Configure Dev Environment
-Set up a virtual environment so that you can freely install python modules without worrying about overwriting globally installed versions.  It's easy!
+Evacuation Information
+In the case of an emergecny you may need to evacuate, learn more here: http://www.missoulacounty.us/government/public-safety/office-of-emergency-management/evacuation-information
 
-1. `pip install virtualenv` (for python3, `pip3 install virtualenv`)
-2. Move to the project directory (e.g. `/Applications/MAMP/htdocs/disaster-preparedness`).
-3. `virtualenv --python=python3 venv --no-site-packages`
-4. Wait for things to happen.
-5. `source venv/bin/activate`  (type `deactivate` to leave). Remember to reactivate the virtual environment every time you open a terminal window and start running Python commands.
-6. `pip install -r requirements.txt` or `pip3 install -r requirements.txt` to automatically install the Python dependencies listed in [requirements.txt](./requirements.txt).
+Neighborhood Council
+Find out more about getting your neighborhood ready here: www.ci.missoula.mt.us/1591/My-Neighborhood-Council
 
-# "disasterinfosite" App
+Real-time Alerts
+Sign up for Smart911 to help your family during emergencies: http://www.smart911.com
 
-While management and data loading files are in this project's root directory, everything else is in `/disasterinfosite`.
 
-## Written using:
-* Postgres version: 9.4
-* Python version: 3.5
+Supply kit:
 
-## File structure
+  days: 3
+  text:
+    For more information check out the <a href="ftp://www.co.missoula.mt.us/911advisory/Emergency_Supply_List.pdf">Missoula County Emergency Kit Checklist</a> and the <a href="ftp://www.co.missoula.mt.us/911advisory/Winter_Ready_Checklist.pdf">Winter Ready Kit Checklist</a>.
 
-* `/disasterinfosite/data` contains the shapefiles and text content (snuggets - see [Adding New Data](#adding-new-data) below for explanation) that will be loaded.
-* `/disasterinfosite/migrations` contains Django-generated files that specify how to set the database up. We don't recommend editing these manually.
-* `/disasterinfosite/static/css` contains all the stylesheets for this site.
-* `/disasterinfosite/static/img` contains all the static images - if you want to change icons, etc, look here.
-* `/disasterinfosite/static/js` contains JavaScript libraries that need to be included for various site functions.
-* `/disasterinfosite/templates` and `/disasterinfosite/templatetags` contain HTML templates for the site's various pages and subsections, and Python code that processes them. Many of the simpler customizations to this site will involve editing the HTML templates.
+Location:
 
-## Installing App
-This assumes `python` is the command configured to run the correct python version. Depending on your setup you may need to specify `python3`.
+  Area Name: Missoula County
+  Community Leaders: In the event of an emergency the Office of Emergency Management for Missoula County will be your place to go for information. Call 406-258-INFO (4636). This line is either recorded with a disaster specific message or is manned by live people depending on the situation.
 
-### Set up the "secret key" used by Django to secure forms.
-* Set up an environment variable `DJANGO_SECRET_KEY` to whatever you want to set it to.
-  * See http://techblog.leosoto.com/django-secretkey-generation/ for an example approach.
-  * On Mac/Linux: `export DJANGO_SECRET_KEY="gibberishrandomstring"`
 
-### Set up the database
+Settings:
+  Site title: Missoula ready
 
-1. Set up Postgres with PostGIS:
- * To install PostGIS on a Mac using Homebrew: `brew install postgis`. Here are [PostGIS install instructions for Ubuntu](https://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS21UbuntuPGSQL93Apt).
- * The Mac or Ubuntu instructions will also install Postgres if you don't already have that.
- * Run `brew info postgres` to see options for starting Postgres - you can have it start automatically when your computer starts, or not.
- * Homebrew sets Postgres up with one user to start with, and that user is you. You should probably make a separate user for Django. If you want your user to be named `django`, do `createuser django --password`. You will then get a prompt for the password. Use only letters and numbers in the password, because you'll need to use it in a URL later.
-2. Clone repo.
-3. Create a Postgres database on the Postgres server, and install PostGIS to it.
+  Site description: A disaster preparedness website
 
-    ```shell
-    createdb [DBNAME]
-    psql -d [DBNAME] -c "CREATE EXTENSION postgis;"
-    ```
-4. In order to run unit tests, your user will need to be able to create and delete databases, since the test framework creates (and destroys) a new test DB for each test run. You can accomplish this using ```psql -d [DBNAME] -c "ALTER USER [USERNAME] SUPERUSER;"
-*[detailed instructions for reference](http://postgis.net/docs/manual-2.1/postgis_installation.html#create_new_db_extensions)*
-5. Set up an environment variable `DATABASE_URL` that will be used by the Django Database URL app to load our database.
-  * example on Mac/Linux: `export DATABASE_URL="postgres://USER:PASSWORD@HOST:PORT/DBNAME"` where the USER & PASSWORD are the django account you created above in postgres, and the default HOST:PORT is localhost:5432 .
-6. `source venv/bin/activate` if you haven't already activated the virtualenv this session.
-7. Run `python manage.py migrate` to initialize the database's structure.
+  Intro Text:  A natural disaster could strike your area at any time. Find out about where you live, work, or play in Missoula County, MT.
 
-### Load some data
-0. `source venv/bin/activate` if you haven't already activated the virtualenv this session.
-1. Unzip `data.zip` inside disasterinfosite, so that the data is in `disasterinfosite/data`. This data includes some sample shapefiles and related data for Missoula County, Montana, USA, to get you started. See below for instructions on replacing this with your own data.
-2. `python import.py` to process these shapefiles and update some Django code to fit. The script will prompt you for which field to use to look up snuggets (see [Adding New Data](#adding-new-data) below for definition). If you use the example `data.zip` provided in this project, use the field name `lookup_val` for every shapefile except `Flood_FEMA_DFRIM_2015`, for which you should use `FEMADES`.
-3. `python manage.py makemigrations` - this and the next 2 steps combined load the new data into the database.
-4. `python manage.py migrate`
-5. `python manage.py shell`
-    1. [inside the shell that this opens] `from disasterinfosite import load`
-    2. `load.run()`
-    3. `exit()` [to go back to the normal command line]
-6. `python snugget_load.py` to import text that will be displayed in the site.  See [Adding New Data](#adding-new-data) below for an explanation of "snuggets" and the format of this file.
-7. If this is your first time through, or you emptied the database before loading new data: `python manage.py createsuperuser` and follow the instructions to add a Django admin user
-8. If you don't already have web hosting set up, you can test your work on localhost:8000 with `python manage.py runserver`
 
-#### Environmental Variable Permanence
-On Linux/Mac, as soon as you close your shell you lose those nice complicated database urls.
-Save them to your `.bash_profile` or equivalent.
+  Who Made This:
+  This is based on <a href="http://www.opb.org/news/widget/aftershock-find-your-cascadia-earthquake-story/">Aftershock</a>, an earthquake preparedness application for Oregon residents. Carson MacPherson-Krutsky and <a href="http://www.hs.umt.edu/geosciences/faculty/bendick/">Dr. Rebecca Bendick</a>, a graduate student and her advisor at the Unversity of Montana, had the idea to expand it for other locales and types of disasters. <a href="https://github.com/nein09">Melinda Minch</a> and <a href="https://github.com/eldang">Eldan Goldenberg</a> adapted it for that purpose.
 
-### Create a user and visit the admin screen to verify
-1. `python manage.py createsuperuser`
-2. `python manage.py runserver` to run a development server on localhost:8000 or see below for how to deploy via Apache.
-3. Visit http://server.ip/admin and log in with new user.
-4. You should see a list of content.  *Don't try to directly edit data that came from the shapefiles - they are liable to be so complex with so many points that attempting this freezes or crashes the browser.* **TODO: Do those shapefiles need to show up in here at all?**
-5. There are other pieces of content that you can and should edit, though! They are bits of text and other information that show up on this site.
-  1. **Important Links** - Add as many of these as you want. They show up under 'Important Links' when location-specific information is found. You can put any text in the 'link' field and web addresses are turned into links automatically. The title shows up in bold over each link.
-  1. **Location Information** - Area Name shows up all over the place, especially in the instructions on the home page. 'Community leaders' appears under location-specific information.
-  1. **Site Settings** - Basic information about this site and who created it. This stuff shows up in the page headers and footers. The 'who made this' section especially deserves lots of details, and the Data Download link is if you'd like to share the data that you used to create this site. The site title is the big text at the top.
-  1. **Supply Kit** - The numbers in the supply kit information is based on the number you enter here for 'days', and the text can be anything you like.
+  Data Download: https://github.com/missoula-ready/disaster-preparedness/blob/master/world/data.zip
 
+The data for this app is in `disasterinfosite/data`. This data includes shapefiles and related data for Missoula County, Montana, USA, to get you started. When you use `python import.py` to process these shapefiles and update some Django code to fit, the script will prompt you for which field to use to look up snuggets. Use the field name `lookup_val` for every shapefile except `Flood_FEMA_DFRIM_2015`, for which you should use `FEMADES`.
 ### Deploying to the web via Apache
 
 1. Install a version of `mod_wsgi` that is compiled for Python 3. On Debian/Ubuntu you can do this with `aptitude install libapache2-mod-wsgi-py3`. On other systems it may be easier to use `pip` as per [these instructions](https://pypi.python.org/pypi/mod_wsgi).
