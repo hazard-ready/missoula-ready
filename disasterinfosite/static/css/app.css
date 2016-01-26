@@ -40,7 +40,7 @@ h5 {
 
 .title-header {
   padding: 5px;
-  background-color: #ccccdd;
+  background-color: #91AB9B;
 }
 
 .top-header {
@@ -98,7 +98,7 @@ h5 {
 }
 
 .disaster-tabs-content {
-  background-color: #ccccdd;
+  background-color: #91AB9B;
 }
 
 .disaster-container {
@@ -193,12 +193,12 @@ h5 {
 }
 
 #geek-box {
-  background-color: #ccccdd;
+  background-color: #91AB9B;
   color: #717273;
 }
 
 #geek-box-container {
-  background-color: #ccccdd;
+  background-color: #91AB9B;
 }
 
 #geek-box a {
@@ -248,7 +248,7 @@ h5 {
 }
 
 .tabs dd.active a, .tabs .tab-title.active a {
-  background-color: #ccccdd;
+  background-color: #91AB9B;
 }
 
 /* adjustments for smaller screens */
@@ -341,7 +341,7 @@ h5 {
   .section-icon.shaking     { background-position: 0 -280px; }
 
 .disaster-tabs {
-    background-color: #ccccdd;
+    background-color: #91AB9B;
     padding: 5px;
   }
 
