@@ -51,7 +51,7 @@ h5 {
 
 .location-form {
   background-color: #526B5C;
-  padding: 10px 0;
+  padding-bottom: 10px;
 }
 
 #location-text {
@@ -120,6 +120,8 @@ h5 {
 }
 
 .information-instructions {
+  background-color: #526B5C;
+  color: #FFF;
   padding: 5px;
 }
 
