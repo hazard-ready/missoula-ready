@@ -191,7 +191,7 @@ h5 {
 
 #geek-box {
   background-color: #91AB9B;
-  color: #717273;
+  color: #fff;
 }
 
 #geek-box-container {
@@ -203,7 +203,7 @@ h5 {
 }
 
 #geek-box h6 {
-  color: #444444;
+  color: #fff;
 }
 
 /* loading spinner during geolocation */
