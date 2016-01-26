@@ -22,7 +22,7 @@ Supply kit:
 
   days: 3
   text:
-    For more information check out the <a href="ftp://www.co.missoula.mt.us/911advisory/Emergency_Supply_List.pdf">Missoula County Emergency Kit Checklist</a> and the <a href="ftp://www.co.missoula.mt.us/911advisory/Winter_Ready_Checklist.pdf">Winter Ready Kit Checklist</a>.
+    `For more information check out the <a href="ftp://www.co.missoula.mt.us/911advisory/Emergency_Supply_List.pdf">Missoula County Emergency Kit Checklist</a> and the <a href="ftp://www.co.missoula.mt.us/911advisory/Winter_Ready_Checklist.pdf">Winter Ready Kit Checklist</a>.`
 
 Location:
 
