@@ -6,7 +6,7 @@ html {
 body {
   height:auto !important;
   width:auto !important;
-  font-family: Georgia, Times, 'Times New Roman', serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   color: #444;
 }
 
@@ -19,7 +19,6 @@ h5 {
 }
 
 /* helper classes for colors and fonts */
-.sans-serif {  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
 .vert-pad-medium { padding: 2em 0; }
 .caps {
   text-transform: uppercase;
@@ -28,7 +27,6 @@ h5 {
 }
 
 #title a {
-   /*font-family: Georgia, Times, 'Times New Roman', serif;*/
    font-size: 1.25em;
    font-weight: bold;
    color: #444;
@@ -50,7 +48,6 @@ h5 {
 /* header styles */
 #location-text {
   color: #444444;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: bold;
   font-size: 20px;
   line-height: 1.3em;
@@ -299,7 +296,6 @@ h5 {
 @media only screen and (max-width: 26em) {
   #location-text {
     color: #444444;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: bold;
     font-size: 16px;
     line-height: 1.3em;
