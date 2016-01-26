@@ -26,19 +26,23 @@ h5 {
   font-weight: bold;
 }
 
-#title a {
-   font-size: 1.25em;
-   font-weight: bold;
-   color: #444;
-}
-
-#title a:hover {
-   color: #444;
-}
-
 .title-header {
   padding: 5px;
   background-color: #91AB9B;
+}
+
+.title-header h3 {
+  color: #F0F8FF;
+}
+
+#title a {
+   font-size: 1.25em;
+   font-weight: bold;
+   color: #fff;
+}
+
+#title a:hover {
+   color: #fff
 }
 
 .top-header {
