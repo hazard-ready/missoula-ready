@@ -277,8 +277,10 @@ h6 {
 }
 
 .tabs-content > .content.active {
-  display:inline-block;
-  width: 100%;
+  display: inline-block;
+  float: right;
+  margin-top: 10px;
+  width: 98%;
 }
 
 .tabs dd.active a, .tabs .tab-title.active a {
@@ -354,14 +356,14 @@ h6 {
     font-size: 1rem;
   }
 
+  .tabs-content > .content.active {
+    margin-top: 0;
+    width: 92%;
+  }
+
   .caps {
     text-transform: uppercase;
     font-weight: bold;
-  }
-
-  .tabs-content > .content.active {
-    float: right;
-    width: 95%;
   }
 
   .intensity-meter {
