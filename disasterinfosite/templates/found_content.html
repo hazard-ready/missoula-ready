@@ -59,6 +59,9 @@
         {% else %}
           <div class="content disaster-content" id="{{group}}">
         {% endif %}
+          <div class="likely-scenario">
+            <span class="caps">{{ likely_scenarios[hazard.lower()].title }}: </span>{{ likely_scenarios[hazard.lower()].text }}
+          </div>
           {% for section, sub_sections in hazard.sections.items %}
             <div class="snugget-text">
               <h4 class="caps section-title">{{ section }}</h4>
