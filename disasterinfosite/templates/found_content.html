@@ -61,7 +61,7 @@
         {% endif %}
         {% if hazard.likely_scenario_title %}
           <div class="likely-scenario">
-            <span class="caps">{{ hazard.likely_scenario_title }}: </span>{{ hazard.likely_scenario_text }}
+            <p><span class="caps">{{ hazard.likely_scenario_title }}: </span>{{ hazard.likely_scenario_text }}</p>
           </div>
           {% endif %}
           {% for section, sub_sections in hazard.sections.items %}
