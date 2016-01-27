@@ -151,16 +151,8 @@ h6 {
   margin-top: 0.2rem;
   width: 60px;
   height: 60px;
-  background: transparent url(../img/icons-sections.png) no-repeat 0 0;
   background-size: 60px auto;
 }
-.section-icon.kit         { background-position: 0 -60px; }
-.section-icon.community   { background-position: 0 -120px; }
-.section-icon.leaders     { background-position: 0 -180px; }
-.section-icon.home        { background-position: 0 -240px; }
-.section-icon.deformation { background-position: 0 -300px; }
-.section-icon.routes      { background-position: 0 -360px; }
-.section-icon.shaking     { background-position: 0 -420px; }
 
 .section-title {
   font-size: 1.75rem;
@@ -424,14 +416,6 @@ h6 {
     float: right !important;
     width: 95%;
   }
-
-  .section-icon.kit         { background-position: 0 -40px; }
-  .section-icon.community   { background-position: 0 -80px; }
-  .section-icon.leaders     { background-position: 0 -120px; }
-  .section-icon.home        { background-position: 0 -160px; }
-  .section-icon.deformation { background-position: 0 -200px; }
-  .section-icon.routes      { background-position: 0 -240px; }
-  .section-icon.shaking     { background-position: 0 -280px; }
 
 .disaster-tabs {
     background-color: #91AB9B;
