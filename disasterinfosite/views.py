@@ -12,6 +12,32 @@ def app_view(request):
     supply_kit.meals = 3 * supply_kit.days
     template = "no_content_found.html"
 
+    # Make sure that sections and subsections are always in the same order.
+    section_order = {
+        'what to expect': 0,
+        'past events': 1,
+        'how to prepare': 2
+    }
+
+    # Some of these are in different sections or are mutually exclusive, hence the non-unique values.
+    sub_section_order = {
+        'intensity': 0,
+        'flood zones': 1,
+        'ground shaking': 1,
+        'worst case scenario': 2,
+        'safety issues': 3,
+        'historic events': 0,
+        'get earthquake ready': 0,
+        'get flood ready': 0,
+        'get fire ready': 0,
+        'stay tuned': 1,
+        'a word from your emergency managers': 2
+    }
+
+    # Clean up the syntax for the ordered dicts below.
+    def sort_by_name(value, sorting_dict):
+        return sorting_dict[value[0].__str__().lower()]
+
     # if user submitted lat/lng, find our snuggets and send them to our template
     if 'lat' and 'lng' in request.GET:
         lat = request.GET['lat']
@@ -37,9 +63,12 @@ def app_view(request):
                             else:
                                 sections[text_snugget.section][text_snugget.sub_section] = [text_snugget]
 
+                        for section, sub_section_dict in sections.items():
+                            sections[section] = OrderedDict(sorted(sub_section_dict.items(), key=lambda t: sort_by_name(t, sub_section_order)))
+
                         data[key] = {
                             'heading': heading,
-                            'sections': sections
+                            'sections': OrderedDict(sorted(sections.items(), key=lambda t: sort_by_name(t, section_order)))
                         }
 
         return render(request, template, {
