@@ -6,20 +6,37 @@ html {
 body {
   height:auto !important;
   width:auto !important;
-  font-family: Georgia, Times, 'Times New Roman', serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   color: #444;
 }
 
 h3 {
+  line-height: 2rem;
   font-weight: bold;
+}
+
+h4 {
+  font-weight: bold;
+  font-size: 1.25rem;
 }
 
 h5 {
   font-weight: bold;
 }
 
+p {
+  font-size: 1.2rem;
+}
+
+h6 {
+  font-size: 1.2rem;
+}
+
+.map-container {
+  padding-top: 1rem
+}
+
 /* helper classes for colors and fonts */
-.sans-serif {  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
 .vert-pad-medium { padding: 2em 0; }
 .caps {
   text-transform: uppercase;
@@ -27,30 +44,36 @@ h5 {
   font-weight: bold;
 }
 
+.title-header {
+  padding: 5px;
+  background-color: #91AB9B;
+}
+
+.title-header h3 {
+  color: #F0F8FF;
+}
+
 #title a {
-   /*font-family: Georgia, Times, 'Times New Roman', serif;*/
-   font-size: 1.25em;
+   font-size: 1.5em;
    font-weight: bold;
-   color: #444;
+   color: #fff;
 }
 
 #title a:hover {
-   color: #444;
-}
-
-.title-header {
-  padding: 5px;
-  background-color: #ccccdd;
+   color: #fff
 }
 
 .top-header {
   max-width: none;
 }
 
-/* header styles */
+.location-form {
+  background-color: #526B5C;
+  padding-bottom: 10px;
+}
+
 #location-text {
   color: #444444;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: bold;
   font-size: 20px;
   line-height: 1.3em;
@@ -65,6 +88,15 @@ h5 {
 :-moz-placeholder { color: #444444; }
 ::-moz-placeholder { color: #444444; }
 :-ms-input-placeholder { color: #444444; }
+
+.button {
+  border-color: #fd8d3c;
+  background-color: #fd8d3c;
+}
+
+.button:hover {
+  background-color: #f03b20;
+}
 
 #location-submit {
   background-image: url(../img/icon-search.png);
@@ -98,7 +130,7 @@ h5 {
 }
 
 .disaster-tabs-content {
-  background-color: #ccccdd;
+  background-color: #91AB9B;
 }
 
 .disaster-container {
@@ -106,6 +138,8 @@ h5 {
 }
 
 .information-instructions {
+  background-color: #526B5C;
+  color: #FFF;
   padding: 5px;
 }
 
@@ -114,26 +148,46 @@ h5 {
   margin: 5px;
 }
 
+.section-icon--link {
+  background: transparent url(../img/link.svg) no-repeat 0 0;
+}
+
+.section-icon--supply-kit {
+  background: transparent url(../img/supplykit.svg) no-repeat 0 0;
+}
+
+.section-icon--community {
+  background: transparent url(../img/community.svg) no-repeat 0 0;
+}
+
+.section-icon--What {
+  background: transparent url(../img/question.svg) no-repeat 0 0;
+}
+
+.section-icon--Past {
+  background: transparent url(../img/clock.svg) no-repeat 0 0;
+}
+
+.section-icon--How {
+  background: transparent url(../img/prepare.svg) no-repeat 0 0;
+}
+
 .section-icon {
   margin-top: 0.2rem;
-  width: 60px;
-  height: 60px;
-  background: transparent url(../img/icons-sections.png) no-repeat 0 0;
-  background-size: 60px auto;
+  width: 80px;
+  height: 80px;
+  background-size: 80px auto;
 }
-.section-icon.kit         { background-position: 0 -60px; }
-.section-icon.community   { background-position: 0 -120px; }
-.section-icon.leaders     { background-position: 0 -180px; }
-.section-icon.home        { background-position: 0 -240px; }
-.section-icon.deformation { background-position: 0 -300px; }
-.section-icon.routes      { background-position: 0 -360px; }
-.section-icon.shaking     { background-position: 0 -420px; }
+
+.section-icon--dynamic {
+  width: 100%;
+}
 
 .section-title {
-  font-size: 24px;
-  line-height: 1.2em;
+  font-size: 1.75rem;
+  line-height: 3em;
+  margin-left: 90px;
   text-transform: uppercase;
-  margin: 15px 0;
 }
 
 .intensity-meter {
@@ -147,7 +201,9 @@ h5 {
 }
 
 .intensity {
+  display: inline-block;
   margin-bottom:20px;
+  width: 100%;
 }
 
 .intensity-meter-segment {
@@ -179,7 +235,7 @@ h5 {
   font-size: 50px;
   line-height: .9em;
   margin: 0 15px;
-  color: #5e001d;
+  color: #fd8d3c;
 }
 .supply-kit .text-label {
   padding-top: .2em;
@@ -193,12 +249,12 @@ h5 {
 }
 
 #geek-box {
-  background-color: #ccccdd;
-  color: #717273;
+  background-color: #91AB9B;
+  color: #fff;
 }
 
 #geek-box-container {
-  background-color: #ccccdd;
+  background-color: #91AB9B;
 }
 
 #geek-box a {
@@ -206,7 +262,7 @@ h5 {
 }
 
 #geek-box h6 {
-  color: #444444;
+  color: #fff;
 }
 
 /* loading spinner during geolocation */
@@ -234,7 +290,6 @@ h5 {
 }
 
 .tab-title {
-  font-size: 16px;
   font-weight: bold;
 }
 
@@ -243,12 +298,25 @@ h5 {
 }
 
 .tabs-content > .content.active {
-  display:inline-block;
-  width: 100%;
+  display: inline-block;
+  float: right;
+  margin-top: 10px;
+  width: 98%;
 }
 
 .tabs dd.active a, .tabs .tab-title.active a {
-  background-color: #ccccdd;
+  background-color: #91AB9B;
+}
+
+.likely-scenario {
+  background-color: #526B5C;
+  color: #FFF;
+  padding: 10px;
+  margin-top: -15px;
+}
+
+.section-content {
+  padding-left: 20px;
 }
 
 /* adjustments for smaller screens */
@@ -293,13 +361,55 @@ h5 {
     display: block;
   }
 
+  p {
+    font-size: 1rem;
+  }
+
+  h3 {
+    line-height: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+  }
+
+  .tabs-content > .content.active {
+    margin-top: 0;
+    width: 92%;
+  }
+
+  .caps {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .intensity-meter {
+    float:left;
+    margin: 0 10px 0 0;
+    width:100px;
+  }
+
+  .intensity-content {
+    margin: 10px 0 0 0;
+  }
+
+  .section-content {
+    padding: 0;
+  }
 }
 
 /* adjustments for the smallest screens */
 @media only screen and (max-width: 26em) {
+  .button {
+    margin: 0;
+  }
+
   #location-text {
     color: #444444;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: bold;
     font-size: 16px;
     line-height: 1.3em;
@@ -322,9 +432,18 @@ h5 {
     text-align: center;
   }
   .section-icon {
-    width: 40px;
-    height: 40px;
-    background-size: 40px auto;
+    width: 50px;
+    height: 50px;
+    background-size: 50px auto;
+  }
+
+  .section-icon--dynamic {
+    width: 100%;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+    margin-left: 55px;
   }
 
   .tab-title {
@@ -332,16 +451,8 @@ h5 {
     width: 95%;
   }
 
-  .section-icon.kit         { background-position: 0 -40px; }
-  .section-icon.community   { background-position: 0 -80px; }
-  .section-icon.leaders     { background-position: 0 -120px; }
-  .section-icon.home        { background-position: 0 -160px; }
-  .section-icon.deformation { background-position: 0 -200px; }
-  .section-icon.routes      { background-position: 0 -240px; }
-  .section-icon.shaking     { background-position: 0 -280px; }
-
 .disaster-tabs {
-    background-color: #ccccdd;
+    background-color: #91AB9B;
     padding: 5px;
   }
 

@@ -12,6 +12,25 @@ def app_view(request):
     supply_kit.meals = 3 * supply_kit.days
     template = "no_content_found.html"
 
+    likely_scenarios = {
+        'Fire': {
+            'title': 'Likely Wildfire Scenario',
+            'text': "Wildfire season stretches from spring to fall in Missoula County. In a low snowpack year the potential for fires increases. Is the area where you live at risk for a potential burn?"
+        },
+        'Flooding': {
+            'title': 'Likely Flood Scenario',
+            'text': "It’s springtime in Missoula County and the temperature has been steadily rising causing the snowpack to melt. It has been raining for many days and the rivers begin flooding. Will you feel the flood effects?"
+        },
+        'Landslide': {
+            'title': 'Landslide',
+            'text': "Landslides typically happen after rainstorms come through and especially in burned areas without vegetation to stabilize the slopes. Find out if you should be concerned in your area."
+        },
+        'Earthquake': {
+            'title': 'Earthquake',
+            'text': "Earthquakes can happen anytime. In Missoula County there are five faults that are considered active. It is most likely that a small earthquake of magnitude 4 to 5 would strike here. What kind of shaking might you experience?"
+        }
+    }
+
     # Make sure that sections and subsections are always in the same order.
     section_order = {
         'what to expect': 0,
@@ -68,7 +87,9 @@ def app_view(request):
 
                         data[key] = {
                             'heading': heading,
-                            'sections': OrderedDict(sorted(sections.items(), key=lambda t: sort_by_name(t, section_order)))
+                            'sections': OrderedDict(sorted(sections.items(), key=lambda t: sort_by_name(t, section_order))),
+                            'likely_scenario_title': likely_scenarios[heading]['title'] if heading in likely_scenarios else "",
+                            'likely_scenario_text': likely_scenarios[heading]['text'] if heading in likely_scenarios else ""
                         }
 
         return render(request, template, {
@@ -77,7 +98,7 @@ def app_view(request):
             'supply_kit': supply_kit,
             'important_links': important_links,
             'data_bounds': data_bounds,
-            'data': OrderedDict(sorted(data.items(), key=lambda t: t[0]))
+            'data': OrderedDict(sorted(data.items(), key=lambda t: t[0])),
         })
 
 
