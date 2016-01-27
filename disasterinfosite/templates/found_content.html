@@ -66,10 +66,12 @@
           {% endif %}
           {% for section, sub_sections in hazard.sections.items %}
             <div class="snugget-text">
-              <h4 class="caps section-title">{{ section }}</h4>
+              <div class="section-icon section-icon--dynamic section-icon--{{ section }}">
+                <h3 class="caps section-title">{{ section }}</h3>
+              </div>
               <div class="section-content">
                 {% for sub_section, snuggets in sub_sections.items %}
-                  <h5>{{ sub_section }}</h5>
+                  <h4>{{ sub_section }}</h4>
                   {% for snugget in snuggets %}
                     {% show_snugget snugget %}
                   {% endfor %}
@@ -86,13 +88,13 @@
   <div class="row">
     <div class="section-icon section-icon--supply-kit small-2 column"></div>
     <div class="small-10 medium-5 column">
-      <h4 class="caps">Supply Kit</h4>
+      <h3 class="caps">Supply Kit</h3>
       {% include "supply-kit.html" %}
     </div>
 
     <div class="section-icon section-icon--link small-2 column"></div>
     <div class="small-10 medium-5 column end">
-      <h4 class="caps">Important Links</h4>
+      <h3 class="caps">Important Links</h3>
       {% for link in important_links %}
       <h5>{{ link.title }}</h5>
       <p>{{ link.link | urlize }}
@@ -103,7 +105,7 @@
   <div class="row">
       <div class="section-icon section-icon--community small-2 column"></div>
       <div class="small-10 medium-5 column end">
-      <h4 class="caps">Community Leaders</h4>
+      <h3 class="caps">Community Leaders</h3>
       <p>{{ location.community_leaders | urlize }}</p>
     </div>
   </div>
