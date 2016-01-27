@@ -46,6 +46,34 @@ Settings:
 The data for this app is in `disasterinfosite/data`. This data includes shapefiles and related data for Missoula County, Montana, USA, to get you started. When you use `python import.py` to process these shapefiles and update some Django code to fit, the script will prompt you for which field to use to look up snuggets. Use the field name `lookup_val` for every shapefile except `Flood_FEMA_DFRIM_2015`, for which you should use `FEMADES`.
 ### Deploying to the web via Apache
 
+#### Linode-specific instructions
+
+If you have a default Linode configuration running Ubuntu 15.04, you can follow these very specific instructions. For any other system, skip this subsection.
+
+1. `aptitude install libapache2-mod-wsgi-py3`
+2. Edit `/etc/apache2/apache2.conf` adding the following (replace all-caps entries as appropriate):
+`RedirectMatch ^/WEBSITE_SUBDIRECTORY$ /WEBSITE_SUBDIRECTORY/`
+`WSGIScriptAlias /SUBDIRECTORY /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/wsgi.py`
+`WSGIPythonPath /home/USERNAME/INSTALLDIRECTORY:/home/USERNAME/INSTALLDIRECTORY/venv/lib/python3.4/site-packages`
+`<Directory /home/USERNAME/INSTALLDIRECTORY/disasterinfosite>`
+`<Files wsgi.py>`
+`Require all granted`
+`</Files>`
+`</Directory>`
+3. Edit the default apache website (usually `/etc/apache2/sites-available/000-default` to add: `Alias /WEBSITE_SUBDIRECTORY/static/ /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/static/`
+`<Directory /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/static>`
+`Require all granted`
+`</Directory>`
+`WSGIScriptAlias /zr /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/wsgi.py`
+`<Directory /home/USERNAME/INSTALLDIRECTORY/disasterinfosite>`
+`<Files wsgi.py>`
+`Require all granted`
+`</Files>`
+`</Directory>`
+4. Edit `disasterinfosite/settings.py` to remove the first forward slash from the value of `STATIC_URL`, leaving the relevant line as: `STATIC_URL = 'static/'`
+
+#### General instructions
+
 1. Install a version of `mod_wsgi` that is compiled for Python 3. On Debian/Ubuntu you can do this with `aptitude install libapache2-mod-wsgi-py3`. On other systems it may be easier to use `pip` as per [these instructions](https://pypi.python.org/pypi/mod_wsgi).
 2. Use [these instructions](https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/modwsgi/) to configure Apache. Note in particular:
     1. You'll need `WSGIScriptAlias` to point to `disasterinfosite/wsgi.py`
