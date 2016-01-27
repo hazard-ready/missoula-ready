@@ -67,12 +67,14 @@
           {% for section, sub_sections in hazard.sections.items %}
             <div class="snugget-text">
               <h4 class="caps section-title">{{ section }}</h4>
-              {% for sub_section, snuggets in sub_sections.items %}
-                <h5>{{ sub_section }}</h5>
-                {% for snugget in snuggets %}
-                  {% show_snugget snugget %}
+              <div class="section-content">
+                {% for sub_section, snuggets in sub_sections.items %}
+                  <h5>{{ sub_section }}</h5>
+                  {% for snugget in snuggets %}
+                    {% show_snugget snugget %}
+                  {% endfor %}
                 {% endfor %}
-              {% endfor %}
+              </div>
             </div>
           {% endfor %}
         </div>

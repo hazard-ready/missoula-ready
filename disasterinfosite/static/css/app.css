@@ -163,7 +163,7 @@ h6 {
 .section-icon.shaking     { background-position: 0 -420px; }
 
 .section-title {
-  font-size: 24px;
+  font-size: 1.75rem;
   line-height: 1.2em;
   text-transform: uppercase;
   margin: 15px 0;
@@ -180,7 +180,9 @@ h6 {
 }
 
 .intensity {
+  display: inline-block;
   margin-bottom:20px;
+  width: 100%;
 }
 
 .intensity-meter-segment {
@@ -267,7 +269,6 @@ h6 {
 }
 
 .tab-title {
-  font-size: 16px;
   font-weight: bold;
 }
 
@@ -289,6 +290,10 @@ h6 {
   color: #FFF;
   padding: 10px;
   margin-top: -15px;
+}
+
+.section-content {
+  padding-left: 20px;
 }
 
 /* adjustments for smaller screens */
@@ -357,6 +362,24 @@ h6 {
   .tabs-content > .content.active {
     float: right;
     width: 95%;
+  }
+
+  .intensity-meter {
+    float:left;
+    margin: 0 10px 0 0;
+    width:100px;
+  }
+
+  .intensity-content {
+    margin: 10px 0 0 0;
+  }
+
+  .section-content {
+    padding: 0;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
   }
 }
 
