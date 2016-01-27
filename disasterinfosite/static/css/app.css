@@ -16,6 +16,7 @@ h3 {
 }
 
 h4 {
+  font-weight: bold;
   font-size: 1.25rem;
 }
 
@@ -159,6 +160,18 @@ h6 {
   background: transparent url(../img/community.svg) no-repeat 0 0;
 }
 
+.section-icon--What {
+  background: transparent url(../img/question.svg) no-repeat 0 0;
+}
+
+.section-icon--Past {
+  background: transparent url(../img/clock.svg) no-repeat 0 0;
+}
+
+.section-icon--How {
+  background: transparent url(../img/prepare.svg) no-repeat 0 0;
+}
+
 .section-icon {
   margin-top: 0.2rem;
   width: 80px;
@@ -166,11 +179,15 @@ h6 {
   background-size: 80px auto;
 }
 
+.section-icon--dynamic {
+  width: 100%;
+}
+
 .section-title {
   font-size: 1.75rem;
-  line-height: 1.2em;
+  line-height: 3em;
+  margin-left: 90px;
   text-transform: uppercase;
-  margin: 15px 0;
 }
 
 .intensity-meter {
@@ -383,10 +400,6 @@ h6 {
   .section-content {
     padding: 0;
   }
-
-  .section-title {
-    font-size: 1.5rem;
-  }
 }
 
 /* adjustments for the smallest screens */
@@ -422,6 +435,15 @@ h6 {
     width: 50px;
     height: 50px;
     background-size: 50px auto;
+  }
+
+  .section-icon--dynamic {
+    width: 100%;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+    margin-left: 55px;
   }
 
   .tab-title {
