@@ -4,47 +4,83 @@ The project is a custom instance of the [Disaster Preparedness](https://github.c
 
 # To set it up, follow the instructions in the [Disaster Preparedness project README](https://github.com/missoula-ready/disaster-preparedness/blob/master/README.md).
 
+The data for this app is in `disasterinfosite/data`. This data includes shapefiles and related data for Missoula County, Montana, USA, to get you started. When you use `python import.py` to process these shapefiles and update some Django code to fit, the script will prompt you for which field to use to look up snuggets. Use the field name `lookup_val` for every shapefile except `Flood_FEMA_DFRIM_2015`, for which you should use `FEMADES`.
+
+Note that the `python manage.py makemigrations` step will probably tell you there's nothing to add.  Don't worry - this is not an error!
+
 # Values to put in Django Admin
 
-Important links:
+### Important links
 
-Evacuation Information
-In the case of an emergecny you may need to evacuate, learn more here: http://www.missoulacounty.us/government/public-safety/office-of-emergency-management/evacuation-information
+###### Evacuation Information
+In the case of an emergency you may need to evacuate, learn more here: http://www.missoulacounty.us/government/public-safety/office-of-emergency-management/evacuation-information
 
-Neighborhood Council
+###### Neighborhood Council
 Find out more about getting your neighborhood ready here: www.ci.missoula.mt.us/1591/My-Neighborhood-Council
 
-Real-time Alerts
+###### Real-time Alerts
 Sign up for Smart911 to help your family during emergencies: http://www.smart911.com
 
+### Supply kit
 
-Supply kit:
+###### days
+  3
+###### text
+`For more information check out the <a href="ftp://www.co.missoula.mt.us/911advisory/Emergency_Supply_List.pdf">Missoula County Emergency Kit Checklist</a> and the <a href="ftp://www.co.missoula.mt.us/911advisory/Winter_Ready_Checklist.pdf">Winter Ready Kit Checklist</a>.`
 
-  days: 3
-  text:
-    `For more information check out the <a href="ftp://www.co.missoula.mt.us/911advisory/Emergency_Supply_List.pdf">Missoula County Emergency Kit Checklist</a> and the <a href="ftp://www.co.missoula.mt.us/911advisory/Winter_Ready_Checklist.pdf">Winter Ready Kit Checklist</a>.`
+### Location Information
 
-Location:
+###### Area Name
+Missoula County
 
-  Area Name: Missoula County
-  Community Leaders: In the event of an emergency the Office of Emergency Management for Missoula County will be your place to go for information. Call 406-258-INFO (4636). This line is either recorded with a disaster specific message or is manned by live people depending on the situation.
+###### Community Leaders
+In the event of an emergency the Office of Emergency Management for Missoula County will be your place to go for information. Call 406-258-INFO (4636). This line is either recorded with a disaster specific message or is manned by live people depending on the situation.
 
+### Settings
+###### Site title
+Missoula ready
 
-Settings:
-  Site title: Missoula ready
+###### Site description
+A disaster preparedness website
 
-  Site description: A disaster preparedness website
+###### Intro Text
+A natural disaster could strike your area at any time. Find out about where you live, work, or play in Missoula County, MT.
 
-  Intro Text:  A natural disaster could strike your area at any time. Find out about where you live, work, or play in Missoula County, MT.
+###### Who Made This
+`This is based on <a href="http://www.opb.org/news/widget/aftershock-find-your-cascadia-earthquake-story/">Aftershock</a>, an earthquake preparedness application for Oregon residents. Carson MacPherson-Krutsky and <a href="http://www.hs.umt.edu/geosciences/faculty/bendick/">Dr. Rebecca Bendick</a>, a graduate student and her advisor at the Unversity of Montana, had the idea to expand it for other locales and types of disasters. <a href="https://github.com/nein09">Melinda Minch</a> and <a href="https://github.com/eldang">Eldan Goldenberg</a> adapted it for that purpose.`
 
+###### Data Download
+https://github.com/missoula-ready/disaster-preparedness/blob/master/world/data.zip
 
-  Who Made This:
-  This is based on <a href="http://www.opb.org/news/widget/aftershock-find-your-cascadia-earthquake-story/">Aftershock</a>, an earthquake preparedness application for Oregon residents. Carson MacPherson-Krutsky and <a href="http://www.hs.umt.edu/geosciences/faculty/bendick/">Dr. Rebecca Bendick</a>, a graduate student and her advisor at the Unversity of Montana, had the idea to expand it for other locales and types of disasters. <a href="https://github.com/nein09">Melinda Minch</a> and <a href="https://github.com/eldang">Eldan Goldenberg</a> adapted it for that purpose.
-
-  Data Download: https://github.com/missoula-ready/disaster-preparedness/blob/master/world/data.zip
-
-The data for this app is in `disasterinfosite/data`. This data includes shapefiles and related data for Missoula County, Montana, USA, to get you started. When you use `python import.py` to process these shapefiles and update some Django code to fit, the script will prompt you for which field to use to look up snuggets. Use the field name `lookup_val` for every shapefile except `Flood_FEMA_DFRIM_2015`, for which you should use `FEMADES`.
 ### Deploying to the web via Apache
+
+#### Linode-specific instructions
+
+If you have a default Linode configuration running Ubuntu 15.04, you can follow these very specific instructions. For any other system, skip this subsection.
+
+1. `aptitude install libapache2-mod-wsgi-py3`
+2. Edit `/etc/apache2/apache2.conf` adding the following (replace all-caps entries as appropriate):
+`RedirectMatch ^/WEBSITE_SUBDIRECTORY$ /WEBSITE_SUBDIRECTORY/`
+`WSGIScriptAlias /SUBDIRECTORY /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/wsgi.py`
+`WSGIPythonPath /home/USERNAME/INSTALLDIRECTORY:/home/USERNAME/INSTALLDIRECTORY/venv/lib/python3.4/site-packages`
+`<Directory /home/USERNAME/INSTALLDIRECTORY/disasterinfosite>`
+`<Files wsgi.py>`
+`Require all granted`
+`</Files>`
+`</Directory>`
+3. Edit the default apache website (usually `/etc/apache2/sites-available/000-default` to add: `Alias /WEBSITE_SUBDIRECTORY/static/ /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/static/`
+`<Directory /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/static>`
+`Require all granted`
+`</Directory>`
+`WSGIScriptAlias /zr /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/wsgi.py`
+`<Directory /home/USERNAME/INSTALLDIRECTORY/disasterinfosite>`
+`<Files wsgi.py>`
+`Require all granted`
+`</Files>`
+`</Directory>`
+4. Edit `disasterinfosite/settings.py` to remove the first forward slash from the value of `STATIC_URL`, leaving the relevant line as: `STATIC_URL = 'static/'`
+
+#### General instructions
 
 1. Install a version of `mod_wsgi` that is compiled for Python 3. On Debian/Ubuntu you can do this with `aptitude install libapache2-mod-wsgi-py3`. On other systems it may be easier to use `pip` as per [these instructions](https://pypi.python.org/pypi/mod_wsgi).
 2. Use [these instructions](https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/modwsgi/) to configure Apache. Note in particular:
