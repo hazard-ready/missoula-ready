@@ -333,80 +333,89 @@ class Snugget(models.Model):
     def findSnuggetsForPoint(lat=0, lng=0, merge_deform = True):
         pnt = Point(lng, lat)
 
-######################################################
-# GENERATED CODE GOES HERE
-# DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
-# modelsGeoFilters
-        qs_EQ_Fault_Buffer = EQ_Fault_Buffer.objects.filter(geom__contains=pnt)
-        EQ_Fault_Buffer_rating = qs_EQ_Fault_Buffer.values_list('lookup_val', flat=True)
-        EQ_Fault_Buffer_snuggets = []
-        for rating in EQ_Fault_Buffer_rating:
-            individualSnugget = Snugget.objects.filter(EQ_Fault_Buffer_filter__lookup_val__exact=rating).select_subclasses()
-            EQ_Fault_Buffer_snuggets.extend(individualSnugget)
+        quake_snuggets = []
 
-        qs_EQ_Historic_Distance = EQ_Historic_Distance.objects.filter(geom__contains=pnt)
-        EQ_Historic_Distance_rating = qs_EQ_Historic_Distance.values_list('lookup_val', flat=True)
-        EQ_Historic_Distance_snuggets = []
-        for rating in EQ_Historic_Distance_rating:
-            individualSnugget = Snugget.objects.filter(EQ_Historic_Distance_filter__lookup_val__exact=rating).select_subclasses()
-            EQ_Historic_Distance_snuggets.extend(individualSnugget)
-
+        # The main earthquake shapefile
         qs_EQ_Most_Like = EQ_Most_Like.objects.filter(geom__contains=pnt)
         EQ_Most_Like_rating = qs_EQ_Most_Like.values_list('lookup_val', flat=True)
         EQ_Most_Like_snuggets = []
         for rating in EQ_Most_Like_rating:
             individualSnugget = Snugget.objects.filter(EQ_Most_Like_filter__lookup_val__exact=rating).select_subclasses()
-            EQ_Most_Like_snuggets.extend(individualSnugget)
+            quake_snuggets.extend(individualSnugget)
 
+        # Supporting quake shapefile
         qs_EQ_Worst_Case = EQ_Worst_Case.objects.filter(geom__contains=pnt)
         EQ_Worst_Case_rating = qs_EQ_Worst_Case.values_list('lookup_val', flat=True)
         EQ_Worst_Case_snuggets = []
         for rating in EQ_Worst_Case_rating:
             individualSnugget = Snugget.objects.filter(EQ_Worst_Case_filter__lookup_val__exact=rating).select_subclasses()
-            EQ_Worst_Case_snuggets.extend(individualSnugget)
+            quake_snuggets.extend(individualSnugget)
 
-        qs_Fire_Hist_Bound = Fire_Hist_Bound.objects.filter(geom__contains=pnt)
-        Fire_Hist_Bound_rating = qs_Fire_Hist_Bound.values_list('lookup_val', flat=True)
-        Fire_Hist_Bound_snuggets = []
-        for rating in Fire_Hist_Bound_rating:
-            individualSnugget = Snugget.objects.filter(Fire_Hist_Bound_filter__lookup_val__exact=rating).select_subclasses()
-            Fire_Hist_Bound_snuggets.extend(individualSnugget)
+        # supporting quake shapefile
+        qs_EQ_Fault_Buffer = EQ_Fault_Buffer.objects.filter(geom__contains=pnt)
+        EQ_Fault_Buffer_rating = qs_EQ_Fault_Buffer.values_list('lookup_val', flat=True)
+        EQ_Fault_Buffer_snuggets = []
+        for rating in EQ_Fault_Buffer_rating:
+            individualSnugget = Snugget.objects.filter(EQ_Fault_Buffer_filter__lookup_val__exact=rating).select_subclasses()
+            quake_snuggets.extend(individualSnugget)
 
+        # supporting quake shapefile
+        qs_EQ_Historic_Distance = EQ_Historic_Distance.objects.filter(geom__contains=pnt)
+        EQ_Historic_Distance_rating = qs_EQ_Historic_Distance.values_list('lookup_val', flat=True)
+        EQ_Historic_Distance_snuggets = []
+        for rating in EQ_Historic_Distance_rating:
+            individualSnugget = Snugget.objects.filter(EQ_Historic_Distance_filter__lookup_val__exact=rating).select_subclasses()
+            quake_snuggets.extend(individualSnugget)
+
+        fire_snuggets = []
+
+        # The main fire shapefile
         qs_Fire_Intensity = Fire_Intensity.objects.filter(geom__contains=pnt)
         Fire_Intensity_rating = qs_Fire_Intensity.values_list('lookup_val', flat=True)
         Fire_Intensity_snuggets = []
         for rating in Fire_Intensity_rating:
             individualSnugget = Snugget.objects.filter(Fire_Intensity_filter__lookup_val__exact=rating).select_subclasses()
-            Fire_Intensity_snuggets.extend(individualSnugget)
+            fire_snuggets.extend(individualSnugget)
 
+        # Supporting fire shapefile
+        qs_Fire_Hist_Bound = Fire_Hist_Bound.objects.filter(geom__contains=pnt)
+        Fire_Hist_Bound_rating = qs_Fire_Hist_Bound.values_list('lookup_val', flat=True)
+        for rating in Fire_Hist_Bound_rating:
+            individualSnugget = Snugget.objects.filter(Fire_Hist_Bound_filter__lookup_val__exact=rating).select_subclasses()
+            fire_snuggets.extend(individualSnugget)
+
+        # Supporting fire shapefile
         qs_Fire_Worst_Case_placeholder = Fire_Worst_Case_placeholder.objects.filter(geom__contains=pnt)
         Fire_Worst_Case_placeholder_rating = qs_Fire_Worst_Case_placeholder.values_list('lookup_val', flat=True)
         Fire_Worst_Case_placeholder_snuggets = []
         for rating in Fire_Worst_Case_placeholder_rating:
             individualSnugget = Snugget.objects.filter(Fire_Worst_Case_placeholder_filter__lookup_val__exact=rating).select_subclasses()
-            Fire_Worst_Case_placeholder_snuggets.extend(individualSnugget)
+            fire_snuggets.extend(individualSnugget)
 
-        qs_Flood_Channel_Migration_Zones = Flood_Channel_Migration_Zones.objects.filter(geom__contains=pnt)
-        Flood_Channel_Migration_Zones_rating = qs_Flood_Channel_Migration_Zones.values_list('lookup_val', flat=True)
-        Flood_Channel_Migration_Zones_snuggets = []
-        for rating in Flood_Channel_Migration_Zones_rating:
-            individualSnugget = Snugget.objects.filter(Flood_Channel_Migration_Zones_filter__lookup_val__exact=rating).select_subclasses()
-            Flood_Channel_Migration_Zones_snuggets.extend(individualSnugget)
+        flood_snuggets = []
 
+        # The main flood shapefile
         qs_Flood_FEMA_DFRIM_2015 = Flood_FEMA_DFRIM_2015.objects.filter(geom__contains=pnt)
         Flood_FEMA_DFRIM_2015_rating = qs_Flood_FEMA_DFRIM_2015.values_list('femades', flat=True)
-        Flood_FEMA_DFRIM_2015_snuggets = []
         for rating in Flood_FEMA_DFRIM_2015_rating:
             individualSnugget = Snugget.objects.filter(Flood_FEMA_DFRIM_2015_filter__femades__exact=rating).select_subclasses()
-            Flood_FEMA_DFRIM_2015_snuggets.extend(individualSnugget)
+            flood_snuggets.extend(individualSnugget)
 
+        # Supporting flood shapefile
+        qs_Flood_Channel_Migration_Zones = Flood_Channel_Migration_Zones.objects.filter(geom__contains=pnt)
+        Flood_Channel_Migration_Zones_rating = qs_Flood_Channel_Migration_Zones.values_list('lookup_val', flat=True)
+        for rating in Flood_Channel_Migration_Zones_rating:
+            individualSnugget = Snugget.objects.filter(Flood_Channel_Migration_Zones_filter__lookup_val__exact=rating).select_subclasses()
+            flood_snuggets.extend(individualSnugget)
+
+        # Supporting flood shapefile
         qs_Flood_Worst_Case_ph = Flood_Worst_Case_ph.objects.filter(geom__contains=pnt)
         Flood_Worst_Case_ph_rating = qs_Flood_Worst_Case_ph.values_list('lookup_val', flat=True)
-        Flood_Worst_Case_ph_snuggets = []
         for rating in Flood_Worst_Case_ph_rating:
             individualSnugget = Snugget.objects.filter(Flood_Worst_Case_ph_filter__lookup_val__exact=rating).select_subclasses()
-            Flood_Worst_Case_ph_snuggets.extend(individualSnugget)
+            flood_snuggets.extend(individualSnugget)
 
+        # Main landslide shapefile
         qs_Landslide_placeholder = Landslide_placeholder.objects.filter(geom__contains=pnt)
         Landslide_placeholder_rating = qs_Landslide_placeholder.values_list('lookup_val', flat=True)
         Landslide_placeholder_snuggets = []
@@ -416,16 +425,9 @@ class Snugget(models.Model):
 
 
         return {'groups': {
-                          'EQ_Fault_Buffer_snugs': EQ_Fault_Buffer_snuggets,
-                          'EQ_Historic_Distance_snugs': EQ_Historic_Distance_snuggets,
-                          'EQ_Most_Like_snugs': EQ_Most_Like_snuggets,
-                          'EQ_Worst_Case_snugs': EQ_Worst_Case_snuggets,
-                          'Fire_Hist_Bound_snugs': Fire_Hist_Bound_snuggets,
-                          'Fire_Intensity_snugs': Fire_Intensity_snuggets,
-                          'Fire_Worst_Case_placeholder_snugs': Fire_Worst_Case_placeholder_snuggets,
-                          'Flood_Channel_Migration_Zones_snugs': Flood_Channel_Migration_Zones_snuggets,
-                          'Flood_FEMA_DFRIM_2015_snugs': Flood_FEMA_DFRIM_2015_snuggets,
-                          'Flood_Worst_Case_ph_snugs': Flood_Worst_Case_ph_snuggets,
+                          'EQ_Most_Like_snugs': quake_snuggets,
+                          'Fire_Intensity_snugs': fire_snuggets,
+                          'Flood_FEMA_DFRIM_2015_snugs': flood_snuggets,
                           'Landslide_placeholder_snugs': Landslide_placeholder_snuggets
                           },
                 'EQ_Fault_Buffer_rating': EQ_Fault_Buffer_rating,
@@ -435,13 +437,9 @@ class Snugget(models.Model):
                 'Fire_Hist_Bound_rating': Fire_Hist_Bound_rating,
                 'Fire_Intensity_rating': Fire_Intensity_rating,
                 'Fire_Worst_Case_placeholder_rating': Fire_Worst_Case_placeholder_rating,
-                'Flood_Channel_Migration_Zones_rating': Flood_Channel_Migration_Zones_rating,
                 'Flood_FEMA_DFRIM_2015_rating': Flood_FEMA_DFRIM_2015_rating,
-                'Flood_Worst_Case_ph_rating': Flood_Worst_Case_ph_rating,
                 'Landslide_placeholder_rating': Landslide_placeholder_rating
                 }
-# END OF GENERATED CODE BLOCK
-######################################################
 
 
 
