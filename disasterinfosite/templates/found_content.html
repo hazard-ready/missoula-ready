@@ -2,21 +2,40 @@
 {% load staticfiles %}
 {% load show_snugget %}
 
-{% block header %}
-  <div class="row top-header">
-    <div class="title-header">
-      <h2 class="project-title caps">{{ settings.site_title }}</h2>
-      <h3 class="project-subtitle">{{ settings.site_description }}</h3>
-    </div>
-    <div class="information-instructions"><p>Look below the map to see information for your location, or enter another location.</p></div>
-  </div>
-{% endblock header %}
+{% block info-instructions %}
+  <div class="information-instructions" ></div>
+{% endblock info-instructions %}
 
+{% block search %}
+      <div class="location-form">
+        <div class="row">
+           <div class="small-12 medium-8 medium-push-1 columns">
+               <div class="row collapse">
+                 <div class="small-10 columns">
+                   <input id="location-text" type="text" placeholder="Your address, your city" />
+                   <div class="geocode-error-message"></div>
+                 </div>
+                 <div class="small-2 end columns">
+                   <a id="location-submit" class="button postfix"></a>
+                 </div>
+               </div>
+              <div class="row hidden-for-medium-up">
+                <div class="small-6 small-centered columns form-icon-button">
+                   <a class="auto-location-submit button radius caps">Find Me</a>
+                </div>
+                <div class="small-12 hide-for-small medium-3 columns form-icon-button">
+                  <a class="auto-location-submit button radius caps">Find Me</a>
+               </div>
+              </div>
+           </div>
+        </div>
+      </div>
+{% endblock search %}
 
 {% block map %}
 <div class="row">
   <div class="small-12 column">
-    <div id="map" style="height: 300px;"></div>
+    <div id="map"></div>
   </div>
 </div>
 {% endblock map %}
@@ -40,15 +59,24 @@
         {% else %}
           <div class="content disaster-content" id="{{group}}">
         {% endif %}
+        {% if hazard.likely_scenario_title %}
+          <div class="likely-scenario">
+            <p><span class="caps">{{ hazard.likely_scenario_title }}: </span>{{ hazard.likely_scenario_text }}</p>
+          </div>
+          {% endif %}
           {% for section, sub_sections in hazard.sections.items %}
             <div class="snugget-text">
-              <h4 class="section-title">{{ section }}</h4>
-              {% for sub_section, snuggets in sub_sections.items %}
-                <h5>{{ sub_section }}</h5>
-                {% for snugget in snuggets %}
-                  {% show_snugget snugget %}
+              <div class="section-icon section-icon--dynamic section-icon--{{ section }}">
+                <h3 class="caps section-title">{{ section }}</h3>
+              </div>
+              <div class="section-content">
+                {% for sub_section, snuggets in sub_sections.items %}
+                  <h4>{{ sub_section }}</h4>
+                  {% for snugget in snuggets %}
+                    {% show_snugget snugget %}
+                  {% endfor %}
                 {% endfor %}
-              {% endfor %}
+              </div>
             </div>
           {% endfor %}
         </div>
@@ -58,13 +86,15 @@
   </div>
 
   <div class="row">
+    <div class="section-icon section-icon--supply-kit small-2 column"></div>
     <div class="small-10 medium-5 column">
-      <h4>Supply Kit</h4>
+      <h3 class="caps">Supply Kit</h3>
       {% include "supply-kit.html" %}
     </div>
 
+    <div class="section-icon section-icon--link small-2 column"></div>
     <div class="small-10 medium-5 column end">
-      <h4>Important Links</h4>
+      <h3 class="caps">Important Links</h3>
       {% for link in important_links %}
       <h5>{{ link.title }}</h5>
       <p>{{ link.link | urlize }}
@@ -73,8 +103,9 @@
   </div>
 
   <div class="row">
+      <div class="section-icon section-icon--community small-2 column"></div>
       <div class="small-10 medium-5 column end">
-      <h4>Community Leaders</h4>
+      <h3 class="caps">Community Leaders</h3>
       <p>{{ location.community_leaders | urlize }}</p>
     </div>
   </div>
