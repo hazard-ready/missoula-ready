@@ -84,12 +84,14 @@
   </div>
 
   <div class="row">
-    <div class="small-10 medium-6 column">
+    <div class="section-icon section-icon--supply-kit small-2 column"></div>
+    <div class="small-10 medium-5 column">
       <h4 class="caps">Supply Kit</h4>
       {% include "supply-kit.html" %}
     </div>
 
-    <div class="small-10 medium-6 column">
+    <div class="section-icon section-icon--link small-2 column"></div>
+    <div class="small-10 medium-5 column end">
       <h4 class="caps">Important Links</h4>
       {% for link in important_links %}
       <h5>{{ link.title }}</h5>
@@ -99,7 +101,8 @@
   </div>
 
   <div class="row">
-      <div class="small-10 medium-6 column">
+      <div class="section-icon section-icon--community small-2 column"></div>
+      <div class="small-10 medium-5 column end">
       <h4 class="caps">Community Leaders</h4>
       <p>{{ location.community_leaders | urlize }}</p>
     </div>
