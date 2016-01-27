@@ -31,40 +31,40 @@
 
 </head>
 <body>
-{% block header %}
   <div class="row top-header">
-    <div class="title-header">
+    <div id="title" class="title-header">
       <h2 class="project-title caps"><a href="{{ settings.site_url }}">{{ settings.site_title }}</a></h2>
       <h3 class="project-subtitle">{{ settings.site_description }}</h3>
     </div>
-    <div class="information-instructions">
-      <p class="organization-information">{{ settings.about_text }}</p>
-      <p>{{ settings.intro_text }}</p>
-      <p class="location-instructions-large">Give your location by typing in the box below, clicking on the map, or clicking 'find me'. You'll get a personalized report on your risks and steps you can take to prepare.</p>
-      <p class="location-instructions-small">Give your location by typing in the box below or clicking 'find me'. You'll get a personalized report on your risks and steps you can take to prepare.</p>
-    </div>
+    {% block info-instructions %}
+      <div class="information-instructions">
+        <p class="organization-information">{{ settings.about_text }}</p>
+        <p>{{ settings.intro_text }}</p>
+        <p class="location-instructions-large">Give your location by typing in the box below, clicking on the map, or clicking 'find me'. You'll get a personalized report on your risks and steps you can take to prepare.</p>
+        <p class="location-instructions-small">Give your location by clicking 'find me'. You'll get a personalized report on your risks and steps you can take to prepare.</p>
+      </div>
+    {% endblock info-instructions %}
   </div>
-{% endblock header %}
 
 {% block search %}
       <div class="location-form">
         <div class="row">
            <div class="small-12 medium-8 medium-push-1 columns">
-               <div class="row collapse">
+               <div class="row collapse hide-for-small">
                  <div class="small-10 columns">
-                   <input id="location-text" type="text" placeholder="An address in {{ location.area_name }}" />
+                   <input id="location-text" type="text" placeholder="Your address, your city" />
                    <div class="geocode-error-message"></div>
                  </div>
                  <div class="small-2 end columns">
-                   <a id="location-submit" class="blue-bg button postfix"></a>
+                   <a id="location-submit" class="button postfix"></a>
                  </div>
                </div>
               <div class="row hidden-for-medium-up">
                 <div class="small-6 small-centered columns form-icon-button">
-                   <a class="auto-location-submit blue-bg button radius caps">Find Me</a>
+                   <a class="auto-location-submit button radius caps">Find Me</a>
                 </div>
                 <div class="small-12 hide-for-small medium-3 columns form-icon-button">
-                  <a class="auto-location-submit blue-bg button radius caps">Find Me</a>
+                  <a class="auto-location-submit button radius caps">Find Me</a>
                </div>
               </div>
            </div>
@@ -73,7 +73,7 @@
 {% endblock search %}
 
 {% block map %}
-      <div class="row">
+      <div class="row map-container">
         <div class="small-12 medium-7 hide-for-small column">
           <div id="map" style="height: 400px;"></div>
         </div>
