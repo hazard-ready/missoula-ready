@@ -1,0 +1,212 @@
+/* 
+    Document   : imageviewer.css
+    Created on : Aug 4, 2010, 12:21:42 PM
+    Author     : leonea
+    Description:
+        This is the stylesheet for the imageviewer specific styles
+*/
+
+
+#imageviewer_toolbar {
+	border-top:#999 thin solid;
+	background-image:url(/ui/cdm/default/collection/default/viewers/singleImage1/images/toolbar_back.jpg);
+	vertical-align:top;
+	height:31px;
+	text-align:center;
+        display:none;
+}
+
+
+#imageviewer_toolbar .ui-corner-all {
+-moz-border-radius:4px 4px 4px 4px;
+}
+
+#imageviewer_toolbar .ui-widget-content {
+background:url("images/ui-bg_flat_75_ffffff_40x100.png") repeat-x scroll 50% 50% #FFFFFF;
+border:1px solid #AAAAAA;
+color:#222222;
+}
+
+#imageviewer_toolbar .ui-widget {
+font-family:Verdana,Arial,sans-serif;
+font-size:1.1em;
+}
+
+#imageviewer_toolbar a .ui-state-default, #imageviewer_toolbar .ui-widget-content .ui-state-default, #imageviewer_toolbar .ui-widget-header .ui-state-default {
+background:url("images/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50% #E6E6E6;
+border:1px solid #D3D3D3;
+color:#555555;
+font-weight:normal;
+}
+
+#imageviewer_toolbar  a:link {
+text-decoration:none;
+}
+
+#imageviewer_toolbar a .ui-corner-all {
+-moz-border-radius:4px 4px 4px 4px;
+}
+
+#imageviewer_toolbar a .ui-widget {
+font-family:Verdana,Arial,sans-serif;
+font-size:1.1em;
+}
+
+#zoom_text{
+    top:10px;
+    line-height: 0px;
+    vertical-align:text-top;
+}
+
+#scaleSlider {
+  top:10px;
+  width:100px;
+  display:inline-block;
+  vertical-align:top;
+}
+
+.ui-slider { position: relative; text-align: left; }
+.ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 1.2em; height: 1.2em; cursor: default; }
+.ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
+
+.ui-slider-horizontal { height: .8em; }
+.ui-slider-horizontal .ui-slider-handle { top: -.3em; margin-left: -.6em; }
+.ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
+.ui-slider-horizontal .ui-slider-range-min { left: 0; }
+.ui-slider-horizontal .ui-slider-range-max { right: 0; }
+
+.ui-slider-vertical { width: .8em; height: 100px; }
+.ui-slider-vertical .ui-slider-handle { left: -.3em; margin-left: 0; margin-bottom: -.6em; }
+.ui-slider-vertical .ui-slider-range { left: 0; width: 100%; }
+.ui-slider-vertical .ui-slider-range-min { bottom: 0; }
+.ui-slider-vertical .ui-slider-range-max { top: 0; }
+
+
+
+
+
+
+
+
+
+div#imageviewer_toolbar {
+  background-image:url(/ui/cdm/default/collection/default/viewers/imageViewer/images/toolbar_gif/toolbar_gradient.png);
+  text-align: center;
+  height:28px; 
+  border:#999 1px solid;
+  border-bottom-width: 0;
+}
+
+div#imageviewer_toolbar ul {
+  border-width: 0 0 0;
+  vertical-align:top;
+  padding: 0;
+  margin:0 auto;
+  line-height: 7px;
+  width: 450px;
+}
+
+div#imageviewer_toolbar ul li#imageviewer_zoom {
+  background:url(/ui/cdm/default/collection/default/viewers/imageViewer/images/toolbar_gif/slider_bg_gradient28.gif);
+  background-repeat: repeat-x;
+  background-position: top;
+  padding:0 10px;
+  font-size: 8px;
+  
+}
+
+div#imageviewer_toolbar ul li {
+  display: inline-block;
+  list-style-type: none;
+  padding: 0;
+  margin:auto;
+  vertical-align: middle;
+  float:left;
+}
+
+
+
+
+div#imageviewer_toolbar ul li.imageviewer_sep {
+  background-image:url(/ui/cdm/default/collection/default/viewers/imageViewer/images/toolbar_gif/toolbar_rule.gif);
+  width:1px;
+  height:28px;
+  background-repeat: repeat-x;
+  margin:0;
+}
+
+div#imageviewer_toolbar ul li input {
+  margin-top:0;
+  padding:0px 5px 0px 5px;
+}
+
+div#imageviewer_toolbar ul li#imageviewer_zoom input {
+  margin-top:6px;
+  padding:0px 5px 0px 5px;
+}
+
+div#imageviewer_toolbar ul #scaleSlider {
+  display:-moz-inline-block; display:-moz-inline-box; display:inline-block;vertical-align:top;
+}
+
+
+#scaleSlider {
+  top:9px;
+  width:100px;
+  display:inline-block;
+  vertical-align:top;
+}
+
+#imageviewer_toolbar .ui-corner-all {
+  -moz-border-radius:4px 4px 4px 4px;
+}
+
+#imageviewer_toolbar .ui-widget-content {
+  background:url(/ui/cdm/default/collection/default/css/images/redmond-ui-bg_flat_55_fbec88_40x100.png) repeat-x scroll 50% 50% #FFFFFF;
+  border:1px solid #AAAAAA;
+  color:#222222;
+}
+
+#imageviewer_toolbar .ui-widget {
+  font-family:Verdana,Arial,sans-serif;
+  font-size:1.1em;
+}
+
+#imageviewer_toolbar a .ui-state-default, #imageviewer_toolbar .ui-widget-content .ui-state-default, #imageviewer_toolbar .ui-widget-header .ui-state-default {
+  background:url(/ui/cdm/default/collection/default/css/images/redmond-ui-bg_gloss-wave_55_5c9ccc_500x100.png) repeat-x scroll 50% 50% #E6E6E6;
+  border:1px solid #D3D3D3;
+  color:#555555;
+  font-weight:normal;
+}
+/*
+#imageviewer_toolbar  a:link {
+  text-decoration:none;
+}
+
+#imageviewer_toolbar a .ui-corner-all {
+  -moz-border-radius:4px 4px 4px 4px;
+}
+
+#imageviewer_toolbar a .ui-widget {
+  font-family:Verdana,Arial,sans-serif;
+  font-size:1.1em;
+}
+
+.ui-slider { position: relative; text-align: left; }
+.ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 1.2em; height: 1.2em; cursor: default; }
+.ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
+
+.ui-slider-horizontal { height: .8em; }
+.ui-slider-horizontal .ui-slider-handle { top: -.3em; margin-left: -.6em; }
+.ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
+.ui-slider-horizontal .ui-slider-range-min { left: 0; }
+.ui-slider-horizontal .ui-slider-range-max { right: 0; }
+
+.ui-slider-vertical { width: .8em; height: 100px; }
+.ui-slider-vertical .ui-slider-handle { left: -.3em; margin-left: 0; margin-bottom: -.6em; }
+.ui-slider-vertical .ui-slider-range { left: 0; width: 100%; }
+.ui-slider-vertical .ui-slider-range-min { bottom: 0; }
+.ui-slider-vertical .ui-slider-range-max { top: 0; }
+*/
+
+
