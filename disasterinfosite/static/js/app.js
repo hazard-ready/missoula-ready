@@ -29,9 +29,9 @@ $( document ).ready(function() {
   var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
   var layer = new L.TileLayer(osmUrl, {attribution: osmAttrib}).addTo(map);
   layer.setOpacity(0.6);
-  
+
   var boundaryPolygon = new L.GeoJSON.AJAX("static/img/boundary.geojson").addTo(map);
-  
+
   document.getElementById('map').style.cursor='default';
   if (query_lat && query_lng) {
     var icon = new L.Icon.Default;

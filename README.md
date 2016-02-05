@@ -111,6 +111,10 @@ If you have a default Linode configuration running Ubuntu 15.04, you can follow 
 
 If you have raster data, first convert it to a shapefile.  See [Converting raster files](#converting-raster-files) below for pointers if you don't already know how to do that.
 
+To have the boundary of the area covered by your data display on the map, save it as a geoJSON LineString (not a polygon), in `/static/img/boundary.geojson`
+
+**TODO**: Some automated processing of the boundary. The import pipeline ought to be able to compose it from the sum of all the included shapefiles.
+
 ### Fully automated pipeline
 
 If the structure of your text content is simple enough, you can import shapefiles and snuggets automatically without having to do much manual work. We recommend using this pathway if possible, because it makes moving the site to a new server significantly easier. To do this, you will need a `snuggets.csv` file with the same columns as the example one we've included in `data.zip`.  The columns can be in any order, but the headings must be exactly as typed here:
