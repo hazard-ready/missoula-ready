@@ -30,8 +30,7 @@ $( document ).ready(function() {
   var layer = new L.TileLayer(osmUrl, {attribution: osmAttrib}).addTo(map);
   layer.setOpacity(0.6);
   
-  var boundary = new L.GeoJSON.AJAX("static/img/boundary.geojson");
-  boundary.addTo(map);
+  var boundary = new L.GeoJSON.AJAX("static/img/boundary.geojson").addTo(map);
 
   document.getElementById('map').style.cursor='default';
   if (query_lat && query_lng) {
