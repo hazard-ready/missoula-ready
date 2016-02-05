@@ -76,6 +76,14 @@
                     {% show_snugget snugget %}
                   {% endfor %}
                 {% endfor %}
+                {% if section.name == "Past Events" %}
+                  <div class="past-photos">
+                    {% for photo in hazard.photos %}
+                     <!-- <img data-lazy="{% static photo %}"/> -->
+                     <img src="{% static photo %}"/>
+                    {% endfor %}
+                  </div>
+                {% endif %}
               </div>
             </div>
           {% endfor %}
