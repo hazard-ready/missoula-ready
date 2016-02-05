@@ -121,4 +121,9 @@ $( document ).ready(function() {
     document.location =  encodeURI(document.location.hash + "?lat=" + lat + "&lng=" + lng + "&loc=" + location_query_text);
   }
 
+  // Set up slick photo slideshow
+  $('.past-photos').slick({
+  //  lazyLoad: 'ondemand'
+  });
+
 });
