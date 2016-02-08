@@ -122,8 +122,22 @@ $( document ).ready(function() {
   }
 
   // Set up slick photo slideshow
-  $('.past-photos').slick({
-  //  lazyLoad: 'ondemand'
+  function loadGallery() {
+    var currentSlideElement = $('.disaster-content.active .past-photos');
+    currentSlideElement.slick({
+      slidesToShow: 1,
+      lazyLoad: 'progressive'
+    });
+    return currentSlideElement;
+  }
+
+  // Initialize the slide gallery on the open disaster tab
+  var slideContainer = loadGallery();
+
+  // Open a new image gallery when a new tab is opened
+  $('.disaster-tabs').on('toggled', function () {
+    slideContainer.slick('unslick');
+    slideContainer = loadGallery();
   });
 
 });
