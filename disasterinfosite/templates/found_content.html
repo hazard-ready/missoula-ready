@@ -77,10 +77,11 @@
                   {% endfor %}
                 {% endfor %}
                 {% if section.name == "Past Events" %}
+                  {{ hazard.photos }}
+                  <h4>Photos of Past Events</h4>
                   <div class="past-photos">
                     {% for photo in hazard.photos %}
-                     <!-- <img data-lazy="{% static photo %}"/> -->
-                     <img src="{% static photo %}"/>
+                     <img class="slideshow-image" data-lazy="{% static photo %}"/>
                     {% endfor %}
                   </div>
                 {% endif %}
