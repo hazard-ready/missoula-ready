@@ -319,6 +319,42 @@ h6 {
   padding-left: 20px;
 }
 
+.past-photos {
+  width: 40em;
+  padding: 10px;
+  background-color: #91AB9B;
+}
+
+/* Arrows for photo slider */
+.slick-prev,
+.slick-next
+{
+    position: absolute;
+    top: 40%;
+    cursor: pointer;
+    color: #FFFFFF;
+    background: #000000;
+    opacity: .75;
+    z-index: 9999;
+}
+
+.slick-prev {
+  left: 5px;
+}
+.slick-next
+{
+  right: 5px;
+}
+
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus
+{
+    background: #000000;
+    outline: none;
+}
+
 /* adjustments for smaller screens */
 @media only screen and (max-width: 40em) {
 
@@ -400,6 +436,9 @@ h6 {
   .section-content {
     padding: 0;
   }
+  .past-photos {
+    width: 30em;
+  }
 }
 
 /* adjustments for the smallest screens */
@@ -455,5 +494,7 @@ h6 {
     background-color: #91AB9B;
     padding: 5px;
   }
-
+  .past-photos {
+    width: 18em;
+  }
 }
