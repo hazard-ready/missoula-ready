@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <div id="geek-box-container">
   <div id="geek-box" class="row vert-pad-medium">
       <div class="small-12 medium-6 columns">
@@ -12,6 +13,22 @@
         {% if settings.contact_email %}
             <p>Have questions? <a href="mailto:{{ settings.contact_email }}">Email the creators</a> for more information.</p>
         {% endif %}
+    </div>
+    <div class="small-12 medium-6 columns">
+        <h6 class="caps">Quick Data Overview</h6>
+        <p>Take a look at some overviews of the data we used for Missoula County:</p>
+        <ul>
+            <li><a  target="_blank" href="{% static 'img/data/earthquake_fault_distance.jpg' %}">Earthquakes: Distance from a Fault</a></li>
+            <li><a  target="_blank" href="{% static 'img/data/earthquake_historic.jpg' %}">Earthquakes: Historic Quakes</a></li>
+            <li><a  target="_blank" href="{% static 'img/data/earthquake_most_likely.jpg' %}">Earthquakes: Most Likely Scenario</a></li>
+            <li><a  target="_blank" href="{% static 'img/data/earthquake_worst_case.jpg' %}">Earthquakes: Worst Case Scenario</a></li>
+            <li><a  target="_blank" href="{% static 'img/data/fire_burn_potential.jpg' %}">Fires: Burn Potential</a></li>
+            <li><a  target="_blank" href="{% static 'img/data/fire_historic.jpg' %}">Fires: Historic Fires</a></li>
+            <li><a  target="_blank" href="{% static 'img/data/fire_worst_case.jpg' %}">Fires: Worst Case Scenario</a></li>
+            <li><a  target="_blank" href="{% static 'img/data/flood_dfirm.jpg' %}">Floods: Flood Zones</a></li>
+            <li><a  target="_blank" href="{% static 'img/data/flood_migration.jpg' %}">Floods: Flood Migration</a></li>
+            <li><a  target="_blank" href="{% static 'img/data/flood_worst_case.jpg' %}">Floods: Worst Case Scenario</a></li>
+        </ul>
     </div>
     <div class="small-12 medium-6 columns">
         <h6 class="caps">Is this available for other Counties or States?</h6>
