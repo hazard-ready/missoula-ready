@@ -333,6 +333,12 @@ class Snugget(models.Model):
     def findSnuggetsForPoint(lat=0, lng=0, merge_deform = True):
         pnt = Point(lng, lat)
 
+
+
+######################################################
+# GENERATED CODE GOES HERE
+# DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
+# modelsGeoFilters        
         quake_snuggets = []
 
         # The main earthquake shapefile
@@ -440,7 +446,8 @@ class Snugget(models.Model):
                 'Flood_FEMA_DFRIM_2015_rating': Flood_FEMA_DFRIM_2015_rating,
                 'Landslide_placeholder_rating': Landslide_placeholder_rating
                 }
-
+# END OF GENERATED CODE BLOCK
+######################################################
 
 
     def __str__(self):

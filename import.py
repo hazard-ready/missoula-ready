@@ -16,10 +16,13 @@ def main():
   adminFile = os.path.join(appDir, "admin.py")
   loadFile = os.path.join(appDir, "load.py")
   viewsFile = os.path.join(appDir, "views.py")
+  
+  existingShapefileGroups = []
 
   modelsLocationsList = ""
   modelsClasses = ""
   modelsFilters = ""
+  modelsGroupInitialisations = ""
   modelsGeoFilters = ""
   modelsSnuggetGroups = ""
   modelsSnuggetRatings = ""
@@ -44,6 +47,7 @@ def main():
       #TODO: if there's already a reprojected shapefile, use the field in that instead of prompting the user.
       sf = shapefile.Reader(os.path.join(dataDir, f))
       keyField = askUserForFieldNames(sf, stem)
+      shapefileGroup = askUserForShapefileGroup(stem, existingShapefileGroups)
 
       reprojected = processShapefile(f, stem, dataDir, reprojectedDir, SRIDNamespace+":"+desiredSRID, keyField)
       simplified = simplifyShapefile(reprojected, simplifiedDir, simplificationTolerance)
@@ -57,8 +61,11 @@ def main():
 
       modelsClasses += modelClassGen(stem, sf, keyField, desiredSRID, shapeType)
       modelsFilters += "    " + stem + "_filter = models.ForeignKey(" + stem + ", related_name='+', on_delete=models.PROTECT, blank=True, null=True)\n"
-      modelsGeoFilters += modelsGeoFilterGen(stem, keyField)
-      modelsSnuggetGroups += "                          '" + stem + "_snugs': " + stem + "_snuggets,\n"
+      modelsGeoFilters += modelsGeoFilterGen(stem, keyField, shapefileGroup)
+      if shapefileGroup not in existingShapefileGroups:
+        existingShapefileGroups.append(shapefileGroup)
+        modelsGroupInitialisations += "        " + shapefileGroup + "_snuggets = []\n"
+        modelsSnuggetGroups += "                          '" + shapefileGroup + "_snugs': " + shapefileGroup + "_snuggets,\n"
       modelsSnuggetRatings += "                '" + stem + "_rating': " + stem + "_rating,\n"
 
       adminModelImports += ", " + stem
@@ -108,7 +115,7 @@ def main():
   outputGeneratedCode(modelsLocationsList, modelsFile, "locationsList")
   outputGeneratedCode(modelsClasses, modelsFile, "modelsClasses")
   outputGeneratedCode(modelsFilters, modelsFile, "modelsFilters")
-  outputGeneratedCode(modelsGeoFilters + "\n" + modelsSnuggetReturns, modelsFile, "modelsGeoFilters")
+  outputGeneratedCode(modelsGroupInitialisations + "\n" + modelsGeoFilters + "\n" + modelsSnuggetReturns, modelsFile, "modelsGeoFilters")
 
   outputGeneratedCode(adminModelImports, adminFile, "adminModelImports")
   outputGeneratedCode(adminLists, adminFile, "adminLists")
@@ -182,6 +189,26 @@ def askUserForFieldNames(sf, stem):
 
 
 
+def askUserForShapefileGroup(stem, existingShapefileGroups):
+  if existingShapefileGroups != []:
+    print("So far, you have defined the following shapefile groups:")
+    print((str(existingShapefileGroups).strip("[]").replace("'","")))
+  print("If you would like to group", stem, "in a tab with content from other shapefiles, type a group name here:")
+  print("(Leave blank to give content from this shapefile its own unique tab.)")
+  groupName = input(">> ")
+  
+  if groupName in existingShapefileGroups:
+    print("Adding", stem, "to group:", groupName)
+  else:
+    print("Creating new group", groupName, "and adding", stem, "to it.")
+  
+  if groupName == "":
+    return stem
+  else:
+    return groupName
+
+
+
 def detectGeometryType(sf, stem):
   try:
     shapeType = next(shape for shape in sf.shapes() if shape.shapeType != 0).shapeType
@@ -248,13 +275,12 @@ def modelClassGen(stem, sf, keyField, srs, shapeType):
 
 
 
-def modelsGeoFilterGen(stem, keyField):
+def modelsGeoFilterGen(stem, keyField, shapefileGroup):
   text  = "        qs_" + stem + " = " + stem + ".objects.filter(geom__contains=pnt)\n"
   text += "        " + stem + "_rating = " + "qs_" + stem + ".values_list('" + keyField.lower() + "', flat=True)\n"
-  text += "        " + stem + "_snuggets = []\n"
   text += "        for rating in " + stem + "_rating:\n"
   text += "            individualSnugget = Snugget.objects.filter(" + stem + "_filter__" + keyField.lower() + "__exact=rating).select_subclasses()\n"
-  text += "            " + stem + "_snuggets.extend(individualSnugget)\n\n"
+  text += "            " + shapefileGroup + "_snuggets.extend(individualSnugget)\n\n"
   return text
 
 
