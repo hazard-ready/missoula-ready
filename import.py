@@ -16,6 +16,8 @@ def main():
   adminFile = os.path.join(appDir, "admin.py")
   loadFile = os.path.join(appDir, "load.py")
   viewsFile = os.path.join(appDir, "views.py")
+  
+  existingShapefileGroups = []
 
   modelsLocationsList = ""
   modelsClasses = ""
@@ -44,6 +46,9 @@ def main():
       #TODO: if there's already a reprojected shapefile, use the field in that instead of prompting the user.
       sf = shapefile.Reader(os.path.join(dataDir, f))
       keyField = askUserForFieldNames(sf, stem)
+      shapefileGroup = askUserForShapefileGroup(sf, stem, existingShapefileGroups)
+      if shapefileGroup not in existingShapefileGroups:
+        existingShapefileGroups.append(shapefileGroup)
 
       reprojected = processShapefile(f, stem, dataDir, reprojectedDir, SRIDNamespace+":"+desiredSRID, keyField)
       simplified = simplifyShapefile(reprojected, simplifiedDir, simplificationTolerance)
@@ -179,6 +184,21 @@ def askUserForFieldNames(sf, stem):
     keyField = input(">> ")
   print("Generating code for", stem, "using", keyField, "to look up snuggets.")
   return keyField
+
+
+
+def askUserForShapefileGroups(sf, stem, existingShapefileGroups):
+  if existingShapefileGroups != []:
+    print("So far, you have defined the following shapefile groups:")
+    print(str(existingShapefileGroups))
+  print("If you would like to group", stem, "in a tab with content from other shapefiles, type a group name here:")
+  print("(Leave blank to give content from this shapefile its own unique tab.)")
+  groupName = input(">> ")
+  if input in existingShapefileGroups:
+    print("Adding", stem, "to group:", groupName)
+  else:
+    print("Creating new group", groupName, "and adding", stem, "to it.")
+  return groupName
 
 
 
