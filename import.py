@@ -192,7 +192,7 @@ def askUserForFieldNames(sf, stem):
 def askUserForShapefileGroup(stem, existingShapefileGroups):
   if existingShapefileGroups != []:
     print("So far, you have defined the following shapefile groups:")
-    print(str(existingShapefileGroups))
+    print((str(existingShapefileGroups).strip("[]").replace("'","")))
   print("If you would like to group", stem, "in a tab with content from other shapefiles, type a group name here:")
   print("(Leave blank to give content from this shapefile its own unique tab.)")
   groupName = input(">> ")
