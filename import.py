@@ -46,7 +46,7 @@ def main():
       #TODO: if there's already a reprojected shapefile, use the field in that instead of prompting the user.
       sf = shapefile.Reader(os.path.join(dataDir, f))
       keyField = askUserForFieldNames(sf, stem)
-      shapefileGroup = askUserForShapefileGroup(sf, stem, existingShapefileGroups)
+      shapefileGroup = askUserForShapefileGroup(stem, existingShapefileGroups)
       if shapefileGroup not in existingShapefileGroups:
         existingShapefileGroups.append(shapefileGroup)
 
@@ -187,7 +187,7 @@ def askUserForFieldNames(sf, stem):
 
 
 
-def askUserForShapefileGroups(sf, stem, existingShapefileGroups):
+def askUserForShapefileGroups(stem, existingShapefileGroups):
   if existingShapefileGroups != []:
     print("So far, you have defined the following shapefile groups:")
     print(str(existingShapefileGroups))
