@@ -189,7 +189,7 @@ def askUserForFieldNames(sf, stem):
 
 
 
-def askUserForShapefileGroups(stem, existingShapefileGroups):
+def askUserForShapefileGroup(stem, existingShapefileGroups):
   if existingShapefileGroups != []:
     print("So far, you have defined the following shapefile groups:")
     print(str(existingShapefileGroups))
