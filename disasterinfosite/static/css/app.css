@@ -44,6 +44,11 @@ h6 {
   font-weight: bold;
 }
 
+.title-image {
+  max-height: 100px;
+  vertical-align: bottom;
+}
+
 .title-header {
   padding: 5px;
   background-color: #91AB9B;
@@ -51,6 +56,15 @@ h6 {
 
 .title-header h3 {
   color: #F0F8FF;
+  text-align: center;
+}
+
+.project-title {
+  text-align: center;
+}
+
+.project-subtitle {
+  text-align: center;
 }
 
 #title a {
@@ -277,10 +291,6 @@ h6 {
   background-size: 110px 110px;
 }
 
-.project-title .project-subtitle {
-  text-align: center;
-}
-
 .location-instructions-small {
   display: none;
 }
@@ -365,12 +375,16 @@ h6 {
   .project-title {
     font-size: 50px;
     line-height: 1.2em;
-    text-align: center;
   }
+
   .project-subtitle {
     font-size: 20px;
     line-height: 1.2em;
-    text-align: center;
+  }
+
+  .title-image {
+    display: block;
+    margin: 0 auto;
   }
   .location-label {
     font-size: 22px;
@@ -463,12 +477,11 @@ h6 {
   .project-title {
     font-size: 30px;
     line-height: 1.2em;
-    text-align: center;
   }
+
   .project-subtitle {
     font-size: 16px;
     line-height: 1.2em;
-    text-align: center;
   }
   .section-icon {
     width: 50px;
