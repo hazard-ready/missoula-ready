@@ -30,6 +30,8 @@ $( document ).ready(function() {
   var layer = new L.TileLayer(osmUrl, {attribution: osmAttrib}).addTo(map);
   layer.setOpacity(0.6);
 
+  var boundaryPolygon = new L.GeoJSON.AJAX("static/img/boundary.geojson").addTo(map);
+
   document.getElementById('map').style.cursor='default';
   if (query_lat && query_lng) {
     var icon = new L.Icon.Default;
@@ -44,7 +46,9 @@ $( document ).ready(function() {
 
   // Make a click on the map submit the location
   map.on('click', function(e) {
-   submitLocation(e.latlng.lat, e.latlng.lng);
+    location_query_text = "";
+    $("#location-text").val(location_query_text);  // clear query text
+    submitLocation(e.latlng.lat, e.latlng.lng);
   });
 
   // grab and set any previously entered query text
