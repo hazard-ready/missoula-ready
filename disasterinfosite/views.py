@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from collections import OrderedDict
-from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink
+from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink, PastEventsPhoto
 from .fire_dial import make_icon
 
 def app_view(request):
@@ -101,7 +101,7 @@ def app_view(request):
                             'sections': OrderedDict(sorted(sections.items(), key=lambda t: sort_by_name(t, section_order))),
                             'likely_scenario_title': likely_scenarios[heading]['title'] if heading in likely_scenarios else "",
                             'likely_scenario_text': likely_scenarios[heading]['text'] if heading in likely_scenarios else "",
-                            'photos': photos[heading]
+                            'photos': map(lambda p: str(p), PastEventsPhoto.objects.filter(heading__iexact=heading))
                         }
 
         return render(request, template, {
