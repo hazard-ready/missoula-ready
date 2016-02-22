@@ -55,39 +55,6 @@ def app_view(request):
         'get winter storm ready': 0
     }
 
-    photos = {
-        'Fire': [
-            'img/photos/fire/1.jpg',
-            'img/photos/fire/2.jpg',
-            'img/photos/fire/3.jpg',
-            'img/photos/fire/4.jpg',
-            'img/photos/fire/5.jpg'
-        ],
-        'Flooding': [
-            'img/photos/flood/1.jpg',
-            'img/photos/flood/2.jpg',
-            'img/photos/flood/3.jpg',
-            'img/photos/flood/4.jpg',
-            'img/photos/flood/5.jpg',
-            'img/photos/flood/6.jpg',
-            'img/photos/flood/7.jpg',
-            'img/photos/flood/8.jpg',
-            'img/photos/flood/9.jpg',
-            'img/photos/flood/10.jpg',
-            'img/photos/flood/11.jpg',
-            'img/photos/flood/12.jpg',
-            'img/photos/flood/13.jpg'
-        ],
-        'Landslide': [
-            'img/photos/landslide/I-90-slide.jpg'
-        ],
-        'Earthquake': [
-            'img/photos/earthquake/1.jpg',
-            'img/photos/earthquake/2.jpg',
-            'img/photos/earthquake/3.jpg'
-        ]
-    }
-
     # Clean up the syntax for the ordered dicts below.
     def sort_by_name(value, sorting_dict):
         return sorting_dict[value[0].__str__().lower()]
