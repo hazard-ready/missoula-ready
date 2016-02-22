@@ -50,7 +50,9 @@ def app_view(request):
         'get flood ready': 0,
         'get fire ready': 0,
         'stay tuned': 1,
-        'a word from your emergency managers': 2
+        'a word from your emergency managers': 2,
+        'get summer storm ready': 0,
+        'get winter storm ready': 0
     }
 
     photos = {
