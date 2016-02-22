@@ -453,6 +453,16 @@ h6 {
   .past-photos {
     width: 30em;
   }
+
+  .tab-title {
+    float: right !important;
+    width: 95%;
+  }
+
+  .disaster-tabs {
+    background-color: #91AB9B;
+    padding: 5px;
+  }
 }
 
 /* adjustments for the smallest screens */
@@ -498,15 +508,6 @@ h6 {
     margin-left: 55px;
   }
 
-  .tab-title {
-    float: right !important;
-    width: 95%;
-  }
-
-.disaster-tabs {
-    background-color: #91AB9B;
-    padding: 5px;
-  }
   .past-photos {
     width: 18em;
   }
