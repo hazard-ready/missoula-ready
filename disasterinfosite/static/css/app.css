@@ -414,6 +414,16 @@ h6 {
   .section-content {
     padding: 0;
   }
+
+  .tab-title {
+    float: right !important;
+    width: 95%;
+  }
+
+  .disaster-tabs {
+    background-color: #91AB9B;
+    padding: 5px;
+  }
 }
 
 /* adjustments for the smallest screens */
@@ -457,16 +467,6 @@ h6 {
   .section-title {
     font-size: 1.3rem;
     margin-left: 55px;
-  }
-
-  .tab-title {
-    float: right !important;
-    width: 95%;
-  }
-
-.disaster-tabs {
-    background-color: #91AB9B;
-    padding: 5px;
   }
 
 }
