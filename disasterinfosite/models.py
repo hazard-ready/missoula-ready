@@ -476,3 +476,10 @@ class EmbedSnugget(Snugget):
 
     def __str__(self):
         return "Embed Snugget: " + str(self.embed)
+
+class PastEventsPhoto(models.Model):
+    heading = models.CharField(default="", max_length=50)
+    image = models.ImageField(upload_to="photos")
+
+    def __str__(self):
+        return self.image.url
