@@ -55,6 +55,15 @@ def app_view(request):
         'get winter storm ready': 0
     }
 
+    heading_tab_order = {
+        'fire': 0,
+        'flooding': 1,
+        'winter storms': 2,
+        'summer storms': 3,
+        'earthquake': 4,
+        'landslide': 5
+    }
+
     # Clean up the syntax for the ordered dicts below.
     def sort_by_name(value, sorting_dict):
         return sorting_dict[value[0].__str__().lower()]
@@ -100,7 +109,7 @@ def app_view(request):
             'supply_kit': supply_kit,
             'important_links': important_links,
             'data_bounds': data_bounds,
-            'data': OrderedDict(sorted(data.items(), key=lambda t: t[0])),
+            'data': OrderedDict(sorted(data.items(), key=lambda t: heading_tab_order[t[1]['heading'].lower()] )),
         })
 
 
