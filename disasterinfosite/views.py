@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from collections import OrderedDict
-from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink
+from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink, PastEventsPhoto
 from .fire_dial import make_icon
 
 def app_view(request):
@@ -55,6 +55,15 @@ def app_view(request):
         'get winter storm ready': 0
     }
 
+    heading_tab_order = {
+        'fire': 0,
+        'flooding': 1,
+        'winter storms': 2,
+        'summer storms': 3,
+        'earthquake': 4,
+        'landslide': 5
+    }
+
     # Clean up the syntax for the ordered dicts below.
     def sort_by_name(value, sorting_dict):
         return sorting_dict[value[0].__str__().lower()]
@@ -87,11 +96,16 @@ def app_view(request):
                         for section, sub_section_dict in sections.items():
                             sections[section] = OrderedDict(sorted(sub_section_dict.items(), key=lambda t: sort_by_name(t, sub_section_order)))
 
+                        photos = []
+                        for p in PastEventsPhoto.objects.filter(heading__iexact=heading):
+                            photos.append(str(p))
+
                         data[key] = {
                             'heading': heading,
                             'sections': OrderedDict(sorted(sections.items(), key=lambda t: sort_by_name(t, section_order))),
                             'likely_scenario_title': likely_scenarios[heading]['title'] if heading in likely_scenarios else "",
-                            'likely_scenario_text': likely_scenarios[heading]['text'] if heading in likely_scenarios else ""
+                            'likely_scenario_text': likely_scenarios[heading]['text'] if heading in likely_scenarios else "",
+                            'photos': photos
                         }
 
         return render(request, template, {
@@ -100,7 +114,7 @@ def app_view(request):
             'supply_kit': supply_kit,
             'important_links': important_links,
             'data_bounds': data_bounds,
-            'data': OrderedDict(sorted(data.items(), key=lambda t: t[0])),
+            'data': OrderedDict(sorted(data.items(), key=lambda t: heading_tab_order[t[1]['heading'].lower()] )),
         })
 
 
