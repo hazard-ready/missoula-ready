@@ -67,6 +67,7 @@ admin.site.register(ImportantLink, admin.ModelAdmin)
 admin.site.register(SiteSettings, SingletonModelAdmin)
 admin.site.register(Location, SingletonModelAdmin)
 admin.site.register(SupplyKit, SingletonModelAdmin)
+admin.site.register(PastEventsPhoto, admin.ModelAdmin)
 
 ######################################################
 # GENERATED CODE GOES HERE
@@ -85,3 +86,4 @@ admin.site.register(Flood_Worst_Case_ph, GeoNoEditAdmin)
 admin.site.register(Landslide_placeholder, GeoNoEditAdmin)
 # END OF GENERATED CODE BLOCK
 ######################################################
+
