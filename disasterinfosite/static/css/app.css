@@ -187,6 +187,7 @@ h6 {
 }
 
 .section-icon {
+  display: inline-block;
   margin-top: 0.2rem;
   width: 80px;
   height: 80px;
@@ -333,6 +334,7 @@ h6 {
   width: 40em;
   padding: 10px;
   background-color: #91AB9B;
+  margin: 0 auto;
 }
 
 /* Arrows for photo slider */
@@ -504,11 +506,25 @@ h6 {
   }
 
   .section-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-left: 55px;
   }
 
   .past-photos {
-    width: 18em;
+    margin-bottom: 2rem;
+    width: 16em;
+  }
+
+  .slick-prev,
+  .slick-next
+  {
+    top: 90%;
+  }
+  .slick-prev {
+    left: 0px;
+  }
+  .slick-next
+  {
+    right: 0px;
   }
 }
