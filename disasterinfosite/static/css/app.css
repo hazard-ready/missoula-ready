@@ -187,6 +187,7 @@ h6 {
 }
 
 .section-icon {
+  display: inline-block;
   margin-top: 0.2rem;
   width: 80px;
   height: 80px;
@@ -329,6 +330,43 @@ h6 {
   padding-left: 20px;
 }
 
+.past-photos {
+  width: 40em;
+  padding: 10px;
+  background-color: #91AB9B;
+  margin: 0 auto;
+}
+
+/* Arrows for photo slider */
+.slick-prev,
+.slick-next
+{
+    position: absolute;
+    top: 40%;
+    cursor: pointer;
+    color: #FFFFFF;
+    background: #000000;
+    opacity: .75;
+    z-index: 9999;
+}
+
+.slick-prev {
+  left: 5px;
+}
+.slick-next
+{
+  right: 5px;
+}
+
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus
+{
+    background: #000000;
+    outline: none;
+}
+
 /* adjustments for smaller screens */
 @media only screen and (max-width: 40em) {
 
@@ -414,6 +452,19 @@ h6 {
   .section-content {
     padding: 0;
   }
+  .past-photos {
+    width: 30em;
+  }
+
+  .tab-title {
+    float: right !important;
+    width: 95%;
+  }
+
+  .disaster-tabs {
+    background-color: #91AB9B;
+    padding: 5px;
+  }
 }
 
 /* adjustments for the smallest screens */
@@ -455,18 +506,25 @@ h6 {
   }
 
   .section-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-left: 55px;
   }
 
-  .tab-title {
-    float: right !important;
-    width: 95%;
+  .past-photos {
+    margin-bottom: 2rem;
+    width: 16em;
   }
 
-.disaster-tabs {
-    background-color: #91AB9B;
-    padding: 5px;
+  .slick-prev,
+  .slick-next
+  {
+    top: 90%;
   }
-
+  .slick-prev {
+    left: 0px;
+  }
+  .slick-next
+  {
+    right: 0px;
+  }
 }
