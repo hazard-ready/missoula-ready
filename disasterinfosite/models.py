@@ -132,7 +132,7 @@ class ImportantLink(models.Model):
         help_text="A title for your important link, like 'Evacuation Information'"
     )
     link = models.TextField(
-        help_text="Your link and any information about it. Any web address in here gets turned into a link automatically."
+        help_text="Your link and any information about it. You can use HTML in here, and it'll render correctly."
     )
     def __str__(self):
         return self.title +': ' + self.link
