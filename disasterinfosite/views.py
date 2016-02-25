@@ -49,6 +49,7 @@ def app_view(request):
         'get earthquake ready': 0,
         'get flood ready': 0,
         'get wildfire ready': 0,
+        'get landslide ready': 0,
         'stay tuned': 1,
         'a word from your emergency managers': 2,
         'get summer storm ready': 0,
