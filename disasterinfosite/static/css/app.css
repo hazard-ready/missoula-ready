@@ -373,7 +373,7 @@ h6 {
 }
 
 /* adjustments for smaller screens */
-@media only screen and (max-width: 40em) {
+@media only screen and (max-width: 40rem) {
 
   #location-submit {
     background-size: 23px 23px;
@@ -481,7 +481,7 @@ h6 {
 }
 
 /* adjustments for the smallest screens */
-@media only screen and (max-width: 26em) {
+@media only screen and (max-width: 26rem) {
   .button {
     margin: 0;
   }
