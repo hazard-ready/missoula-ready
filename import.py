@@ -48,8 +48,6 @@ def main():
       sf = shapefile.Reader(os.path.join(dataDir, f))
       keyField = askUserForFieldNames(sf, stem)
       shapefileGroup = askUserForShapefileGroup(stem, existingShapefileGroups)
-      shapefileGroup = sanitiseInput(shapefileGroup)
-      # Doing the above replacement here is somewhat wasteful, but it means that if the user copies and pastes from the prompts, they'll get the already-processed version.
       
       reprojected = processShapefile(f, stem, dataDir, reprojectedDir, SRIDNamespace+":"+desiredSRID, keyField)
       simplified = simplifyShapefile(reprojected, simplifiedDir, simplificationTolerance)
@@ -137,7 +135,7 @@ def sanitiseInput(inputString):
   I chose the fastest of the solutions I found easily legible.
   The reason for anticipating so many variants of dashes and quotes is that MS Word can insert many of these without the user intending them.
   '''
-  for char in ['\\', '`', '*', ' ', '{', '}', '[', ']', '(', ')', '>', '<', '#', '№', '+', '-', '‐', '‒', '–', '—', '.', '¡', '!', '$', '\'', ',', '"', '/', '%', '‰', '‱', '‘', '’', '“', '”', '&', '@', '¿', '?', '~']:
+  for char in ['\\', '`', '*', ' ', '{', '}', '[', ']', '(', ')', '>', '<', '#', '№', '+', '-', '‐', '‒', '–', '—', '.', '¡', '!', '$', '\'', ',', '"', '/', '%', '‰', '‱', '‘', '’', '“', '”', '&', '@', '¿', '?', '~', '^', '=', ';', ':']:
     if char in inputString:
       inputString = inputString.replace(char, '_')
   
@@ -214,7 +212,9 @@ def askUserForShapefileGroup(stem, existingShapefileGroups):
   print("If you would like to group", stem, "in a tab with content from other shapefiles, type a group name here:")
   print("(Leave blank to give content from this shapefile its own unique tab.)")
   groupName = input(">> ")
-  
+  groupName = sanitiseInput(groupName)
+  # Doing the above replacement here is somewhat wasteful, but it means that the user will consistently see the sanitised group name echoed back to them in prompts.
+
   if groupName in existingShapefileGroups:
     print("Adding", stem, "to group:", groupName)
   else:
