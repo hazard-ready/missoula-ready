@@ -48,13 +48,13 @@ def main():
       sf = shapefile.Reader(os.path.join(dataDir, f))
       keyField = askUserForFieldNames(sf, stem)
       shapefileGroup = askUserForShapefileGroup(stem, existingShapefileGroups)
-
+      
       reprojected = processShapefile(f, stem, dataDir, reprojectedDir, SRIDNamespace+":"+desiredSRID, keyField)
       simplified = simplifyShapefile(reprojected, simplifiedDir, simplificationTolerance)
       sf = shapefile.Reader(simplified)
       shapeType = detectGeometryType(sf, stem)
       encoding = findEncoding(sf, dataDir, stem)
-
+      
 #Code generation: one line in this function writes one line of code to be copied elsewhere
 # one block represents the code generation for each destination file
       modelsLocationsList += "            '" + stem + "': " + stem + ".objects.data_bounds(),\n"
@@ -128,6 +128,22 @@ def main():
 
 
 
+
+def sanitiseInput(inputString):
+  '''
+  Character replacement algorithm from http://stackoverflow.com/a/27086669/2121470
+  I chose the fastest of the solutions I found easily legible.
+  The reason for anticipating so many variants of dashes and quotes is that MS Word can insert many of these without the user intending them.
+  '''
+  for char in ['\\', '`', '*', ' ', '{', '}', '[', ']', '(', ')', '>', '<', '#', '№', '+', '-', '‐', '‒', '–', '—', '.', '¡', '!', '$', '\'', ',', '"', '/', '%', '‰', '‱', '‘', '’', '“', '”', '&', '@', '¿', '?', '~', '^', '=', ';', ':', '|']:
+    if char in inputString:
+      inputString = inputString.replace(char, '_')
+  
+  return inputString
+
+
+
+
 """
 processShapefile() makes two changes in one shot:
 * Reprojects the shapefile to srs, because geoDjango has issues if they're not all in the same SRS
@@ -196,7 +212,9 @@ def askUserForShapefileGroup(stem, existingShapefileGroups):
   print("If you would like to group", stem, "in a tab with content from other shapefiles, type a group name here:")
   print("(Leave blank to give content from this shapefile its own unique tab.)")
   groupName = input(">> ")
-  
+  groupName = sanitiseInput(groupName)
+  # Doing the above replacement here is somewhat wasteful, but it means that the user will consistently see the sanitised group name echoed back to them in prompts.
+
   if groupName in existingShapefileGroups:
     print("Adding", stem, "to group:", groupName)
   else:
