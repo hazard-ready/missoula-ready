@@ -147,4 +147,12 @@ class Migration(migrations.Migration):
             ],
             bases=('disasterinfosite.snugget',),
         ),
+        migrations.CreateModel(
+            name='PastEventsPhoto',
+            fields=[
+                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
+                ('heading', models.CharField(default='', max_length=50)),
+                ('image', models.ImageField(upload_to='photos')),
+            ],
+        ),
     ]
