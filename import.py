@@ -48,13 +48,23 @@ def main():
       sf = shapefile.Reader(os.path.join(dataDir, f))
       keyField = askUserForFieldNames(sf, stem)
       shapefileGroup = askUserForShapefileGroup(stem, existingShapefileGroups)
-
+      
+      '''
+      Character replacement algorithm from http://stackoverflow.com/a/27086669/2121470
+      I chose the fastest of the solutions I found easily legible.
+      Doing the replacement here is somewhat wasteful, but it means that if the user copies and pastes from the prompts, they'll get the already-processed version.
+      The reason for anticipating so many variants of dashes and quotes is that MS Word can insert many of these without the user intending them.
+      '''
+      for char in ['\\', '`', '*', ' ', '{', '}', '[', ']', '(', ')', '>', '<', '#', '№', '+', '-', '‐', '‒', '–', '—', '.', '¡', '!', '$', '\'', ',', '"', '/', '%', '‰', '‱', '‘', '’', '“', '”', '&', '@', '¿', '?', '~']:
+        if char in shapefileGroup:
+          shapefileGroup = shapefileGroup.replace(char, '_')
+      
       reprojected = processShapefile(f, stem, dataDir, reprojectedDir, SRIDNamespace+":"+desiredSRID, keyField)
       simplified = simplifyShapefile(reprojected, simplifiedDir, simplificationTolerance)
       sf = shapefile.Reader(simplified)
       shapeType = detectGeometryType(sf, stem)
       encoding = findEncoding(sf, dataDir, stem)
-
+      
 #Code generation: one line in this function writes one line of code to be copied elsewhere
 # one block represents the code generation for each destination file
       modelsLocationsList += "            '" + stem + "': " + stem + ".objects.data_bounds(),\n"
