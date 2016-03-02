@@ -470,6 +470,14 @@ h6 {
     background-color: #91AB9B;
     padding: 5px;
   }
+
+  .location-form {
+    padding-left: 0px;
+  }
+
+  .form-icon-button {
+    text-align: center;
+  }
 }
 
 /* adjustments for the smallest screens */
