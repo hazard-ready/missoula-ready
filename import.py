@@ -135,7 +135,7 @@ def sanitiseInput(inputString):
   I chose the fastest of the solutions I found easily legible.
   The reason for anticipating so many variants of dashes and quotes is that MS Word can insert many of these without the user intending them.
   '''
-  for char in ['\\', '`', '*', ' ', '{', '}', '[', ']', '(', ')', '>', '<', '#', '№', '+', '-', '‐', '‒', '–', '—', '.', '¡', '!', '$', '\'', ',', '"', '/', '%', '‰', '‱', '‘', '’', '“', '”', '&', '@', '¿', '?', '~', '^', '=', ';', ':']:
+  for char in ['\\', '`', '*', ' ', '{', '}', '[', ']', '(', ')', '>', '<', '#', '№', '+', '-', '‐', '‒', '–', '—', '.', '¡', '!', '$', '\'', ',', '"', '/', '%', '‰', '‱', '‘', '’', '“', '”', '&', '@', '¿', '?', '~', '^', '=', ';', ':', '|']:
     if char in inputString:
       inputString = inputString.replace(char, '_')
   
