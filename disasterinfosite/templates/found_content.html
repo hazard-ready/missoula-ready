@@ -76,6 +76,14 @@
                     {% show_snugget snugget %}
                   {% endfor %}
                 {% endfor %}
+                {% if section.name == "Past Events" and hazard.photos %}
+                  <h4>Photos of Past Events</h4>
+                  <div class="past-photos">
+                    {% for photo in hazard.photos %}
+                     <img class="slideshow-image" data-lazy="{{ photo }}"/>
+                    {% endfor %}
+                  </div>
+                {% endif %}
               </div>
             </div>
           {% endfor %}
@@ -97,7 +105,7 @@
       <h3 class="caps">Important Links</h3>
       {% for link in important_links %}
       <h5>{{ link.title }}</h5>
-      <p>{{ link.link | urlize }}
+      <p>{{ link.link | safe }}
       {% endfor %}
     </div>
   </div>
