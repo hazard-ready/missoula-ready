@@ -53,6 +53,7 @@ A natural disaster could strike your area at any time. Find out about where you 
 https://github.com/missoula-ready/disaster-preparedness/blob/master/world/data.zip
 
 ### Deploying to the web via Apache
+There is a 'photos' directory in disasterinfosite/img. This is where photos go when you upload them via Django Admin, under 'Photos of Past Events'. In order for that upload to work, you need to change the owner (chown) that directory to whatever user Apache is running as (www-data, perhaps).
 
 #### Linode-specific instructions
 
