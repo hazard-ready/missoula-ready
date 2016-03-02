@@ -48,16 +48,8 @@ def main():
       sf = shapefile.Reader(os.path.join(dataDir, f))
       keyField = askUserForFieldNames(sf, stem)
       shapefileGroup = askUserForShapefileGroup(stem, existingShapefileGroups)
-      
-      '''
-      Character replacement algorithm from http://stackoverflow.com/a/27086669/2121470
-      I chose the fastest of the solutions I found easily legible.
-      Doing the replacement here is somewhat wasteful, but it means that if the user copies and pastes from the prompts, they'll get the already-processed version.
-      The reason for anticipating so many variants of dashes and quotes is that MS Word can insert many of these without the user intending them.
-      '''
-      for char in ['\\', '`', '*', ' ', '{', '}', '[', ']', '(', ')', '>', '<', '#', '№', '+', '-', '‐', '‒', '–', '—', '.', '¡', '!', '$', '\'', ',', '"', '/', '%', '‰', '‱', '‘', '’', '“', '”', '&', '@', '¿', '?', '~']:
-        if char in shapefileGroup:
-          shapefileGroup = shapefileGroup.replace(char, '_')
+      shapefileGroup = sanitiseInput(shapefileGroup)
+      # Doing the above replacement here is somewhat wasteful, but it means that if the user copies and pastes from the prompts, they'll get the already-processed version.
       
       reprojected = processShapefile(f, stem, dataDir, reprojectedDir, SRIDNamespace+":"+desiredSRID, keyField)
       simplified = simplifyShapefile(reprojected, simplifiedDir, simplificationTolerance)
@@ -135,6 +127,22 @@ def main():
   outputGeneratedCode(loadImports, loadFile, "loadImports")
 
   print("\n")
+
+
+
+
+def sanitiseInput(inputString):
+  '''
+  Character replacement algorithm from http://stackoverflow.com/a/27086669/2121470
+  I chose the fastest of the solutions I found easily legible.
+  The reason for anticipating so many variants of dashes and quotes is that MS Word can insert many of these without the user intending them.
+  '''
+  for char in ['\\', '`', '*', ' ', '{', '}', '[', ']', '(', ')', '>', '<', '#', '№', '+', '-', '‐', '‒', '–', '—', '.', '¡', '!', '$', '\'', ',', '"', '/', '%', '‰', '‱', '‘', '’', '“', '”', '&', '@', '¿', '?', '~']:
+    if char in inputString:
+      inputString = inputString.replace(char, '_')
+  
+  return inputString
+
 
 
 
