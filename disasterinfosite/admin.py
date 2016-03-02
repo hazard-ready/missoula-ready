@@ -5,7 +5,7 @@ from solo.admin import SingletonModelAdmin
 # GENERATED CODE GOES HERE
 # DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
 # adminModelImports
-from .models import EmbedSnugget, TextSnugget, SnuggetSection, SnuggetSubSection, Location, SiteSettings, SupplyKit, ImportantLink, EQ_Fault_Buffer, EQ_Fault_Shaking, EQ_Fault_Worst, EQ_Historic_Distance, Fire_Burn_Probability2, Fire_Hist_Bound2, Fire_Worst_Case_ph2, Flood_Channel_Migration_Zones, Flood_FEMA_DFRIM_2015, Flood_Worst_Case, Landslide_placeholder2, summerstorm, winterstorm
+from .models import EmbedSnugget, TextSnugget, SnuggetSection, SnuggetSubSection, Location, SiteSettings, SupplyKit, ImportantLink, EQ_Fault_Buffer, EQ_Historic_Distance, EQ_Most_Like, EQ_Worst_Case, Fire_Hist_Bound, Fire_Intensity, Fire_Worst_Case_placeholder, Flood_Channel_Migration_Zones, Flood_FEMA_DFRIM_2015, Flood_Worst_Case_ph, Landslide_placeholder
 # END OF GENERATED CODE BLOCK
 ######################################################
 from .models import PastEventsPhoto
@@ -18,8 +18,8 @@ class SnuggetAdmin(admin.ModelAdmin):
 # GENERATED CODE GOES HERE
 # DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
 # adminLists
-    list_display = ('shortname', 'section', 'sub_section', 'EQ_Fault_Buffer_filter', 'EQ_Fault_Shaking_filter', 'EQ_Fault_Worst_filter', 'EQ_Historic_Distance_filter', 'Fire_Burn_Probability2_filter', 'Fire_Hist_Bound2_filter', 'Fire_Worst_Case_ph2_filter', 'Flood_Channel_Migration_Zones_filter', 'Flood_FEMA_DFRIM_2015_filter', 'Flood_Worst_Case_filter', 'Landslide_placeholder2_filter', 'summerstorm_filter', 'winterstorm_filter')
-    list_filter = ('section', 'sub_section', 'EQ_Fault_Buffer_filter', 'EQ_Fault_Shaking_filter', 'EQ_Fault_Worst_filter', 'EQ_Historic_Distance_filter', 'Fire_Burn_Probability2_filter', 'Fire_Hist_Bound2_filter', 'Fire_Worst_Case_ph2_filter', 'Flood_Channel_Migration_Zones_filter', 'Flood_FEMA_DFRIM_2015_filter', 'Flood_Worst_Case_filter', 'Landslide_placeholder2_filter', 'summerstorm_filter', 'winterstorm_filter')
+    list_display = ('shortname', 'section', 'sub_section', 'EQ_Fault_Buffer_filter', 'EQ_Historic_Distance_filter', 'EQ_Most_Like_filter', 'EQ_Worst_Case_filter', 'Fire_Hist_Bound_filter', 'Fire_Intensity_filter', 'Fire_Worst_Case_placeholder_filter', 'Flood_Channel_Migration_Zones_filter', 'Flood_FEMA_DFRIM_2015_filter', 'Flood_Worst_Case_ph_filter', 'Landslide_placeholder_filter')
+    list_filter = ('section', 'sub_section', 'EQ_Fault_Buffer_filter', 'EQ_Historic_Distance_filter', 'EQ_Most_Like_filter', 'EQ_Worst_Case_filter', 'Fire_Hist_Bound_filter', 'Fire_Intensity_filter', 'Fire_Worst_Case_placeholder_filter', 'Flood_Channel_Migration_Zones_filter', 'Flood_FEMA_DFRIM_2015_filter', 'Flood_Worst_Case_ph_filter', 'Landslide_placeholder_filter')
 
     fieldsets = (
         (None, {
@@ -27,7 +27,7 @@ class SnuggetAdmin(admin.ModelAdmin):
         }),
         ('Filters', {
             'description': 'Choose a filter value this snugget will show up for.  It is recommended you only select a value for one filter and leave the rest empty.',
-            'fields': (('EQ_Fault_Buffer_filter', 'EQ_Fault_Shaking_filter', 'EQ_Fault_Worst_filter', 'EQ_Historic_Distance_filter', 'Fire_Burn_Probability2_filter', 'Fire_Hist_Bound2_filter', 'Fire_Worst_Case_ph2_filter', 'Flood_Channel_Migration_Zones_filter', 'Flood_FEMA_DFRIM_2015_filter', 'Flood_Worst_Case_filter', 'Landslide_placeholder2_filter', 'summerstorm_filter', 'winterstorm_filter'))
+            'fields': (('EQ_Fault_Buffer_filter', 'EQ_Historic_Distance_filter', 'EQ_Most_Like_filter', 'EQ_Worst_Case_filter', 'Fire_Hist_Bound_filter', 'Fire_Intensity_filter', 'Fire_Worst_Case_placeholder_filter', 'Flood_Channel_Migration_Zones_filter', 'Flood_FEMA_DFRIM_2015_filter', 'Flood_Worst_Case_ph_filter', 'Landslide_placeholder_filter'))
         })
     )
 # END OF GENERATED CODE BLOCK
@@ -74,18 +74,16 @@ admin.site.register(PastEventsPhoto, admin.ModelAdmin)
 # DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
 # adminSiteRegistrations
 admin.site.register(EQ_Fault_Buffer, GeoNoEditAdmin)
-admin.site.register(EQ_Fault_Shaking, GeoNoEditAdmin)
-admin.site.register(EQ_Fault_Worst, GeoNoEditAdmin)
 admin.site.register(EQ_Historic_Distance, GeoNoEditAdmin)
-admin.site.register(Fire_Burn_Probability2, GeoNoEditAdmin)
-admin.site.register(Fire_Hist_Bound2, GeoNoEditAdmin)
-admin.site.register(Fire_Worst_Case_ph2, GeoNoEditAdmin)
+admin.site.register(EQ_Most_Like, GeoNoEditAdmin)
+admin.site.register(EQ_Worst_Case, GeoNoEditAdmin)
+admin.site.register(Fire_Hist_Bound, GeoNoEditAdmin)
+admin.site.register(Fire_Intensity, GeoNoEditAdmin)
+admin.site.register(Fire_Worst_Case_placeholder, GeoNoEditAdmin)
 admin.site.register(Flood_Channel_Migration_Zones, GeoNoEditAdmin)
 admin.site.register(Flood_FEMA_DFRIM_2015, GeoNoEditAdmin)
-admin.site.register(Flood_Worst_Case, GeoNoEditAdmin)
-admin.site.register(Landslide_placeholder2, GeoNoEditAdmin)
-admin.site.register(summerstorm, GeoNoEditAdmin)
-admin.site.register(winterstorm, GeoNoEditAdmin)
+admin.site.register(Flood_Worst_Case_ph, GeoNoEditAdmin)
+admin.site.register(Landslide_placeholder, GeoNoEditAdmin)
 # END OF GENERATED CODE BLOCK
 ######################################################
 
