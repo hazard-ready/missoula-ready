@@ -483,3 +483,10 @@ class PastEventsPhoto(models.Model):
 
     def __str__(self):
         return self.image.url
+
+class DataOverviewImage(models.Model):
+    link_text = models.CharField(default="", max_length=100)
+    image = models.ImageField(upload_to="data")
+
+    def __str__(self):
+        return self.image.url

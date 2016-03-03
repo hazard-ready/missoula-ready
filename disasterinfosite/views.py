@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from collections import OrderedDict
-from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink, PastEventsPhoto
+from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink, PastEventsPhoto, DataOverviewImage
 from .fire_dial import make_icon
 
 def app_view(request):
@@ -10,6 +10,7 @@ def app_view(request):
     data_bounds = Location.get_data_bounds()
     supply_kit = SupplyKit.get_solo()
     supply_kit.meals = 3 * supply_kit.days
+    quick_data_overview = DataOverviewImage.objects.all()
     template = "no_content_found.html"
 
     likely_scenarios = {
@@ -116,6 +117,7 @@ def app_view(request):
             'important_links': important_links,
             'data_bounds': data_bounds,
             'data': OrderedDict(sorted(data.items(), key=lambda t: heading_tab_order[t[1]['heading'].lower()] )),
+            'quick_data_overview': quick_data_overview
         })
 
 
@@ -124,5 +126,6 @@ def app_view(request):
         return render(request, 'index.html', {
             'location': location,
             'settings': settings,
-            'data_bounds': data_bounds
-            })
+            'data_bounds': data_bounds,
+            'quick_data_overview': quick_data_overview
+        })
