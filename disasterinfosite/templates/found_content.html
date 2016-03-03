@@ -3,34 +3,8 @@
 {% load show_snugget %}
 
 {% block info-instructions %}
-  <div class="information-instructions" ></div>
+  <div class="information-instructions" role="complementary"></div>
 {% endblock info-instructions %}
-
-{% block search %}
-      <div class="location-form">
-        <div class="row">
-           <div class="small-12 medium-8 medium-push-1 columns">
-               <div class="row collapse">
-                 <div class="small-10 columns">
-                   <input id="location-text" type="text" placeholder="Your address, your city" />
-                   <div class="geocode-error-message"></div>
-                 </div>
-                 <div class="small-2 end columns">
-                   <a id="location-submit" class="button postfix"></a>
-                 </div>
-               </div>
-              <div class="row hidden-for-medium-up">
-                <div class="small-6 small-centered columns form-icon-button">
-                   <a class="auto-location-submit button radius caps">Find Me</a>
-                </div>
-                <div class="small-12 hide-for-small medium-3 columns form-icon-button">
-                  <a class="auto-location-submit button radius caps">Find Me</a>
-               </div>
-              </div>
-           </div>
-        </div>
-      </div>
-{% endblock search %}
 
 {% block map %}
 <div class="row">
@@ -41,9 +15,9 @@
 {% endblock map %}
 
 {% block main-content %}
-  <div class="row disaster-container">
+  <div role="main" class="row disaster-container">
     <div class="small-12 column">
-      <ul class="tabs disaster-tabs" data-tab>
+      <ul role="group" class="tabs disaster-tabs" data-tab>
         {% for group, hazard in data.items %}
           {% if forloop.first %}
             <li class="tab-title active"><a href="#{{group}}">{{hazard.heading}}</a></li>
@@ -80,7 +54,7 @@
                   <h4>Photos of Past Events</h4>
                   <div class="past-photos">
                     {% for photo in hazard.photos %}
-                     <img class="slideshow-image" data-lazy="{{ photo }}"/>
+                     <img alt="A historical image of {{ hazard.heading }} in {{ location.areaname }}" class="slideshow-image" data-lazy="{{ photo }}"/>
                     {% endfor %}
                   </div>
                 {% endif %}
