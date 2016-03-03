@@ -43,7 +43,7 @@
 {% block main-content %}
   <div role="main" class="row disaster-container">
     <div class="small-12 column">
-      <ul class="tabs disaster-tabs" data-tab>
+      <ul role="group" class="tabs disaster-tabs" data-tab>
         {% for group, hazard in data.items %}
           {% if forloop.first %}
             <li class="tab-title active"><a href="#{{group}}">{{hazard.heading}}</a></li>
