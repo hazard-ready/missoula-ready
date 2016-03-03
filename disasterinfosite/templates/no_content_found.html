@@ -2,38 +2,12 @@
 {% load staticfiles %}
 
  {% block info-instructions %}
-    <div class="information-instructions">
+    <div class="information-instructions" role="complementary">
       <p class="location-instructions-large">Give your location by typing in the box below, clicking on the map, or clicking 'find me'. You'll get a personalized report on your natural hazard risks and how to prepare.</p>
       <p class="location-instructions-small">Give your location by typing in the box below or clicking 'find me'. You'll get a personalized report on your natural hazard risks and how to prepare.</p>
     </div>
   </div>
 {% endblock info-instructions %}
-
-{% block search %}
-      <div class="location-form">
-        <div class="row">
-           <div class="small-12 medium-8 medium-push-1 columns">
-               <div class="row collapse">
-                 <div class="small-10 columns">
-                   <input id="location-text" type="text" placeholder="Your address, your city" />
-                   <div class="geocode-error-message"></div>
-                 </div>
-                 <div class="small-2 end columns">
-                   <a id="location-submit" class="button postfix"></a>
-                 </div>
-               </div>
-              <div class="row hidden-for-medium-up">
-                <div class="small-6 small-centered columns form-icon-button">
-                   <a class="auto-location-submit button radius caps">Find Me</a>
-                </div>
-                <div class="small-12 hide-for-small medium-3 columns form-icon-button">
-                  <a class="auto-location-submit button radius caps">Find Me</a>
-               </div>
-              </div>
-           </div>
-        </div>
-      </div>
-{% endblock search %}
 
 {% block map %}
   <div class="row">
@@ -45,7 +19,7 @@
 
 
 {% block main-content %}
-    <div class="row vert-pad-medium">
+    <div role="main" class="row vert-pad-medium">
         <div class="medium-8 column medium-push-1">
           <h3 class="caps">No information available.</h3>
           <div>
