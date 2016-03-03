@@ -29,8 +29,15 @@ $( document ).ready(function() {
   var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
   var layer = new L.TileLayer(osmUrl, {attribution: osmAttrib}).addTo(map);
   layer.setOpacity(0.6);
-
-  var boundaryPolygon = new L.GeoJSON.AJAX("static/img/boundary.geojson").addTo(map);
+  
+  $.ajax({
+    type: "POST",
+    url: "static/img/boundary.geojson",
+    dataType: "json",
+    success: function(response) {
+      var boundaryLayer = L.geoJson(response).addTo(map);
+    }
+  });
 
   document.getElementById('map').style.cursor='default';
   if (query_lat && query_lng) {
