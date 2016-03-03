@@ -8,7 +8,7 @@ from solo.admin import SingletonModelAdmin
 from .models import EmbedSnugget, TextSnugget, SnuggetSection, SnuggetSubSection, Location, SiteSettings, SupplyKit, ImportantLink, EQ_Fault_Buffer, EQ_Historic_Distance, EQ_Most_Like, EQ_Worst_Case, Fire_Hist_Bound, Fire_Intensity, Fire_Worst_Case_placeholder, Flood_Channel_Migration_Zones, Flood_FEMA_DFRIM_2015, Flood_Worst_Case_ph, Landslide_placeholder
 # END OF GENERATED CODE BLOCK
 ######################################################
-from .models import PastEventsPhoto
+from .models import PastEventsPhoto, DataOverviewImage
 admin.site.register(SnuggetSection, admin.ModelAdmin)
 admin.site.register(SnuggetSubSection, admin.ModelAdmin)
 
@@ -68,6 +68,7 @@ admin.site.register(SiteSettings, SingletonModelAdmin)
 admin.site.register(Location, SingletonModelAdmin)
 admin.site.register(SupplyKit, SingletonModelAdmin)
 admin.site.register(PastEventsPhoto, admin.ModelAdmin)
+admin.site.register(DataOverviewImage, admin.ModelAdmin)
 
 ######################################################
 # GENERATED CODE GOES HERE
