@@ -36,6 +36,10 @@ h6 {
   padding-top: 1rem
 }
 
+label {
+  color: #ffffff;
+}
+
 /* helper classes for colors and fonts */
 .vert-pad-medium { padding: 2em 0; }
 .caps {
@@ -55,7 +59,7 @@ h6 {
 }
 
 .title-header h3 {
-  color: #F0F8FF;
+  color: #fff;
   text-align: center;
 }
 
@@ -293,11 +297,7 @@ h6 {
   background-size: 110px 110px;
 }
 
-.location-instructions-small {
-  display: none;
-}
-
-.location-instructions-large {
+.location-instructions {
   display: block;
 }
 
@@ -408,14 +408,6 @@ h6 {
 
   #title a {
      font-size: 1.25em;
-  }
-
-  .location-instructions-large {
-    display: none;
-  }
-
-  .location-instructions-small {
-    display: block;
   }
 
   p {

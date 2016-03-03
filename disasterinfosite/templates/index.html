@@ -48,22 +48,22 @@
       <h3 class="project-subtitle">{{ settings.site_description }}</h3>
     </div>
     {% block info-instructions %}
-      <div class="information-instructions">
+      <div class="information-instructions" role="main">
         <p class="organization-information">{{ settings.about_text }}</p>
         <p>{{ settings.intro_text }}</p>
-        <p class="location-instructions-large">Give a location by typing in the box below, clicking on the map, or clicking 'find me'. You'll get a personalized report on your natural hazard risks and steps you can take to prepare.</p>
-        <p class="location-instructions-small">Give a location by clicking 'find me'. You'll get a personalized report on your natural hazard risks and steps you can take to prepare.</p>
+        <p class="location-instructions">Give a location by typing in the box below, clicking on the map, or clicking 'find me'. You'll get a personalized report on your natural hazard risks and steps you can take to prepare.</p>
       </div>
     {% endblock info-instructions %}
   </div>
 
 {% block search %}
-      <div class="location-form">
+      <div class="location-form" role="form">
         <div class="row">
            <div class="small-12 medium-8 medium-push-1 columns">
-               <div class="row collapse hide-for-small">
+               <div class="row collapse">
+                  <label for="location-text">Location</label>
                  <div class="small-10 columns">
-                   <input id="location-text" type="text" placeholder="Your address, your city" />
+                   <input name="location-text" id="location-text" type="text" placeholder="Your address, your city" />
                    <div class="geocode-error-message"></div>
                  </div>
                  <div class="small-2 end columns">
