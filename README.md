@@ -52,6 +52,12 @@ A natural disaster could strike your area at any time. Find out about where you 
 ###### Data Download
 https://github.com/missoula-ready/disaster-preparedness/blob/master/world/data.zip
 
+###### Past Events Photos
+Upload photos to show in a photo gallery in the search results, under Past Events. Make sure that the heading you enter here matches the heading that the photos will appear under.
+
+###### Data Overview Images
+In the box at the bottom of every page, there's a section called 'Quick Data Overivew'. That's where these will show up, as links that open in a new tab or window. The link_text field is what the link says, like 'Earthquakes: Distance from a Fault', and you can upload the appropriate image here.
+
 ### Deploying to the web via Apache
 There are directories called 'photos' and 'data' in disasterinfosite/img. This is where images go when you upload them via Django Admin, under 'Photos of Past Events' and 'Data Overview Images'. In order for that upload to work, you need to change the owner (chown) those directories to whatever user Apache is running as (www-data, perhaps).
 
