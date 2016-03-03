@@ -4,7 +4,7 @@ The project is a custom instance of the [Disaster Preparedness](https://github.c
 
 # To set it up, follow the instructions in the [Disaster Preparedness project README](https://github.com/missoula-ready/disaster-preparedness/blob/master/README.md).
 
-The data for this app is in `disasterinfosite/data`. This data includes shapefiles and related data for Missoula County, Montana, USA, to get you started. When you use `python import.py` to process these shapefiles and update some Django code to fit, the script will prompt you for which field to use to look up snuggets. Use the field name `lookup_val` for every shapefile except `Flood_FEMA_DFRIM_2015`, for which you should use `FEMADES`.
+The data for this app is in `disasterinfosite/data`. This data includes shapefiles and related data for Missoula County, Montana, USA, to get you started. When you use `python import.py` to process these shapefiles and update some Django code to fit, the script will prompt you for which field to use to look up snuggets. Use the field name `lookup_val` for every shapefile.
 
 Note that the `python manage.py makemigrations` step will probably tell you there's nothing to add.  Don't worry - this is not an error!
 
