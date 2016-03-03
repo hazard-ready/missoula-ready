@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
  {% block info-instructions %}
-    <div class="information-instructions">
+    <div class="information-instructions" role="complementary">
       <p class="location-instructions-large">Give your location by typing in the box below, clicking on the map, or clicking 'find me'. You'll get a personalized report on your natural hazard risks and how to prepare.</p>
       <p class="location-instructions-small">Give your location by typing in the box below or clicking 'find me'. You'll get a personalized report on your natural hazard risks and how to prepare.</p>
     </div>
@@ -10,7 +10,7 @@
 {% endblock info-instructions %}
 
 {% block search %}
-      <div class="location-form">
+      <div class="location-form" role="form">
         <div class="row">
            <div class="small-12 medium-8 medium-push-1 columns">
                <div class="row collapse">
@@ -45,7 +45,7 @@
 
 
 {% block main-content %}
-    <div class="row vert-pad-medium">
+    <div role="main" class="row vert-pad-medium">
         <div class="medium-8 column medium-push-1">
           <h3 class="caps">No information available.</h3>
           <div>
