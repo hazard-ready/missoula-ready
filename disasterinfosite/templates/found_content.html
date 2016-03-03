@@ -80,7 +80,7 @@
                   <h4>Photos of Past Events</h4>
                   <div class="past-photos">
                     {% for photo in hazard.photos %}
-                     <img class="slideshow-image" data-lazy="{{ photo }}"/>
+                     <img alt="A historical image of {{ hazard.heading }} in {{ location.areaname }}" class="slideshow-image" data-lazy="{{ photo }}"/>
                     {% endfor %}
                   </div>
                 {% endif %}
