@@ -43,12 +43,12 @@
     <div id="title" class="title-header">
       <h2 class="project-title caps">
         <img class="title-image" src="{% static 'img/missoulacountyboundary.png' %}" alt="An outline of Missoula County">
-        <a href="{{ settings.site_url }}">{{ settings.site_title }}</a>
+        <a role="navigation" aria-label="main navigation" href="{{ settings.site_url }}">{{ settings.site_title }}</a>
       </h2>
       <h3 class="project-subtitle">{{ settings.site_description }}</h3>
     </div>
     {% block info-instructions %}
-      <div class="information-instructions">
+      <div class="information-instructions" role="main">
         <p class="organization-information">{{ settings.about_text }}</p>
         <p>{{ settings.intro_text }}</p>
         <p class="location-instructions-large">Give a location by typing in the box below, clicking on the map, or clicking 'find me'. You'll get a personalized report on your natural hazard risks and steps you can take to prepare.</p>
@@ -58,7 +58,7 @@
   </div>
 
 {% block search %}
-      <div class="location-form">
+      <div class="location-form" role="form">
         <div class="row">
            <div class="small-12 medium-8 medium-push-1 columns">
                <div class="row collapse hide-for-small">

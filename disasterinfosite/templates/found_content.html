@@ -3,11 +3,11 @@
 {% load show_snugget %}
 
 {% block info-instructions %}
-  <div class="information-instructions" ></div>
+  <div class="information-instructions" role="complementary"></div>
 {% endblock info-instructions %}
 
 {% block search %}
-      <div class="location-form">
+      <div class="location-form" role="form">
         <div class="row">
            <div class="small-12 medium-8 medium-push-1 columns">
                <div class="row collapse">
@@ -41,7 +41,7 @@
 {% endblock map %}
 
 {% block main-content %}
-  <div class="row disaster-container">
+  <div role="main" class="row disaster-container">
     <div class="small-12 column">
       <ul class="tabs disaster-tabs" data-tab>
         {% for group, hazard in data.items %}
