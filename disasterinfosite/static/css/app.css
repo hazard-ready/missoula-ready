@@ -554,3 +554,10 @@ label {
     right: 0px;
   }
 }
+
+.smart911-logo {
+  height: auto;
+  max-width: 200px;
+  padding: 30px;
+  vertical-align: top;
+}
