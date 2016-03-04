@@ -58,10 +58,10 @@ def app_view(request):
     }
 
     heading_tab_order = {
-        'fire': 0,
+        'wildfire': 0,
         'flooding': 1,
-        'winter storms': 2,
-        'summer storms': 3,
+        'winter weather': 2,
+        'summer weather': 3,
         'earthquake': 4,
         'landslide': 5
     }
