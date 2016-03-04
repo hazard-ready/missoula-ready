@@ -157,9 +157,14 @@ label {
 }
 
 .information-instructions {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.information-container {
   background-color: #526B5C;
   color: #FFF;
-  padding: 5px;
+  padding: 15px;
 }
 
 .snugget-text {
