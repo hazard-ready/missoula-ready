@@ -13,10 +13,10 @@ Note that the `python manage.py makemigrations` step will probably tell you ther
 ### Important links
 
 ###### Evacuation Information
-In the case of an emergency you may need to evacuate, learn more here: http://www.missoulacounty.us/government/public-safety/office-of-emergency-management/evacuation-information
+`In the case of an emergency you may need to evacuate, learn more <a href="http://www.missoulacounty.us/government/public-safety/office-of-emergency-management/evacuation-information" target="_blank">here</a>.`
 
 ###### Neighborhood Council
-Find out more about getting your neighborhood ready here: www.ci.missoula.mt.us/1591/My-Neighborhood-Council
+Find out more about getting your neighborhood ready <a href="www.ci.missoula.mt.us/1591/My-Neighborhood-Council" target="_blank">here</a>.
 
 ###### Real-time Alerts
 Sign up for Smart911 to help your family during emergencies: http://www.smart911.com
