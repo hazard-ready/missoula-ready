@@ -281,6 +281,16 @@ h6 {
   color: #fff;
 }
 
+/* overriding ugly Leaflet defaults */
+/* Change cursor when mousing over the area masked because it's outside the covered area */
+.leaflet-clickable {
+  cursor: not-allowed !important;
+}
+/* Change cursor when over the area users can click in */
+.leaflet-container {
+  cursor: default !important;
+}
+
 /* loading spinner during geolocation */
 .loading {
   position: fixed;
