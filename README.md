@@ -19,7 +19,7 @@ Note that the `python manage.py makemigrations` step will probably tell you ther
 `Find out more about getting your neighborhood ready <a href="www.ci.missoula.mt.us/1591/My-Neighborhood-Council" target="_blank">here</a>.`
 
 ###### Real-time Alerts
-`Sign up for Smart911 to help your family during emergencies: http://www.smart911.com <img class="smart911-logo" src="http://www.ravemobilesafety.com/downloads/smart911logos/smart911_logo_lightbgs.png" />`
+`Sign up for <a href="http://www.smart911.com">Smart911</a> to help your family during emergencies. <img class="smart911-logo" src="http://www.ravemobilesafety.com/downloads/smart911logos/smart911_logo_lightbgs.png" />`
 
 ### Supply kit
 
