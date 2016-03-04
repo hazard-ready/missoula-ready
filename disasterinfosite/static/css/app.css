@@ -88,7 +88,7 @@ label {
 .location-form {
   background-color: #526B5C;
   padding-bottom: 10px;
-  padding-left: 100px; // make it line up with the text in the header, not the image
+  padding-left: 100px; /* make it line up with the text in the header, not the image */
 }
 
 #location-text {
