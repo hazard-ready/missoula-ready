@@ -53,15 +53,15 @@ def app_view(request):
         'get landslide ready': 0,
         'stay tuned': 1,
         'a word from your emergency managers': 2,
-        'get summer storm ready': 0,
-        'get winter storm ready': 0
+        'get summer weather ready': 0,
+        'get winter weather ready': 0
     }
 
     heading_tab_order = {
-        'fire': 0,
+        'wildfire': 0,
         'flooding': 1,
-        'winter storms': 2,
-        'summer storms': 3,
+        'winter weather': 2,
+        'summer weather': 3,
         'earthquake': 4,
         'landslide': 5
     }
