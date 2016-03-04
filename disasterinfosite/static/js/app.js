@@ -34,8 +34,17 @@ $( document ).ready(function() {
     type: "POST",
     url: "static/img/boundary.geojson",
     dataType: "json",
-    success: function(response) {
-      var boundaryLayer = L.geoJson(response).addTo(map);
+    success: function(boundaryShape) {
+      var boundaryStyle = {
+        "color": "rgb(253, 141, 60)",
+        "weight": 4,
+        "opacity": 1,
+        "fillColor": "#ffffff",
+        "fillOpacity": 0.7
+      };
+      var boundaryLayer = L.geoJson(boundaryShape, {
+        style: boundaryStyle
+      }).addTo(map);
     }
   });
 
