@@ -29,7 +29,7 @@ $( document ).ready(function() {
   var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
   var layer = new L.TileLayer(osmUrl, {attribution: osmAttrib}).addTo(map);
   layer.setOpacity(0.6);
-  
+
   $.ajax({
     type: "POST",
     url: "static/img/boundary.geojson",
@@ -114,7 +114,7 @@ $( document ).ready(function() {
       submitLocation(lat, lng);
     };
     var geoError = function(error) {
-      console.log('Error occurred. Error code: ' + error.code);
+      console.log('Error finding your location: ' + error.message);
       enableForm();
     };
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
