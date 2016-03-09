@@ -14,7 +14,7 @@ def app_view(request):
     template = "no_content_found.html"
 
     likely_scenarios = {
-        'Fire': {
+        'Wildfire': {
             'title': 'Likely Wildfire Scenario',
             'text': "Wildfire season stretches from spring to fall in Missoula County. In a low snowpack year the potential for fires increases. Is the area where you live at risk for a potential burn?"
         },
@@ -29,6 +29,14 @@ def app_view(request):
         'Earthquake': {
             'title': 'Earthquake',
             'text': "Earthquakes can happen anytime. In Missoula County there are five faults that are considered active. It is most likely that a small earthquake of magnitude 4 to 5 would strike here. What kind of shaking might you experience?"
+        },
+        'Winter Weather': {
+            'title': 'Likely Winter Storm Scenario',
+            'text': "In the wintertime in Missoula County you can expect to see low temperatures, inches to feet of snow, and inversions causing poor air quality in the valleys. This can stretch from October to May depending on the year. Go get some good winter boots and bundle up! What might your winter look like?"
+        },
+        'Summer Weather': {
+            'title': 'Likely Summer Storm Scenario',
+            'text': " In the summertime temperatures rise in Missoula County, sometimes into the 100s! There is potential for thunderstorms, high winds, and heat waves.  Besides planning your summer adventures, what should you prepare for?"
         }
     }
 
