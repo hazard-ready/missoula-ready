@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(serialize=False, primary_key=True, auto_created=True, verbose_name='ID')),
                 ('title', models.CharField(max_length=50, help_text="A title for your important link, like 'Evacuation Information'")),
-                ('link', models.TextField(help_text='Your link and any information about it. Any web address in here gets turned into a link automatically.')),
+                ('link', models.TextField(help_text="Your link and any information about it. You can use HTML in here, and it'll render correctly.")),
             ],
         ),
         migrations.CreateModel(
@@ -154,5 +154,182 @@ class Migration(migrations.Migration):
                 ('heading', models.CharField(default='', max_length=50)),
                 ('image', models.ImageField(upload_to='photos')),
             ],
+        ),
+        migrations.CreateModel(
+            name='DataOverviewImage',
+            fields=[
+                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
+                ('link_text', models.CharField(max_length=100, default='')),
+                ('image', models.ImageField(upload_to='data')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='EQ_Fault_Buffer',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('lookup_val', models.IntegerField()),
+                ('geom', django.contrib.gis.db.models.fields.MultiPolygonField(srid=4326)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='EQ_Fault_Shaking',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('lookup_val', models.IntegerField()),
+                ('geom', django.contrib.gis.db.models.fields.MultiPolygonField(srid=4326)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='EQ_Fault_Worst',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('lookup_val', models.IntegerField()),
+                ('geom', django.contrib.gis.db.models.fields.MultiPolygonField(srid=4326)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='EQ_Historic_Distance',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('lookup_val', models.IntegerField()),
+                ('geom', django.contrib.gis.db.models.fields.MultiPolygonField(srid=4326)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Fire_Burn_Probability2',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('lookup_val', models.IntegerField()),
+                ('geom', django.contrib.gis.db.models.fields.MultiPolygonField(srid=4326)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Fire_Hist_Bound2',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('lookup_val', models.IntegerField()),
+                ('geom', django.contrib.gis.db.models.fields.MultiPolygonField(srid=4326)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Fire_Worst_Case_ph2',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('lookup_val', models.IntegerField()),
+                ('geom', django.contrib.gis.db.models.fields.MultiPolygonField(srid=4326)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Flood_Channel_Migration_Zones',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('lookup_val', models.CharField(max_length=80)),
+                ('geom', django.contrib.gis.db.models.fields.MultiPolygonField(srid=4326)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Flood_FEMA_DFRIM_2015',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('lookup_val', models.CharField(max_length=80)),
+                ('geom', django.contrib.gis.db.models.fields.MultiPolygonField(srid=4326)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Flood_Worst_Case',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('lookup_val', models.IntegerField()),
+                ('geom', django.contrib.gis.db.models.fields.MultiPolygonField(srid=4326)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Landslide_placeholder2',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('lookup_val', models.FloatField()),
+                ('geom', django.contrib.gis.db.models.fields.MultiPolygonField(srid=4326)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='summerstorm',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('lookup_val', models.IntegerField()),
+                ('geom', django.contrib.gis.db.models.fields.MultiPolygonField(srid=4326)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='winterstorm',
+            fields=[
+                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('lookup_val', models.IntegerField()),
+                ('geom', django.contrib.gis.db.models.fields.MultiPolygonField(srid=4326)),
+            ],
+        ),
+        migrations.AddField(
+            model_name='snugget',
+            name='EQ_Fault_Buffer_filter',
+            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.EQ_Fault_Buffer'),
+        ),
+        migrations.AddField(
+            model_name='snugget',
+            name='EQ_Fault_Shaking_filter',
+            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.EQ_Fault_Shaking'),
+        ),
+        migrations.AddField(
+            model_name='snugget',
+            name='EQ_Fault_Worst_filter',
+            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.EQ_Fault_Worst'),
+        ),
+        migrations.AddField(
+            model_name='snugget',
+            name='EQ_Historic_Distance_filter',
+            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.EQ_Historic_Distance'),
+        ),
+        migrations.AddField(
+            model_name='snugget',
+            name='Fire_Burn_Probability2_filter',
+            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.Fire_Burn_Probability2'),
+        ),
+        migrations.AddField(
+            model_name='snugget',
+            name='Fire_Hist_Bound2_filter',
+            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.Fire_Hist_Bound2'),
+        ),
+        migrations.AddField(
+            model_name='snugget',
+            name='Fire_Worst_Case_ph2_filter',
+            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.Fire_Worst_Case_ph2'),
+        ),
+        migrations.AddField(
+            model_name='snugget',
+            name='Flood_Channel_Migration_Zones_filter',
+            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.Flood_Channel_Migration_Zones'),
+        ),
+        migrations.AddField(
+            model_name='snugget',
+            name='Flood_FEMA_DFRIM_2015_filter',
+            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.Flood_FEMA_DFRIM_2015'),
+        ),
+        migrations.AddField(
+            model_name='snugget',
+            name='Flood_Worst_Case_filter',
+            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.Flood_Worst_Case'),
+        ),
+        migrations.AddField(
+            model_name='snugget',
+            name='Landslide_placeholder2_filter',
+            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.Landslide_placeholder2'),
+        ),
+        migrations.AddField(
+            model_name='snugget',
+            name='summerstorm_filter',
+            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.summerstorm'),
+        ),
+        migrations.AddField(
+            model_name='snugget',
+            name='winterstorm_filter',
+            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.winterstorm'),
         ),
     ]
