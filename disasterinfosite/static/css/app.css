@@ -344,6 +344,7 @@ label {
 
 .likely-scenario p {
     font-size: 1.2em;
+    margin-bottom: 0;
 }
 
 .section-content {
