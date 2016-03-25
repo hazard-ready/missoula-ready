@@ -214,4 +214,16 @@ $( document ).ready(function() {
   setValueOnFocus($("#user-signup__state"), "MT");
   setValueOnFocus($("#user-signup__zip"), "598");
 
+
+  // todo: verify results for the next two functions
+  $("#user-signup__submit").click(function() {
+    $("#user-signup-container").hide();
+    $("#user-signup-result-container").show();
+  });
+
+  $("#user-login__submit").click(function() {
+    $("#user-login-container").hide();
+    $("#user-info-container").show();
+  });
+
 });
