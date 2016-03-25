@@ -163,13 +163,14 @@ $( document ).ready(function() {
   // Signup forms
 
   $("#button--signup").click(function() {
-    $("#user-button-container").css({
-      display: "none"
-    });
-    $("#user-signup-container").css({
-      display: "block"
-    });
-  })
+    $("#user-button-container").hide();
+    $("#user-signup-container").show();
+  });
+
+  $("#user-signup__cancel").click(function() {
+    $("#user-signup-container").hide();
+    $("#user-button-container").show();
+  });
 
   function setValueOnFocus(el, value) {
     el.focus(function() {
