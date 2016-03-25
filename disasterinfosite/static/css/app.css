@@ -426,6 +426,7 @@ label {
   color: #444;
 }
 
+#user-login-container,
 #user-signup-container {
   display: none;
 }

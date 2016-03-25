@@ -167,8 +167,15 @@ $( document ).ready(function() {
     $("#user-signup-container").show();
   });
 
-  $("#user-signup__cancel").click(function() {
+
+  $("#button--login").click(function() {
+    $("#user-button-container").hide();
+    $("#user-login-container").show();
+  });
+
+  $(".button--cancel").click(function() {
     $("#user-signup-container").hide();
+    $("#user-login-container").hide();
     $("#user-button-container").show();
   });
 
