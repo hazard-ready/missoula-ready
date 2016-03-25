@@ -403,6 +403,21 @@ label {
     outline: none;
 }
 
+.smart911-logo {
+  height: auto;
+  max-width: 200px;
+  padding: 30px;
+  vertical-align: top;
+}
+
+#user-interaction-container {
+  background-color: #f2f2f2;
+}
+
+.user-interaction__buttons {
+  text-align: right;
+}
+
 /* adjustments for smaller screens */
 @media only screen and (max-width: 768px) {
 
@@ -501,6 +516,11 @@ label {
   .form-icon-button {
     text-align: center;
   }
+
+  .user-interaction__buttons {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
 }
 
 @media only screen and (max-width: 580px) {
@@ -571,9 +591,3 @@ label {
   }
 }
 
-.smart911-logo {
-  height: auto;
-  max-width: 200px;
-  padding: 30px;
-  vertical-align: top;
-}
