@@ -418,6 +418,10 @@ label {
   text-align: right;
 }
 
+.user-interaction__buttons .button:not(:last-child) {
+  margin-right: 2rem;
+}
+
 .user-interaction-container label {
   color: #444;
 }
