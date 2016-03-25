@@ -160,4 +160,40 @@ $( document ).ready(function() {
     slideContainer = loadGallery();
   });
 
+  // Signup forms
+  function setValueOnFocus(el, value) {
+    el.focus(function() {
+      if(el.val() === "") {
+        el.val(value);
+      }
+    });
+  }
+
+  function requiredFocus(el) {
+    el.focus(function() {
+      el.removeAttr('placeholder');
+      el.css({
+        'border-color': '#ccc'
+      });
+    });
+  }
+
+  function requiredBlur(el) {
+    el.blur(function() {
+      if(el.val() === "") {
+        el.attr('placeholder', 'Required.');
+        el.css({
+          'border-color': '#f03b20'
+        });
+      }
+    });
+  }
+
+  requiredFocus($("#username"));
+  requiredFocus($("#password"));
+  requiredBlur($("#username"));
+  requiredBlur($("#password"));
+  setValueOnFocus($("#state"), "MT");
+  setValueOnFocus($("#zip"), "598");
+
 });
