@@ -4,6 +4,7 @@ from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink, P
 from .fire_dial import make_icon
 
 def app_view(request):
+
     location = Location.get_solo()
     important_links = ImportantLink.objects.all()
     settings = SiteSettings.get_solo()
