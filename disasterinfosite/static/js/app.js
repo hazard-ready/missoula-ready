@@ -199,11 +199,11 @@ $( document ).ready(function() {
     });
   }
 
-  requiredFocus($("#username"));
-  requiredFocus($("#password"));
-  requiredBlur($("#username"));
-  requiredBlur($("#password"));
-  setValueOnFocus($("#state"), "MT");
-  setValueOnFocus($("#zip"), "598");
+  requiredFocus($("#user-signup__username"));
+  requiredFocus($("#user-signup__password"));
+  requiredBlur($("#user-signup__username"));
+  requiredBlur($("#user-signup__password"));
+  setValueOnFocus($("#user-signup__state"), "MT");
+  setValueOnFocus($("#user-signup__zip"), "598");
 
 });
