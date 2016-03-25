@@ -161,6 +161,16 @@ $( document ).ready(function() {
   });
 
   // Signup forms
+
+  $("#button--signup").click(function() {
+    $("#user-button-container").css({
+      display: "none"
+    });
+    $("#user-signup-container").css({
+      display: "block"
+    });
+  })
+
   function setValueOnFocus(el, value) {
     el.focus(function() {
       if(el.val() === "") {
