@@ -410,12 +410,16 @@ label {
   vertical-align: top;
 }
 
-#user-interaction-container {
+.user-interaction-container {
   background-color: #f2f2f2;
 }
 
 .user-interaction__buttons {
   text-align: right;
+}
+
+.user-interaction-container label {
+  color: #444;
 }
 
 /* adjustments for smaller screens */
