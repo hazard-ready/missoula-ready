@@ -53,7 +53,7 @@ A natural disaster could strike your area at any time. Find out about where you 
 `This is based on <a href="http://www.opb.org/news/widget/aftershock-find-your-cascadia-earthquake-story/">Aftershock</a>, an earthquake preparedness application for Oregon residents. Carson MacPherson-Krutsky and <a href="http://www.hs.umt.edu/geosciences/faculty/bendick/">Dr. Rebecca Bendick</a>, a graduate student and her advisor at the Unversity of Montana, had the idea to expand it for other locales and types of disasters. <a href="https://github.com/nein09">Melinda Minch</a> and <a href="https://github.com/eldang">Eldan Goldenberg</a> adapted it for that purpose.`
 
 ###### Data Download
-https://github.com/missoula-ready/disaster-preparedness/blob/master/disasterinfosite/data.zip
+https://github.com/missoula-ready/missoula-ready/blob/master/disasterinfosite/data.zip
 
 ###### Past Events Photos
 Upload photos to show in a photo gallery in the search results, under Past Events. Make sure that the heading you enter here matches the heading that the photos will appear under.
