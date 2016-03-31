@@ -26,6 +26,7 @@ def app_view(request):
     supply_kit = SupplyKit.get_solo()
     supply_kit.meals = 3 * supply_kit.days
     quick_data_overview = DataOverviewImage.objects.all()
+    username = None
     if request.user.is_authenticated():
         username = request.user.username
 

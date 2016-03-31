@@ -250,4 +250,28 @@ $( document ).ready(function() {
     });
   });
 
+  $("#button--logout").click(function() {
+    var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
+    $.ajaxSetup({
+      crossDomain: false,
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+      }
+    });
+    $.ajax({
+      type: "POST",
+      url: "/accounts/logout/",
+      data: {
+        next: "/"
+      },
+      error: function() {
+        // todo: show an error?
+      },
+      success: function() {
+        $("#user-button-container--logged-in").hide();
+        $("#user-button-container").show();
+      }
+    });
+  });
+
 });
