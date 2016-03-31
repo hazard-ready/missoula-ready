@@ -1,6 +1,6 @@
 <div role="content-info" class="user-interaction-container">
   {% if username %}
-    <div id="user-button-container" class="row vert-pad-medium">
+    <div id="user-button-container--logged-in" class="row vert-pad-medium">
       <div class="small-12 medium-6 columns">
         <p><strong>Welcome back!</strong></p>
         <p>If your username isn't {{ username }}, you might want to log out.</p>
@@ -10,8 +10,10 @@
         <a href="#user-login-container" class="button" id="button--logout">Log Out</a>
       </div>
     </div>
+    <div id="user-button-container" class="row vert-pad-medium hide">
   {% else %}
     <div id="user-button-container" class="row vert-pad-medium">
+  {% endif %}
       <div class="small-12 medium-6 columns">
         <p><strong>Why should you sign up?</strong></p>
         <p>Sign up to help Missoula County emergency crew prepare you for a potential disaster. Learn about events in your area, and receive messages from us.</p>
@@ -21,7 +23,6 @@
         <a href="#user-signup-container" class="button" id="button--signup">Sign Up</a>
       </div>
     </div>
-  {% endif %}
   <div id="user-login-container" class="row vert-pad-medium">
     <form id="user-login__form">
       {% csrf_token %}
