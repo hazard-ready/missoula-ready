@@ -2,9 +2,23 @@ from django.shortcuts import render
 from collections import OrderedDict
 from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink, PastEventsPhoto, DataOverviewImage
 from .fire_dial import make_icon
+from django.contrib import auth
+
+def login_view(request):
+    username = request.POST.get('username', '')
+    password = request.POST.get('password', '')
+    user = auth.authenticate(username=username, password=password)
+    if user is not None and user.is_active:
+        # Correct password, and the user is marked "active"
+        auth.login(request, user)
+        # Redirect to a success page.
+        return HttpResponseRedirect("#user-info-container")
+    else:
+        # Show an error page
+        return HttpResponseRedirect("#user-info-container--invalid")
+
 
 def app_view(request):
-
     location = Location.get_solo()
     important_links = ImportantLink.objects.all()
     settings = SiteSettings.get_solo()
