@@ -427,6 +427,7 @@ label {
 }
 
 #user-info-container,
+#user-info-container--invalid,
 #user-signup-result-container,
 #user-login-container,
 #user-signup-container {
