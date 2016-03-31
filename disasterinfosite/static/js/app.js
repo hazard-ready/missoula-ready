@@ -222,8 +222,32 @@ $( document ).ready(function() {
   });
 
   $("#user-login__submit").click(function() {
-    $("#user-login-container").hide();
-    $("#user-info-container").show();
+    var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
+    var username = $('#user-login__username').val();
+    var password = $('#user-login__password').val();
+    $.ajaxSetup({
+      crossDomain: false,
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+      }
+    });
+    $.ajax({
+      type: "POST",
+      url: "/accounts/login/",
+      data: {
+        username: username,
+        password: password,
+        next: "/"
+      },
+      error: function() {
+        $("#user-login-container").hide();
+        $("#user-info-container--invalid").show();
+      },
+      success: function() {
+        $("#user-login-container").hide();
+        $("#user-info-container").show();
+      }
+    });
   });
 
 });
