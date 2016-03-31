@@ -24,6 +24,7 @@
   {% endif %}
   <div id="user-login-container" class="row vert-pad-medium">
     <form id="user-login__form">
+      {% csrf_token %}
       <div class="small-12 medium-6 columns">
         <label>Username (your email address)
           <input type="email" id="user-login__username" required placeholder="Required."/>
@@ -40,6 +41,7 @@
   </div>
   <div id="user-signup-container" class="row vert-pad-medium">
     <form id="user-signup__form">
+      {% csrf_token %}
       <div class="small-12 medium-6 columns">
         <label>Email address (this will be your username)
           <input type="email" id="user-signup__username" required placeholder="Required."/>
