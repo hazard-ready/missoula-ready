@@ -1,9 +1,9 @@
 <div role="content-info" class="user-interaction-container">
-  {% if request.user.is_authenticated %}
+  {% if username %}
     <div id="user-button-container" class="row vert-pad-medium">
       <div class="small-12 medium-6 columns">
         <p><strong>Welcome back!</strong></p>
-        <p>If your username isn't {{ request.user.username }}, you might want to log out.</p>
+        <p>If your username isn't {{ username }}, you might want to log out.</p>
         <p>Todo: give the user a way to edit their information.</p>
       </div>
       <div class="small-12 medium-6 columns user-interaction__buttons">
