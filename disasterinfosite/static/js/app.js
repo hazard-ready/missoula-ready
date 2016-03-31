@@ -221,10 +221,8 @@ $( document ).ready(function() {
     $("#user-signup-result-container").show();
   });
 
-  $("#user-login__submit").click(function() {
+  var sendAjaxAuthRequest = function(url, data, error, success) {
     var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
-    var username = $('#user-login__username').val();
-    var password = $('#user-login__password').val();
     $.ajaxSetup({
       crossDomain: false,
       beforeSend: function(xhr) {
@@ -233,45 +231,45 @@ $( document ).ready(function() {
     });
     $.ajax({
       type: "POST",
-      url: "/accounts/login/",
-      data: {
+      url: url,
+      data: data,
+      error: error,
+      success: success
+    });
+  };
+
+  $("#user-login__submit").click(function() {
+    var username = $('#user-login__username').val();
+    var password = $('#user-login__password').val();
+    sendAjaxAuthRequest(
+      "/accounts/login/",
+      {
         username: username,
         password: password,
         next: "/"
       },
-      error: function() {
+      function() {
         $("#user-login-container").hide();
         $("#user-info-container--invalid").show();
       },
-      success: function() {
+      function() {
         $("#user-login-container").hide();
         $("#user-info-container").show();
-      }
-    });
+      });
   });
 
   $("#button--logout").click(function() {
-    var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
-    $.ajaxSetup({
-      crossDomain: false,
-      beforeSend: function(xhr) {
-        xhr.setRequestHeader("X-CSRFToken", csrftoken);
-      }
-    });
-    $.ajax({
-      type: "POST",
-      url: "/accounts/logout/",
-      data: {
-        next: "/"
-      },
-      error: function() {
+    sendAjaxAuthRequest(
+      "/accounts/logout/",
+      { next: "/" },
+      function() {
         // todo: show an error?
       },
-      success: function() {
+      function() {
         $("#user-button-container--logged-in").hide();
         $("#user-button-container").show();
       }
-    });
+    );
   });
 
 });
