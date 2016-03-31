@@ -1,14 +1,27 @@
 <div role="content-info" class="user-interaction-container">
-  <div id="user-button-container" class="row vert-pad-medium">
-    <div class="small-12 medium-6 columns">
-      <p><strong>Why should you sign up?</strong></p>
-      <p>Sign up to help Missoula County emergency crew prepare you for a potential disaster. Learn about events in your area, and receive messages from us.</p>
+  {% if request.user.is_authenticated %}
+    <div id="user-button-container" class="row vert-pad-medium">
+      <div class="small-12 medium-6 columns">
+        <p><strong>Welcome back!</strong></p>
+        <p>If your username isn't {{ request.user.username }}, you might want to log out.</p>
+        <p>Todo: give the user a way to edit their information.</p>
+      </div>
+      <div class="small-12 medium-6 columns user-interaction__buttons">
+        <a href="#user-login-container" class="button" id="button--logout">Log Out</a>
+      </div>
     </div>
-    <div class="small-12 medium-6 columns user-interaction__buttons">
-      <a href="#user-login-container" class="button" id="button--login">Log In</a>
-      <a href="#user-signup-container" class="button" id="button--signup">Sign Up</a>
+  {% else %}
+    <div id="user-button-container" class="row vert-pad-medium">
+      <div class="small-12 medium-6 columns">
+        <p><strong>Why should you sign up?</strong></p>
+        <p>Sign up to help Missoula County emergency crew prepare you for a potential disaster. Learn about events in your area, and receive messages from us.</p>
+      </div>
+      <div class="small-12 medium-6 columns user-interaction__buttons">
+        <a href="#user-login-container" class="button" id="button--login">Log In</a>
+        <a href="#user-signup-container" class="button" id="button--signup">Sign Up</a>
+      </div>
     </div>
-  </div>
+  {% endif %}
   <div id="user-login-container" class="row vert-pad-medium">
     <form id="user-login__form">
       <div class="small-12 medium-6 columns">
@@ -73,6 +86,9 @@
   </div>
   <div id="user-info-container" class="row vert-pad-medium">
     Display the user's information on successful login here. Should this get displayed after signup success too?
+  </div>
+  <div id="user-info-container--invalid" class="row vert-pad-medium">
+    Whoops, looks like we couldn't find that user.
   </div>
   <!-- todo: fail-container? -->
 </div>
