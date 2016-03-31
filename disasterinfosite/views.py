@@ -43,8 +43,8 @@ def app_view(request):
     # Make sure that sections and subsections are always in the same order.
     section_order = {
         'what to expect': 0,
-        'past events': 1,
-        'how to prepare': 2
+        'past events': 2,
+        'how to prepare': 1
     }
 
     # Some of these are in different sections or are mutually exclusive, hence the non-unique values.
