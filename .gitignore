@@ -12,6 +12,8 @@ secure_settings.py
 # Temp directories made by the importer
 disasterinfosite/data/reprojected/
 disasterinfosite/data/simplified/
+disasterinfosite/static/img/photos/
+disasterinfosite/static/img/data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
