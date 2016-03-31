@@ -8,10 +8,9 @@
 secure_settings.py
 
 # Data directory full of binary or large data sets we don't need in a code repository.
-# data/
-# Temp directories made by the importer
-disasterinfosite/data/reprojected/
-disasterinfosite/data/simplified/
+disasterinfosite/data/
+
+# Site assets uploaded through admin UI
 disasterinfosite/static/img/photos/
 disasterinfosite/static/img/data/
 
