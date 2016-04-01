@@ -13,24 +13,21 @@ def create_user(request):
         user = User.objects.create_user(
             username=request.POST.get('username'),
             email=request.POST.get('username'),
-            password=request.POST.get('password'),
-            extra_fields = {
-                'address1': request.POST.get('address1'),
-                'address2': request.POST.get('address2'),
-                'city': request.POST.get('city'),
-                'state': request.POST.get('state'),
-                'zip_code': request.POST.get('zip_code')
-            }
+            password=request.POST.get('password')
         )
 
-        return HttpResponse(
-            status_code=201
+        profile = UserProfile.objects.create(
+            user=user,
+            address1=request.POST.get('address1'),
+            address2=request.POST.get('address2'),
+            city=request.POST.get('city'),
+            state=request.POST.get('state'),
+            zip_code=request.POST.get('zip_code')
         )
+        profile.save()
+        return HttpResponse(status=201)
     else:
-        return HttpResponse(
-            status_code=403
-        )
-
+        return HttpResponse(status=403)
 
 def login_view(request):
     username = request.POST.get('username', '')
