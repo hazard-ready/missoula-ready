@@ -214,13 +214,6 @@ $( document ).ready(function() {
   setValueOnFocus($("#user-signup__state"), "MT");
   setValueOnFocus($("#user-signup__zip"), "598");
 
-
-  // todo: verify results for the next two functions
-  $("#user-signup__submit").click(function() {
-    $("#user-signup-container").hide();
-    $("#user-signup-result-container").show();
-  });
-
   var sendAjaxAuthRequest = function(url, data, error, success) {
     var csrftoken = $('input[name="csrfmiddlewaretoken"]').val();
     $.ajaxSetup({
@@ -237,6 +230,36 @@ $( document ).ready(function() {
       success: success
     });
   };
+
+  $("#user-signup__submit").click(function() {
+    var username = $('#user-signup__username').val();
+    var password = $('#user-signup__password').val();
+    var address1 = $('#user-signup__address1').val();
+    var address2 = $('#user-signup__address2').val();
+    var city = $('#user-signup__city').val();
+    var state = $('#user-signup__state').val();
+    var zip = $('#user-signup__zip').val();
+
+    sendAjaxAuthRequest(
+      "/accounts/create_user/",
+      {
+        username: username,
+        password: password,
+        address1: address1,
+        address2: address2,
+        city: city,
+        state: state,
+        zip_code: zip,
+        next: "/"
+      },
+      function(err) {
+        console.log("OOPS", err);
+      },
+      function(){
+        $("#user-signup-container").hide();
+        $("#user-signup-result-container").show();
+    });
+  });
 
   $("#user-login__submit").click(function() {
     var username = $('#user-login__username').val();
