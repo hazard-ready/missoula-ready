@@ -2,7 +2,7 @@
 <div role="content-info" id="geek-box-container">
   <div id="geek-box" class="row vert-pad-medium">
       <div class="small-12 medium-6 columns">
-        <h6 class="caps">How does it work?</h6>
+        <h5 class="caps">How does it work?</h5>
         <p>{{ settings.site_title }} is designed to help educate and prepare people for disasters that occur in their area. Disasters don’t strike locations equally so we found it important to give location
         specific information in order to properly prepare. {{ settings.site_title }} organizes current information and packages it in a way that makes it accessible for any {{ location.area_name }}
         resident.</p>
@@ -16,7 +16,7 @@
     </div>
     {% if quick_data_overview %}
         <div class="small-12 medium-6 columns">
-            <h6 class="caps">Quick Data Overview</h6>
+            <h5 class="caps">Quick Data Overview</h5>
             <p>Take a look at some overviews of the data we used for {{ location.area_name }}:</p>
             <ul>
                 {% for item in quick_data_overview %}
@@ -26,11 +26,11 @@
         </div>
     {% endif %}
     <div class="small-12 medium-6 columns">
-        <h6 class="caps">Is this available for other Counties or States?</h6>
+        <h5 class="caps">Is this available for other Counties or States?</h5>
         <p>You can make it available! If you can put up a webserver and you have the data, you can set this up. Visit us on <a href="https://github.com/missoula-ready/disaster-preparedness">Github</a> for more information.</p>
     </div>
     <div class="small-12 medium-6 columns">
-        <h6 class="caps">Who made this?</h6>
+        <h5 class="caps">Who made this?</h5>
         <p>{{ settings.who_made_this | safe}}</p>
     </div>
   </div>

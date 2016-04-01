@@ -41,17 +41,17 @@
           {% for section, sub_sections in hazard.sections.items %}
             <div class="snugget-text">
               <div class="section-icon section-icon--dynamic section-icon--{{ section }}">
-                <h3 class="caps section-title">{{ section }}</h3>
+                <h2 class="caps section-title">{{ section }}</h2>
               </div>
               <div class="section-content">
                 {% for sub_section, snuggets in sub_sections.items %}
-                  <h4>{{ sub_section }}</h4>
+                  <h3>{{ sub_section }}</h3>
                   {% for snugget in snuggets %}
                     {% show_snugget snugget %}
                   {% endfor %}
                 {% endfor %}
                 {% if section.name == "Past Events" and hazard.photos %}
-                  <h4>Photos of Past Events</h4>
+                  <h3>Photos of Past Events</h3>
                   <div class="past-photos">
                     {% for photo in hazard.photos %}
                      <img alt="A historical image of {{ hazard.heading }} in {{ location.areaname }}" class="slideshow-image" data-lazy="{{ photo }}"/>
@@ -70,15 +70,15 @@
   <div class="row">
     <div class="section-icon section-icon--supply-kit small-2 column"></div>
     <div class="small-10 medium-5 column">
-      <h3 class="caps">Supply Kit</h3>
+      <h2 class="caps">Supply Kit</h2>
       {% include "supply-kit.html" %}
     </div>
 
     <div class="section-icon section-icon--link small-2 column"></div>
     <div class="small-10 medium-5 column end">
-      <h3 class="caps">Important Links</h3>
+      <h2 class="caps">Important Links</h2>
       {% for link in important_links %}
-      <h5>{{ link.title }}</h5>
+      <h4>{{ link.title }}</h4>
       <p>{{ link.link | safe }}
       {% endfor %}
     </div>
@@ -87,7 +87,7 @@
   <div class="row">
       <div class="section-icon section-icon--community small-2 column"></div>
       <div class="small-10 medium-5 column end">
-      <h3 class="caps">Community Leaders</h3>
+      <h2 class="caps">Community Leaders</h2>
       <p>{{ location.community_leaders | safe }}</p>
     </div>
   </div>
