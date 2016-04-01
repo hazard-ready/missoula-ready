@@ -1,6 +1,8 @@
 from django.contrib.gis import admin
 from embed_video.admin import AdminVideoMixin
 from solo.admin import SingletonModelAdmin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import User
 ######################################################
 # GENERATED CODE GOES HERE
 # DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
@@ -8,7 +10,7 @@ from solo.admin import SingletonModelAdmin
 from .models import EmbedSnugget, TextSnugget, SnuggetSection, SnuggetSubSection, Location, SiteSettings, SupplyKit, ImportantLink, Fire_Burn_Probability2, Flood_Worst_Case, EQ_Fault_Buffer, Fire_Worst_Case_ph2, EQ_Fault_Worst, EQ_Historic_Distance, EQ_Fault_Shaking, Flood_FEMA_DFRIM_2015, Fire_Hist_Bound, winterstorm, summerstorm, Landslide_placeholder2, Flood_Channel_Migration_Zones
 # END OF GENERATED CODE BLOCK
 ######################################################
-from .models import PastEventsPhoto, DataOverviewImage
+from .models import PastEventsPhoto, DataOverviewImage, UserProfile
 admin.site.register(SnuggetSection, admin.ModelAdmin)
 admin.site.register(SnuggetSubSection, admin.ModelAdmin)
 
@@ -69,6 +71,21 @@ admin.site.register(Location, SingletonModelAdmin)
 admin.site.register(SupplyKit, SingletonModelAdmin)
 admin.site.register(PastEventsPhoto, admin.ModelAdmin)
 admin.site.register(DataOverviewImage, admin.ModelAdmin)
+
+# Define an inline admin descriptor for Employee model
+# which acts a bit like a singleton
+class UserProfileInline(admin.StackedInline):
+    model = UserProfile
+    can_delete = False
+    verbose_name_plural = 'Users'
+
+# Define a new User admin
+class UserAdmin(BaseUserAdmin):
+    inlines = (UserProfileInline, )
+
+# Re-register UserAdmin
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 
 ######################################################
 # GENERATED CODE GOES HERE
