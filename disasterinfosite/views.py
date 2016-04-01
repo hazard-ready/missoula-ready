@@ -49,7 +49,7 @@ def app_view(request):
 
     # Some of these are in different sections or are mutually exclusive, hence the non-unique values.
     sub_section_order = {
-        'intensity': 0,
+        'potential': 0,
         'flood zones': 1,
         'ground shaking': 1,
         'worst case scenario': 2,
