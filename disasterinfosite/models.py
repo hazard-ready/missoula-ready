@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models import Extent
+from django.db.models.signals import post_save
 from embed_video.fields import EmbedVideoField
 from model_utils.managers import InheritanceManager
 from solo.models import SingletonModel
@@ -28,6 +29,20 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return "{0}: {1}, {2} {3}, {4} {5}".format(self.user, self.address1, self.address2, self.city, self.state, self.zip_code)
+
+def user_post_save(sender, instance, created, **kwargs):
+    """Create a user profile when a new user account is created"""
+    if created == True:
+        p = UserProfile()
+        p.user = instance
+        p.address1 = getattr(instance, 'address1', None)
+        p.address2 = getattr(instance, 'address2', None)
+        p.city = getattr(instance, 'city', None)
+        p.state = getattr(instance, 'state', None)
+        p.zip_code = getattr(instance, 'zip_code', None)
+        p.save()
+
+post_save.connect(user_post_save, sender=User)
 
 class SiteSettings(SingletonModel):
     """A singleton model to represent site-wide settings."""
