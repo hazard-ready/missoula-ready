@@ -17,11 +17,11 @@ SNUGGET_TYPES = (
 class UserProfile(models.Model):
     """ A model representing a user's information that isn't their username, password, or email address """
     user = models.OneToOneField(User)
-    address1 = models.CharField(max_length=200)
-    address2 = models.CharField(max_length=200)
-    city = models.CharField(max_length=200)
-    state = models.CharField(max_length=50)
-    zip_code = models.CharField(max_length=50)
+    address1 = models.CharField(max_length=200, blank=True)
+    address2 = models.CharField(max_length=200, blank=True)
+    city = models.CharField(max_length=200, blank=True)
+    state = models.CharField(max_length=50, blank=True)
+    zip_code = models.CharField(max_length=50, blank=True)
 
     class Meta:
         verbose_name = "User Profile"
