@@ -19,7 +19,7 @@ Note that the `python manage.py makemigrations` step will probably tell you ther
 `Find out more about getting your neighborhood ready <a href="http://www.ci.missoula.mt.us/1591/My-Neighborhood-Council" target="_blank">here</a>.`
 
 ###### Real-time Alerts
-`Sign up for <a href="http://www.smart911.com">Smart911</a> to help your family during emergencies. <img class="smart911-logo" src="//www.ravemobilesafety.com/downloads/smart911logos/smart911_logo_lightbgs.png" />`
+`Sign up for <a href="https://www.smart911.com" target="_blank">Smart911</a> to help your family during emergencies. <a href="https://www.smart911.com" target="_blank"><img class="smart911-logo" src="//www.ravemobilesafety.com/downloads/smart911logos/smart911_logo_lightbgs.png" /></a>`
 
 ### Supply kit
 
@@ -38,10 +38,10 @@ In the event of an emergency the Office of Emergency Management for Missoula Cou
 
 ### Settings
 ###### Site title
-Missoula ready
+Missoula Ready
 
 ###### URL
-http://hazardready.org/
+https://hazardready.org/
 
 ###### Site description
 A disaster preparedness website
@@ -50,7 +50,7 @@ A disaster preparedness website
 A natural disaster could strike your area at any time. Find out about where you live, work, or play in Missoula County, MT.
 
 ###### Who Made This
-`This is based on <a href="http://www.opb.org/news/widget/aftershock-find-your-cascadia-earthquake-story/">Aftershock</a>, an earthquake preparedness application for Oregon residents. Carson MacPherson-Krutsky and <a href="http://www.hs.umt.edu/geosciences/faculty/bendick/">Dr. Rebecca Bendick</a>, a graduate student and her advisor at the Unversity of Montana, had the idea to expand it for other locales and types of disasters. <a href="https://github.com/nein09">Melinda Minch</a> and <a href="https://github.com/eldang">Eldan Goldenberg</a> adapted it for that purpose.`
+`This is based on <a href="http://www.opb.org/news/widget/aftershock-find-your-cascadia-earthquake-story/">Aftershock</a>, an earthquake preparedness application for Oregon residents. Carson MacPherson-Krutsky and <a href="https://hs.umt.edu/geosciences/faculty/bendick/">Dr. Rebecca Bendick</a>, a graduate student and her advisor at the Unversity of Montana, had the idea to expand it for other locales and types of disasters. <a href="https://github.com/nein09">Melinda Minch</a> and <a href="https://github.com/eldang">Eldan Goldenberg</a> adapted it for that purpose.`
 
 ###### Data Download
 https://github.com/missoula-ready/missoula-ready/blob/master/disasterinfosite/data.zip
