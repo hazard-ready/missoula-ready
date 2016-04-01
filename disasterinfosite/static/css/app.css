@@ -10,26 +10,32 @@ body {
   color: #444;
 }
 
+h1 {
+  font-size: 2.3125rem;
+}
+
 h2 {
+  font-size: 1.6875rem;
   line-height: 1.75rem;
   font-weight: bold;
 }
 
 h3 {
+  font-size: 1.4375rem;
   font-weight: bold;
-  font-size: 1.25rem;
 }
 
 h4 {
+  font-size: 1.125rem;
   font-weight: bold;
-}
-
-p {
-  font-size: 1rem;
 }
 
 h5 {
   font-size: 1.2rem;
+}
+
+p {
+  font-size: 1rem;
 }
 
 .map-container {
