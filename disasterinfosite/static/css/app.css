@@ -174,7 +174,8 @@ label {
 }
 
 .information-container a {
-  color: rgb(253, 141, 60);
+  color: #ffffff;
+  font-weight: bold;
 }
 
 .information-container a:hover {
