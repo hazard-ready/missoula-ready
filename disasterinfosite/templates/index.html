@@ -36,17 +36,17 @@
 <body>
   <div class="row top-header">
     <div id="title" class="title-header">
-      <h2 class="project-title caps">
+      <h1 class="project-title caps">
         <img class="title-image" src="{% static 'img/missoulacountyboundary.png' %}" alt="An outline of Missoula County">
         <a href="{{ settings.site_url }}">{{ settings.site_title }}</a>
-      </h2>
-      <h3 class="project-subtitle">{{ settings.site_description }}</h3>
+      </h1>
+      <h2 class="project-subtitle">{{ settings.site_description | safe }}</h2>
     </div>
     {% block info-instructions %}
       <div class="information-container">
       <div class="information-instructions" role="main">
-        <p class="organization-information">{{ settings.about_text }}</p>
-        <p>{{ settings.intro_text }}</p>
+        <p class="organization-information">{{ settings.about_text | safe }}</p>
+        <p>{{ settings.intro_text | safe }}</p>
         <p class="location-instructions">Give a location by typing in the box below, clicking on the map, or clicking 'find me'. You'll get a personalized report on your natural hazard risks and steps you can take to prepare.</p>
       </div>
       </div>
@@ -86,14 +86,14 @@
           <div id="map" style="height: 400px;"></div>
         </div>
       <div class="small-12 medium-5 column">
-        <h3 class="caps">What are my risks?</h3>
-        <h5 class>What to Expect</h5>
+        <h2 class="caps">What are my risks?</h2>
+        <h4 class>What to Expect</h4>
         <p>{{ settings.site_title }} gives you an idea of which natural disasters you might experience in the future based on a location in {{ location.area_name }}.</p>
 
-        <h5>In Recent History</h5>
+        <h4>In Recent History</h4>
         <p>Find out which disasters have struck {{ location.area_name }} in the past, what impact they had, and where they happened.</p>
 
-        <h5>How to Prepare</h5>
+        <h4>How to Prepare</h4>
         <p>You have the power to make a difference. Find out how you can protect your loved ones and home before the next disaster hits.</p>
       </div>
       </div>

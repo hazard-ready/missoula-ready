@@ -10,26 +10,32 @@ body {
   color: #444;
 }
 
-h3 {
+h1 {
+  font-size: 2.3125rem;
+}
+
+h2 {
+  font-size: 1.6875rem;
   line-height: 1.75rem;
   font-weight: bold;
 }
 
-h4 {
+h3 {
+  font-size: 1.4375rem;
   font-weight: bold;
-  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1.125rem;
+  font-weight: bold;
 }
 
 h5 {
-  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 p {
   font-size: 1rem;
-}
-
-h6 {
-  font-size: 1.2rem;
 }
 
 .map-container {
@@ -58,7 +64,7 @@ label {
   background-color: #91AB9B;
 }
 
-.title-header h3 {
+.title-header h2 {
   color: #fff;
   text-align: center;
 }
@@ -165,6 +171,15 @@ label {
   background-color: #526B5C;
   color: #FFF;
   padding: 15px;
+}
+
+.information-container a {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.information-container a:hover {
+  color: rgb(253, 141, 60);
 }
 
 .snugget-text {
@@ -286,7 +301,7 @@ label {
   color: #004444;
 }
 
-#geek-box h6 {
+#geek-box h5 {
   color: #fff;
 }
 
@@ -430,15 +445,15 @@ label {
     font-size: 1rem;
   }
 
-  h3 {
+  h2 {
     line-height: 1.5rem;
   }
 
-  h4 {
+  h3 {
     font-size: 1.2rem;
   }
 
-  h6 {
+  h5 {
     font-size: 1rem;
   }
 
