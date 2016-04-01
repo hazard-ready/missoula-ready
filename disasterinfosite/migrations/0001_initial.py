@@ -204,7 +204,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Fire_Hist_Bound2',
+            name='Fire_Hist_Bound',
             fields=[
                 ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
                 ('lookup_val', models.IntegerField()),
@@ -294,8 +294,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='snugget',
-            name='Fire_Hist_Bound2_filter',
-            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.Fire_Hist_Bound2'),
+            name='Fire_Hist_Bound_filter',
+            field=models.ForeignKey(related_name='+', null=True, blank=True, on_delete=django.db.models.deletion.PROTECT, to='disasterinfosite.Fire_Hist_Bound'),
         ),
         migrations.AddField(
             model_name='snugget',
