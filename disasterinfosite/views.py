@@ -1,8 +1,36 @@
 from django.shortcuts import render
 from collections import OrderedDict
-from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink, PastEventsPhoto, DataOverviewImage
+from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink, PastEventsPhoto, DataOverviewImage, UserProfile
 from .fire_dial import make_icon
 from django.contrib import auth
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+
+def create_user(request):
+    if request.method == 'POST':
+
+        # todo: handle error cases
+        user = User.objects.create_user(
+            username=request.POST.get('username'),
+            email=request.POST.get('username'),
+            password=request.POST.get('password'),
+            extra_fields = {
+                'address1': request.POST.get('address1'),
+                'address2': request.POST.get('address2'),
+                'city': request.POST.get('city'),
+                'state': request.POST.get('state'),
+                'zip_code': request.POST.get('zip_code')
+            }
+        )
+
+        return HttpResponse(
+            status_code=201
+        )
+    else:
+        return HttpResponse(
+            status_code=403
+        )
+
 
 def login_view(request):
     username = request.POST.get('username', '')
