@@ -9,7 +9,8 @@ urlpatterns = patterns('',
                        url(r'^$', views.app_view, name='index'),
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'^accounts/login/$',  login),
-                       url(r'^accounts/logout/$', logout)
+                       url(r'^accounts/logout/$', logout),
+                       url(r'^accounts/create_user/$', views.create_user)
                        )
 
 if settings.DEBUG:
