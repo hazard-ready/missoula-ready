@@ -173,6 +173,14 @@ label {
   padding: 15px;
 }
 
+.information-container a {
+  color: rgb(253, 141, 60);
+}
+
+.information-container a:hover {
+  color: rgb(253, 141, 60);
+}
+
 .snugget-text {
   display:inline-block;
   margin: 5px;
