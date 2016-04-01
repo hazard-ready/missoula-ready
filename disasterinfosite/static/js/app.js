@@ -241,7 +241,7 @@ $( document ).ready(function() {
     var zip = $('#user-signup__zip').val();
 
     sendAjaxAuthRequest(
-      "/accounts/create_user/",
+      "accounts/create_user/",
       {
         username: username,
         password: password,
@@ -265,7 +265,7 @@ $( document ).ready(function() {
     var username = $('#user-login__username').val();
     var password = $('#user-login__password').val();
     sendAjaxAuthRequest(
-      "/accounts/login/",
+      "accounts/login/",
       {
         username: username,
         password: password,
@@ -283,7 +283,7 @@ $( document ).ready(function() {
 
   $("#button--logout").click(function() {
     sendAjaxAuthRequest(
-      "/accounts/logout/",
+      "accounts/logout/",
       { next: "/" },
       function() {
         // todo: show an error?
