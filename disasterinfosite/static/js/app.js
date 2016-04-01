@@ -253,7 +253,7 @@ $( document ).ready(function() {
         next: "/"
       },
       function(err) {
-        console.log("OOPS", err);
+        console.log(err.responseText);
       },
       function(){
         $("#user-signup-container").hide();
