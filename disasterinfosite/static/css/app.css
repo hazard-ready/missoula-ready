@@ -430,7 +430,8 @@ label {
 #user-info-container--invalid,
 #user-signup-result-container,
 #user-login-container,
-#user-signup-container{
+#user-signup-container,
+#user-profile-container{
   display: none;
 }
 
