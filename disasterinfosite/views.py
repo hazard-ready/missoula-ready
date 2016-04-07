@@ -2,7 +2,7 @@ from django.shortcuts import render
 from collections import OrderedDict
 from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink, PastEventsPhoto, DataOverviewImage, UserProfile
 from .fire_dial import make_icon
-from django.contrib import auth
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 
@@ -25,6 +25,12 @@ def create_user(request):
             zip_code=request.POST.get('zip_code')
         )
         profile.save()
+        user = authenticate(
+            username=request.POST.get('username'),
+            password=request.POST.get('password')
+        )
+        login(request, user)
+
         return HttpResponse(status=201)
     else:
         return HttpResponse(status=403)
@@ -32,10 +38,10 @@ def create_user(request):
 def login_view(request):
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
-    user = auth.authenticate(username=username, password=password)
+    user = authenticate(username=username, password=password)
     if user is not None and user.is_active:
         # Correct password, and the user is marked "active"
-        auth.login(request, user)
+        login(request, user)
         # Redirect to a success page.
         return HttpResponseRedirect("#user-info-container")
     else:
