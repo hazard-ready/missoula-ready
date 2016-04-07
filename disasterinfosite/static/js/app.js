@@ -190,6 +190,7 @@ $( document ).ready(function() {
   $(".button--cancel").click(function() {
     $("#user-signup-container").hide();
     $("#user-login-container").hide();
+    $("#user-profile-container").hide();
     $("#user-button-container").show();
   });
 
@@ -299,5 +300,31 @@ $( document ).ready(function() {
         $("#user-login-container").hide();
         $("#user-info-container").show();
       });
+  });
+
+  $("#user-profile__submit").click(function() {
+    var address1 = $('#user-profile__address1').val();
+    var address2 = $('#user-profile__address2').val();
+    var city = $('#user-profile__city').val();
+    var state = $('#user-profile__state').val();
+    var zip = $('#user-profile__zip').val();
+
+    sendAjaxAuthRequest(
+      "accounts/update_profile/",
+      {
+        address1: address1,
+        address2: address2,
+        city: city,
+        state: state,
+        zip_code: zip,
+        next: "/"
+      },
+      function(err) {
+        console.log(err.responseText);
+      },
+      function(){
+        $("#user-profile-container").hide();
+        $("#user-profile-result-container").show();
+    });
   });
 });

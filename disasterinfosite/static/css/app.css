@@ -431,7 +431,8 @@ label {
 #user-signup-result-container,
 #user-login-container,
 #user-signup-container,
-#user-profile-container{
+#user-profile-container,
+#user-profile-result-container{
   display: none;
 }
 
