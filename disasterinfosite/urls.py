@@ -10,8 +10,8 @@ urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'^accounts/login/$',  login),
                        url(r'^accounts/logout/$', logout),
-                       url(r'^accounts/create_user/$', views.create_user)
-                       )
+                       url(r'^accounts/create_user/$', views.create_user),
+                       url(r'^accounts/update_profile/$', views.update_profile),                       )
 
 if settings.DEBUG:
     urlpatterns += patterns('django.contrib.staticfiles.views',
