@@ -39,6 +39,7 @@ def login_view(request):
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
     user = authenticate(username=username, password=password)
+    profile = None
     if user is not None and user.is_active:
         # Correct password, and the user is marked "active"
         login(request, user)
@@ -58,8 +59,10 @@ def app_view(request):
     supply_kit.meals = 3 * supply_kit.days
     quick_data_overview = DataOverviewImage.objects.all()
     username = None
+    profile = None
     if request.user.is_authenticated():
         username = request.user.username
+        profile = UserProfile.objects.get(user=request.user)
 
     template = "no_content_found.html"
 
@@ -176,7 +179,8 @@ def app_view(request):
             'data_bounds': data_bounds,
             'data': OrderedDict(sorted(data.items(), key=lambda t: heading_tab_order[t[1]['heading'].lower()] )),
             'quick_data_overview': quick_data_overview,
-            'username': username
+            'username': username,
+            'profile': profile
         })
 
 
@@ -187,5 +191,6 @@ def app_view(request):
             'settings': settings,
             'data_bounds': data_bounds,
             'quick_data_overview': quick_data_overview,
-            'username': username
+            'username': username,
+            'profile': profile
         })
