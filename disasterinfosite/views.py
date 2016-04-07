@@ -4,7 +4,7 @@ from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink, P
 from .fire_dial import make_icon
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 def create_user(request):
     if request.method == 'POST':
@@ -16,7 +16,7 @@ def create_user(request):
             password=request.POST.get('password')
         )
 
-        profile = UserProfile.objects.create(
+        profile = UserProfile(
             user=user,
             address1=request.POST.get('address1'),
             address2=request.POST.get('address2'),
@@ -49,6 +49,20 @@ def login_view(request):
         # Show an error page
         return HttpResponseRedirect("#user-info-container--invalid")
 
+def update_profile(request):
+    if request.method == 'POST' and request.user.is_authenticated():
+        username = request.user.username
+        profile = UserProfile.objects.get(user=request.user)
+        profile.address1 = request.POST.get('address1')
+        profile.address2 = request.POST.get('address2')
+        profile.city = request.POST.get('city')
+        profile.state = request.POST.get('state')
+        profile.zip_code = request.POST.get('zip_code')
+
+        profile.save()
+        return HttpResponse(status=201)
+    else:
+        return HttpResponse(status=403)
 
 def app_view(request):
     location = Location.get_solo()
