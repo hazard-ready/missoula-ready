@@ -18,6 +18,8 @@ def create_user(request):
             )
         except IntegrityError:
             return HttpResponse(status=409, reason="That user already exists.")
+        except ValueError:
+            return HttpResponse(status=400)
 
         profile = UserProfile(
             user=user,
@@ -27,7 +29,11 @@ def create_user(request):
             state=request.POST.get('state'),
             zip_code=request.POST.get('zip_code')
         )
-        profile.save()
+        try:
+            profile.save()
+        except (ValueError, IntegrityError):
+            return HttpResponse(status=500)
+
         user = authenticate(
             username=request.POST.get('username'),
             password=request.POST.get('password')

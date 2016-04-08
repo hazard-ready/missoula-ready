@@ -43,6 +43,25 @@ class CreateUserViewTestCase(TestCase):
     create_user(self.makeRequest(request_body))
     self.assertEqual(409, create_user(self.makeRequest(request_body)).status_code)
 
+  def testUserCreationFails(self):
+    """ It returns a 400 when creating a new user fails """
+    request_body = {
+      "invalid_field": "foo"
+    }
+    request = self.makeRequest(request_body)
+    self.assertEqual(400, create_user(request).status_code)
+
+  def testProfileSaveFails(self):
+    """ It returns a 500 when saving the newly creatd profile fails """
+    request_body = {
+      "username":"test_profile_save",
+      "email":"test",
+      "password":"test",
+      "invalid_field": "foo"
+    }
+    request = self.makeRequest(request_body)
+    self.assertEqual(500, create_user(request).status_code)
+
   def testProfileCreated(self):
     """ A profile for the user is created. """
     request_body =  {
