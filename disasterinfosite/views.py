@@ -65,7 +65,11 @@ def update_profile(request):
         profile.state = request.POST.get('state')
         profile.zip_code = request.POST.get('zip_code')
 
-        profile.save()
+        try:
+            profile.save()
+        except (ValueError, IntegrityError):
+            return HttpResponse(status=500)
+
         return HttpResponse(status=201)
     else:
         return HttpResponse(status=403)
