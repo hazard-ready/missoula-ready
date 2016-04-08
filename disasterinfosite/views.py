@@ -5,16 +5,19 @@ from .fire_dial import make_icon
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
+from django.db.utils import IntegrityError
 
 def create_user(request):
     if request.method == 'POST':
 
-        # todo: handle error cases
-        user = User.objects.create_user(
-            username=request.POST.get('username'),
-            email=request.POST.get('username'),
-            password=request.POST.get('password')
-        )
+        try:
+            user = User.objects.create_user(
+                username=request.POST.get('username'),
+                email=request.POST.get('username'),
+                password=request.POST.get('password')
+            )
+        except IntegrityError:
+            return HttpResponse(status=409, reason="That user already exists.")
 
         profile = UserProfile(
             user=user,
