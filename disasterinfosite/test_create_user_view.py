@@ -20,7 +20,7 @@ class CreateUserViewTestCase(TestCase):
     self.request_factory = RequestFactory()
 
   def testOnlyPostAccepted(self):
-    """ This REST method only accepts POST requests. """
+    """ This REST endpoint only accepts POST requests. """
     request_body =  {}
     request = self.makeRequest(request_body)
     disallowed_methods = ["GET", "HEAD", "PUT", "DELETE", "OPTIONS", "TRACE", "CONNECT", "ASDF"]
