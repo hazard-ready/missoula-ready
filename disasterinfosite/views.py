@@ -32,6 +32,9 @@ def create_user(request):
             username=request.POST.get('username'),
             password=request.POST.get('password')
         )
+        if user is None:
+            return HttpResponse(status=500)
+
         login(request, user)
 
         return HttpResponse(status=201)
