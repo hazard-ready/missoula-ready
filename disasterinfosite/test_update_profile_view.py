@@ -61,7 +61,34 @@ class UpdateProfileViewTestCase(TestCase):
 
   def testProfileUpdated(self):
     """ The profile gets updated with the new data """
+    request_body =  {
+      "address1":"updated address1",
+      "address2":"updated address2",
+      "city":"updated city",
+      "state":"updated state",
+      "zip_code":"updated zip"
+    }
+    request = self.makeRequest(request_body)
+    request.user = self.created_user
+    update_profile(request)
+
+    profile = UserProfile.objects.get(user=self.created_user)
+    self.assertEqual(profile.address1, request_body['address1'])
+    self.assertEqual(profile.state, request_body['state'])
+    self.assertEqual(profile.address2, request_body['address2'])
+    self.assertEqual(profile.city, request_body['city'])
+    self.assertEqual(profile.zip_code, request_body['zip_code'])
 
   def test201Success(self):
     """ It returns a 201 on success """
+    request_body =  {
+      "address1":"success address1",
+      "address2":"success address2",
+      "city":"success city",
+      "state":"success state",
+      "zip_code":"success zip"
+    }
+    request = self.makeRequest(request_body)
+    request.user = self.created_user
+    self.assertEqual(201, update_profile(request).status_code)
 
