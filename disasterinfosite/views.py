@@ -12,9 +12,9 @@ def create_user(request):
 
         try:
             user = User.objects.create_user(
-                username=request.POST.get('username'),
-                email=request.POST.get('username'),
-                password=request.POST.get('password')
+                username=request.POST.get('username', ''),
+                email=request.POST.get('username', ''),
+                password=request.POST.get('password', '')
             )
         except IntegrityError:
             return HttpResponse(status=409, reason="That user already exists.")
@@ -23,11 +23,11 @@ def create_user(request):
 
         profile = UserProfile(
             user=user,
-            address1=request.POST.get('address1'),
-            address2=request.POST.get('address2'),
-            city=request.POST.get('city'),
-            state=request.POST.get('state'),
-            zip_code=request.POST.get('zip_code')
+            address1=request.POST.get('address1', ''),
+            address2=request.POST.get('address2', ''),
+            city=request.POST.get('city', ''),
+            state=request.POST.get('state', ''),
+            zip_code=request.POST.get('zip_code', '')
         )
         try:
             profile.save()
@@ -35,8 +35,8 @@ def create_user(request):
             return HttpResponse(status=500)
 
         user = authenticate(
-            username=request.POST.get('username'),
-            password=request.POST.get('password')
+            username=request.POST.get('username', ''),
+            password=request.POST.get('password', '')
         )
         if user is None:
             return HttpResponse(status=500)
@@ -51,7 +51,6 @@ def login_view(request):
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
     user = authenticate(username=username, password=password)
-    profile = None
     if user is not None and user.is_active:
         # Correct password, and the user is marked "active"
         login(request, user)
@@ -65,11 +64,11 @@ def update_profile(request):
     if request.method == 'POST' and request.user.is_authenticated():
         username = request.user.username
         profile = UserProfile.objects.get(user=request.user)
-        profile.address1 = request.POST.get('address1')
-        profile.address2 = request.POST.get('address2')
-        profile.city = request.POST.get('city')
-        profile.state = request.POST.get('state')
-        profile.zip_code = request.POST.get('zip_code')
+        profile.address1 = request.POST.get('address1', '')
+        profile.address2 = request.POST.get('address2', '')
+        profile.city = request.POST.get('city', '')
+        profile.state = request.POST.get('state', '')
+        profile.zip_code = request.POST.get('zip_code', '')
 
         try:
             profile.save()
