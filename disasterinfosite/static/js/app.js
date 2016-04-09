@@ -170,6 +170,7 @@ $( document ).ready(function() {
 
   $("#button--login").click(function() {
     $("#user-button-container").hide();
+    $("#user-info-container--invalid").hide();
     $("#user-login-container").show();
   });
 
