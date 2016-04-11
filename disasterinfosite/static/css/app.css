@@ -551,8 +551,11 @@ label {
   }
 
   .user-interaction__buttons {
-    margin-bottom: 2rem;
     text-align: center;
+  }
+
+  .user-interaction__buttons .button:not(:last-child) {
+      margin-right: 1rem;
   }
 }
 
