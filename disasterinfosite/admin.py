@@ -11,6 +11,7 @@ from .models import EmbedSnugget, TextSnugget, SnuggetSection, SnuggetSubSection
 # END OF GENERATED CODE BLOCK
 ######################################################
 from .models import PastEventsPhoto, DataOverviewImage, UserProfile
+from.actions import export_as_csv_action
 admin.site.register(SnuggetSection, admin.ModelAdmin)
 admin.site.register(SnuggetSubSection, admin.ModelAdmin)
 
@@ -72,8 +73,6 @@ admin.site.register(SupplyKit, SingletonModelAdmin)
 admin.site.register(PastEventsPhoto, admin.ModelAdmin)
 admin.site.register(DataOverviewImage, admin.ModelAdmin)
 
-# Define an inline admin descriptor for Employee model
-# which acts a bit like a singleton
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
     can_delete = False
@@ -82,6 +81,7 @@ class UserProfileInline(admin.StackedInline):
 # Define a new User admin
 class UserAdmin(BaseUserAdmin):
     inlines = (UserProfileInline, )
+    actions = [export_as_csv_action("CSV Export", fields=('username','address1','address2','city','state','zip_code'))]
 
 # Re-register UserAdmin
 admin.site.unregister(User)
