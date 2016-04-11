@@ -2,7 +2,6 @@ from django.contrib.auth.models import User
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models import Extent
-from django.db.models.signals import post_save
 from embed_video.fields import EmbedVideoField
 from model_utils.managers import InheritanceManager
 from solo.models import SingletonModel
