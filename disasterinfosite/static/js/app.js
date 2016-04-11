@@ -182,7 +182,7 @@ $( document ).ready(function() {
 
   $(".button--cancel-update").click(function() {
     $("#user-profile-container").hide();
-    $("#user-button-container--logged-in").show();
+    $("#user-info-container").show();
   });
 
   $(".button--update").click(function() {
