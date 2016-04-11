@@ -115,12 +115,17 @@ label {
 ::-moz-placeholder { color: #444444; }
 :-ms-input-placeholder { color: #444444; }
 
+input:invalid {
+  border-color: #f03b20;
+  border-width: 2px;
+}
+
 .button {
   border-color: #fd8d3c;
   background-color: #fd8d3c;
 }
 
-.button:hover {
+.button:hover, .button:focus {
   background-color: #f03b20;
 }
 

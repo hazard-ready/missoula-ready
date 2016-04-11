@@ -167,7 +167,6 @@ $( document ).ready(function() {
     $("#user-signup-container").show();
   });
 
-
   $(".button--login").click(function() {
     $("#user-button-container").hide();
     $("#user-info-container--invalid").hide();
@@ -217,27 +216,21 @@ $( document ).ready(function() {
   function requiredFocus(el) {
     el.focus(function() {
       el.removeAttr('placeholder');
-      el.css({
-        'border-color': '#ccc'
-      });
     });
   }
 
-  function requiredBlur(el) {
+  function requiredBlur(el, text) {
     el.blur(function() {
       if(el.val() === "") {
-        el.attr('placeholder', 'Required.');
-        el.css({
-          'border-color': '#f03b20'
-        });
+        el.attr('placeholder', text);
       }
     });
   }
 
   requiredFocus($("#user-signup__username"));
   requiredFocus($("#user-signup__password"));
-  requiredBlur($("#user-signup__username"));
-  requiredBlur($("#user-signup__password"));
+  requiredBlur($("#user-signup__username"), "Valid email address required.");
+  requiredBlur($("#user-signup__password"), "Required");
   setValueOnFocus($("#user-signup__state"), "MT");
   setValueOnFocus($("#user-signup__zip"), "598");
 
@@ -259,6 +252,13 @@ $( document ).ready(function() {
   };
 
   $("#user-signup__submit").click(function() {
+    var inputs = $("#user-signup__form").find('input:visible');
+    for(var i = 0; i < inputs.length; i++ ) {
+      if(!inputs[i].checkValidity()) {
+        return false;
+      }
+    }
+
     var username = $('#user-signup__username').val();
     var password = $('#user-signup__password').val();
     var address1 = $('#user-signup__address1').val();
@@ -290,8 +290,15 @@ $( document ).ready(function() {
   });
 
   $("#user-login__submit").click(function() {
+    var inputs = $("#user-login__form").find('input:visible');
+    for(var i = 0; i < inputs.length; i++ ) {
+      if(!inputs[i].checkValidity()) {
+        return false;
+      }
+    }
     var username = $('#user-login__username').val();
     var password = $('#user-login__password').val();
+
     sendAjaxAuthRequest(
       "accounts/login/",
       {
@@ -310,6 +317,12 @@ $( document ).ready(function() {
   });
 
   $("#user-profile__submit").click(function() {
+    var inputs = $("#user-profile__form").find('input:visible');
+    for(var i = 0; i < inputs.length; i++ ) {
+      if(!inputs[i].checkValidity()) {
+        return false;
+      }
+    }
     var address1 = $('#user-profile__address1').val();
     var address2 = $('#user-profile__address2').val();
     var city = $('#user-profile__city').val();
