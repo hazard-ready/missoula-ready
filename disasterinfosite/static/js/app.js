@@ -7,7 +7,7 @@ $( document ).ready(function() {
     if (results==null) {
        return null;
     } else {
-       return results[1] || 0;
+      return results[1] || 0;
     }
   }
 
@@ -138,7 +138,7 @@ $( document ).ready(function() {
 
   function submitLocation(lat,lng) {
     // reload the page with the lat,lng
-    document.location =  encodeURI(document.location.hash + "?lat=" + lat + "&lng=" + lng + "&loc=" + location_query_text);
+    document.location =  encodeURI('/' + "?lat=" + lat + "&lng=" + lng + "&loc=" + location_query_text);
   }
 
   // Set up slick photo slideshow
