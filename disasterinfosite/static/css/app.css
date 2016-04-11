@@ -70,6 +70,7 @@ label {
 }
 
 .project-title {
+  padding-top: 1rem;
   text-align: center;
 }
 
@@ -132,11 +133,17 @@ label {
   border-radius: 0 3px 3px 0;
 }
 
-.auto-location-submit {
+.auto-location-submit, .button--top {
   /*background-image: url(../img/icon-target.png);
   background-repeat: no-repeat;*/
   border-radius: 3px;
   padding: 9px 1em;
+}
+
+#title .button--top {
+  position: absolute;
+  right: 5px;
+  font-size: 1em;
 }
 
 .geocode-error-message {
@@ -439,6 +446,13 @@ label {
 
 /* adjustments for smaller screens */
 @media only screen and (max-width: 768px) {
+  .button {
+    font-size: 0.75em;
+  }
+
+  #title .button--top {
+    font-size: 0.75em;
+  }
 
   #location-submit {
     background-size: 23px 23px;
@@ -552,6 +566,15 @@ label {
 @media only screen and (max-width: 450px) {
   .button {
     margin: 0;
+    padding: 9px 1em;
+  }
+
+  #title .button--top {
+    width: 90px;
+  }
+
+  .user-interaction__buttons .button:not(:last-child) {
+      margin-right: 0.5rem;
   }
 
   #location-text {
