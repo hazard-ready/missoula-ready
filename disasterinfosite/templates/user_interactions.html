@@ -6,6 +6,7 @@
         <p>If your username isn't {{ username }}, you might want to log out.</p>
       </div>
       <div class="small-12 medium-6 columns user-interaction__buttons">
+        {% csrf_token %}
         <a href="#user-login-container" class="button button--logout">Log Out</a>
         <a href="#user-info-container" class="button button--update">Update My Info</a>
       </div>
@@ -90,6 +91,7 @@
   <div id="user-info-container" class="row vert-pad-medium">
      <p><strong>Welcome back, {{ username }}!</strong></p>
       <div class="small-12 medium-6 columns user-interaction__buttons">
+        {% csrf_token %}
         <a href="#user-login-container" class="button button--logout">Log Out</a>
         <a href="#user-info-container" class="button button--update">Update My Info</a>
       </div>
