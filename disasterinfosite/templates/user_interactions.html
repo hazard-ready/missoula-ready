@@ -154,7 +154,7 @@
     <div class="small-12 medium-6 columns">
       <p>Whoops, we're not sure what happened there. Maybe you should try again.</p>
     </div>
-    {% if username and profile %}
+    {% if username %}
       <div class="small-12 medium-6 columns user-interaction__buttons">
         {% csrf_token %}
         <a href="#user-login-container" class="button radius caps button--logout">Log Out</a>

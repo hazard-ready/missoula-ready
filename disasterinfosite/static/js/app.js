@@ -195,10 +195,12 @@ $( document ).ready(function() {
       "accounts/logout/",
       { next: "/" },
       function() {
+        $("#user-info-container").hide();
         $("#user-button-container--logged-in").hide();
         $("#failure-container").show();
       },
       function() {
+        $("#user-info-container").hide();
         $("#user-button-container--logged-in").hide();
         $("#user-button-container").show();
       }
