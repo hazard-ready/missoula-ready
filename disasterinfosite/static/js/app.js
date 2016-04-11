@@ -174,20 +174,6 @@ $( document ).ready(function() {
     $("#user-login-container").show();
   });
 
-  $(".button--logout").click(function() {
-    sendAjaxAuthRequest(
-      "accounts/logout/",
-      { next: "/" },
-      function() {
-        // todo: show an error?
-      },
-      function() {
-        $("#user-button-container--logged-in").hide();
-        $("#user-button-container").show();
-      }
-    );
-  });
-
   $(".button--cancel").click(function() {
     $("#user-signup-container").hide();
     $("#user-login-container").hide();
@@ -203,6 +189,21 @@ $( document ).ready(function() {
     $("#user-info-container").hide();
     $("#user-button-container--logged-in").hide();
     $("#user-profile-container").show();
+  });
+
+  $(".button--logout").click(function() {
+    sendAjaxAuthRequest(
+      "accounts/logout/",
+      { next: "/" },
+      function() {
+        $("#user-button-container--logged-in").hide();
+        $("#failure-container").show();
+      },
+      function() {
+        $("#user-button-container--logged-in").hide();
+        $("#user-button-container").show();
+      }
+    );
   });
 
   function setValueOnFocus(el, value) {
@@ -279,7 +280,8 @@ $( document ).ready(function() {
         next: "/"
       },
       function(err) {
-        console.log(err.responseText);
+        $("#user-signup-container").hide();
+        $("#failure-container").show();
       },
       function(){
         $("#user-signup-container").hide();
@@ -325,7 +327,8 @@ $( document ).ready(function() {
         next: "/"
       },
       function(err) {
-        console.log(err.responseText);
+        $("#user-profile-container").hide();
+        $("#failure-container").show();
       },
       function(){
         $("#user-profile-container").hide();

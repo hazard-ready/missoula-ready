@@ -1,5 +1,5 @@
 <div role="content-info" class="user-interaction-container">
-  {% if username %}
+  {% if username and profile %}
     <div id="user-button-container--logged-in" class="row vert-pad-medium">
       <div class="small-12 medium-6 columns">
         <p><strong>Welcome back!</strong></p>
@@ -86,7 +86,7 @@
     </form>
   </div>
   <div id="user-signup-result-container" class="row vert-pad-medium">
-    Thanks for signing up! We'll get ahold of you with relevant news and information. You can come back anytime to update your address.
+    <p>Thanks for signing up! We'll get ahold of you with relevant news and information. You can come back anytime to update your address.</p>
   </div>
   <div id="user-info-container" class="row vert-pad-medium">
      <p><strong>Welcome back, {{ username }}!</strong></p>
@@ -139,8 +139,22 @@
       </form>
     </div>
     <div id="user-profile-result-container" class="row vert-pad-medium">
-      Thanks for keeping us up to date!
+      <p>Thanks for keeping us up to date!</p>
     </div>
   {% endif %}
-  <!-- todo: fail-container? -->
+  <div id="failure-container" class="row vert-pad medium">
+    <p>Whoops, we're not sure what happened there. Maybe you should try again.</p>
+    {% if username and profile %}
+      <div class="small-12 medium-6 columns user-interaction__buttons">
+        {% csrf_token %}
+        <a href="#user-login-container" class="button button--logout">Log Out</a>
+        <a href="#user-info-container" class="button button--update">Update My Info</a>
+      </div>
+    {% else %}
+      <div class="small-12 medium-6 columns user-interaction__buttons">
+        <a href="#user-login-container" class="button button--login">Log In</a>
+        <a href="#user-signup-container" class="button button--signup">Sign Up</a>
+      </div>
+    {% endif %}
+  </div>
 </div>
