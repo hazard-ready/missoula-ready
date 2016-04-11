@@ -162,13 +162,13 @@ $( document ).ready(function() {
 
   // Signup forms
 
-  $("#button--signup").click(function() {
+  $(".button--signup").click(function() {
     $("#user-button-container").hide();
     $("#user-signup-container").show();
   });
 
 
-  $("#button--login").click(function() {
+  $(".button--login").click(function() {
     $("#user-button-container").hide();
     $("#user-info-container--invalid").hide();
     $("#user-login-container").show();
