@@ -191,8 +191,12 @@ $( document ).ready(function() {
   $(".button--cancel").click(function() {
     $("#user-signup-container").hide();
     $("#user-login-container").hide();
-    $("#user-profile-container").hide();
     $("#user-button-container").show();
+  });
+
+  $(".button--cancel-update").click(function() {
+    $("#user-profile-container").hide();
+    $("#user-button-container--logged-in").show();
   });
 
   $(".button--update").click(function() {
