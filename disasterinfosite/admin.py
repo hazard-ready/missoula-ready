@@ -11,7 +11,7 @@ from .models import EmbedSnugget, TextSnugget, SnuggetSection, SnuggetSubSection
 # END OF GENERATED CODE BLOCK
 ######################################################
 from .models import PastEventsPhoto, DataOverviewImage, UserProfile
-from.actions import export_as_csv_action
+from .actions import export_as_csv_action
 admin.site.register(SnuggetSection, admin.ModelAdmin)
 admin.site.register(SnuggetSubSection, admin.ModelAdmin)
 
