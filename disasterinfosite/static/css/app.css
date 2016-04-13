@@ -409,8 +409,17 @@ label {
     background-size: 23px 23px;
   }
 
+
+  #location-text {
+    margin-bottom: 0.5rem;
+  }
+
+  .title-image {
+    max-height: 50px;
+  }
+
   .project-title {
-    font-size: 50px;
+    font-size: 2rem;
     line-height: 1.2em;
   }
 
@@ -434,6 +443,7 @@ label {
 
   .auto-location-submit {
     margin-left: 1em;
+    margin-bottom: 0;
   }
 
   #title a {
@@ -463,6 +473,10 @@ label {
   .caps {
     text-transform: uppercase;
     font-weight: bold;
+  }
+
+  .likely-scenario p {
+    font-size: 1rem;
   }
 
   .intensity-meter {
@@ -513,20 +527,19 @@ label {
   }
 
   #location-text {
-    color: #444444;
-    font-weight: bold;
     font-size: 16px;
-    line-height: 1.3em;
-    border-color: #e1e1e1;
-    border-width: 1px;
   }
 
   .organization-information {
     margin-top: 20px;
   }
 
+  .title-image {
+    max-height: 50px;
+  }
+
   .project-title {
-    font-size: 30px;
+    font-size: 1.5rem;
     line-height: 1.2em;
   }
 
@@ -534,6 +547,7 @@ label {
     font-size: 16px;
     line-height: 1.2em;
   }
+
   .section-icon {
     width: 50px;
     height: 50px;
@@ -565,6 +579,14 @@ label {
   .slick-next
   {
     right: 0px;
+  }
+
+  .tabs dd, .tabs .tab-title {
+    width: 100%;
+  }
+
+  .tabs dd > a, .tabs .tab-title > a {
+    padding: 0.3rem 0.5rem
   }
 }
 
