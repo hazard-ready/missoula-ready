@@ -363,10 +363,14 @@ label {
 }
 
 .past-photos {
-  width: 40em;
+  width: 26em;
   padding: 10px;
   background-color: #91AB9B;
   margin: 0 auto;
+}
+
+.slideshow-image {
+  width: 400px;
 }
 
 /* Arrows for photo slider */
@@ -380,14 +384,16 @@ label {
     background: #000000;
     opacity: .75;
     z-index: 9999;
+    font-size: 2rem;
+    padding: 1rem;
 }
 
 .slick-prev {
-  left: 5px;
+  left: 0px;
 }
 .slick-next
 {
-  right: 5px;
+  right: 0px;
 }
 
 .slick-prev:hover,
@@ -485,9 +491,6 @@ label {
   .section-content {
     padding: 0;
   }
-  .past-photos {
-    width: 30em;
-  }
 
   .tabs dd > a, .tabs .tab-title > a {
     padding: 0.5rem 1rem
@@ -504,12 +507,6 @@ label {
 
   .form-icon-button {
     text-align: center;
-  }
-}
-
-@media only screen and (max-width: 580px) {
-  .past-photos {
-    width: 20em;
   }
 }
 
@@ -553,21 +550,7 @@ label {
   }
 
   .past-photos {
-    margin-bottom: 2rem;
-    width: 16em;
-  }
-
-  .slick-prev,
-  .slick-next
-  {
-    top: 90%;
-  }
-  .slick-prev {
-    left: 0px;
-  }
-  .slick-next
-  {
-    right: 0px;
+    width: 17em;
   }
 
   .tabs dd, .tabs .tab-title {
