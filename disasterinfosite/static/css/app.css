@@ -150,7 +150,6 @@ label {
 .disaster-content {
   background-color: #ffffff;
   margin: 5px;
-  max-width: 99%;
   padding: 5px;
 }
 
@@ -459,7 +458,6 @@ label {
 
   .tabs-content > .content.active {
     margin-top: 0;
-    width: 92%;
   }
 
   .caps {
@@ -484,9 +482,8 @@ label {
     width: 30em;
   }
 
-  .tab-title {
-    float: right !important;
-    width: 95%;
+  .tabs dd > a, .tabs .tab-title > a {
+    padding: 0.5rem 1rem
   }
 
   .disaster-tabs {
