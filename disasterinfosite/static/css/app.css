@@ -34,9 +34,6 @@ h5 {
   font-size: 1.2rem;
 }
 
-p {
-  font-size: 1rem;
-}
 
 .map-container {
   padding-top: 1rem
@@ -450,10 +447,6 @@ label {
      font-size: 1.25em;
   }
 
-  p {
-    font-size: 1rem;
-  }
-
   h2 {
     line-height: 1.5rem;
   }
@@ -528,10 +521,6 @@ label {
 
   #location-text {
     font-size: 16px;
-  }
-
-  .organization-information {
-    margin-top: 20px;
   }
 
   .title-image {
