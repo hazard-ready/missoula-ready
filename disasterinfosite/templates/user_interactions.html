@@ -88,13 +88,19 @@
     </div>
   </div>
   <div id="user-info-container" class="row vert-pad-medium">
-    <div class="small-12 medium-6 columns">
-     <p><strong>Welcome back, {{ username }}!</strong></p>
-    </div>
-    <div class="small-12 medium-6 columns user-interaction__buttons">
-      <a href="#user-login-container" class="button radius caps button--logout">Log Out</a>
-      <a href="#user-info-container" class="button radius caps button--update">Update My Info</a>
-    </div>
+     {% if username %}
+      <div class="small-12 medium-6 columns">
+        <p><strong>Welcome back, {{ username }}!</strong></p>
+      </div>
+      <div class="small-12 medium-6 columns user-interaction__buttons">
+        <a href="#user-login-container" class="button radius caps button--logout">Log Out</a>
+        <a href="#user-info-container" class="button radius caps button--update">Update My Info</a>
+      </div>
+     {% else %}
+      <div class="small-12 medium-6 columns">
+       <p>We're logging you in. Just a moment...</p>
+      </div>
+     {% endif %}
   </div>
   <div id="user-info-container--invalid" class="row vert-pad-medium">
     <div class="small-12 medium-6 columns">

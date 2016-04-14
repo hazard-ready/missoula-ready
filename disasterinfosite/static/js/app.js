@@ -301,7 +301,7 @@ $( document ).ready(function() {
         city: city,
         state: state,
         zip_code: zip,
-        next: "/"
+        next: document.location.pathname
       },
       function(err) {
         $("#user-signup-container").hide();
@@ -328,13 +328,15 @@ $( document ).ready(function() {
       {
         username: username,
         password: password,
-        next: "/"
+        next: document.location.pathname
       },
       function() {
         $("#user-login-container").hide();
         $("#user-info-container--invalid").show();
       },
       function() {
+        document.location.hash = "user-interaction-container";
+        document.location.reload(true);
         $("#user-login-container").hide();
         $("#user-info-container").show();
       });
@@ -361,7 +363,7 @@ $( document ).ready(function() {
         city: city,
         state: state,
         zip_code: zip,
-        next: "/"
+        next: document.location.pathname
       },
       function(err) {
         $("#user-profile-container").hide();
