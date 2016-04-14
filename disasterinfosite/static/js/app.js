@@ -335,6 +335,8 @@ $( document ).ready(function() {
         $("#user-info-container--invalid").show();
       },
       function() {
+        document.location.hash = "user-interaction-container";
+        document.location.reload(true);
         $("#user-login-container").hide();
         $("#user-info-container").show();
       });

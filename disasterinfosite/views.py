@@ -48,7 +48,6 @@ def create_user(request):
     else:
         return HttpResponse(status=403)
 
-@ensure_csrf_cookie
 def login_view(request):
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
@@ -57,10 +56,10 @@ def login_view(request):
         # Correct password, and the user is marked "active"
         login(request, user)
         # Redirect to a success page.
-        return HttpResponseRedirect("#user-info-container")
+        return HttpResponse(status=201)
     else:
         # Show an error page
-        return HttpResponseRedirect("#user-info-container--invalid")
+        return HttpResponse(status=403)
 
 def update_profile(request):
     if request.method == 'POST' and request.user.is_authenticated():
