@@ -644,6 +644,11 @@ input:invalid {
     padding: 0.3rem 0.5rem
   }
 
+  .user-interactions-help {
+    padding-top: 1rem;
+    font-size: 0.75em
+  }
+
   .who-made-this-logo {
     margin: 0 auto;
   }
