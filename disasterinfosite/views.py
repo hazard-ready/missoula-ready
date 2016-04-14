@@ -1,8 +1,87 @@
 from django.shortcuts import render
 from collections import OrderedDict
-from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink, PastEventsPhoto, DataOverviewImage
+from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink, PastEventsPhoto, DataOverviewImage, UserProfile
 from .fire_dial import make_icon
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.http import HttpResponse, HttpResponseRedirect
+from django.db.utils import IntegrityError
+from django.views.decorators.csrf import ensure_csrf_cookie
 
+def create_user(request):
+    if request.method == 'POST':
+
+        try:
+            user = User.objects.create_user(
+                username=request.POST.get('username', ''),
+                email=request.POST.get('username', ''),
+                password=request.POST.get('password', '')
+            )
+        except IntegrityError:
+            return HttpResponse(status=409, reason="That user already exists.")
+        except ValueError:
+            return HttpResponse(status=400)
+
+        profile = UserProfile(
+            user=user,
+            address1=request.POST.get('address1', ''),
+            address2=request.POST.get('address2', ''),
+            city=request.POST.get('city', ''),
+            state=request.POST.get('state', ''),
+            zip_code=request.POST.get('zip_code', '')
+        )
+        try:
+            profile.save()
+        except (ValueError, IntegrityError):
+            return HttpResponse(status=500)
+
+        user = authenticate(
+            username=request.POST.get('username', ''),
+            password=request.POST.get('password', '')
+        )
+        if user is None:
+            return HttpResponse(status=500)
+
+        login(request, user)
+
+        return HttpResponse(status=201)
+    else:
+        return HttpResponse(status=403)
+
+@ensure_csrf_cookie
+def login_view(request):
+    username = request.POST.get('username', '')
+    password = request.POST.get('password', '')
+    user = authenticate(username=username, password=password)
+    if user is not None and user.is_active:
+        # Correct password, and the user is marked "active"
+        login(request, user)
+        # Redirect to a success page.
+        return HttpResponseRedirect("#user-info-container")
+    else:
+        # Show an error page
+        return HttpResponseRedirect("#user-info-container--invalid")
+
+def update_profile(request):
+    if request.method == 'POST' and request.user.is_authenticated():
+        username = request.user.username
+        profile = UserProfile.objects.get(user=request.user)
+        profile.address1 = request.POST.get('address1', '')
+        profile.address2 = request.POST.get('address2', '')
+        profile.city = request.POST.get('city', '')
+        profile.state = request.POST.get('state', '')
+        profile.zip_code = request.POST.get('zip_code', '')
+
+        try:
+            profile.save()
+        except (ValueError, IntegrityError):
+            return HttpResponse(status=500)
+
+        return HttpResponse(status=201)
+    else:
+        return HttpResponse(status=403)
+
+@ensure_csrf_cookie
 def app_view(request):
     location = Location.get_solo()
     important_links = ImportantLink.objects.all()
@@ -11,6 +90,12 @@ def app_view(request):
     supply_kit = SupplyKit.get_solo()
     supply_kit.meals = 3 * supply_kit.days
     quick_data_overview = DataOverviewImage.objects.all()
+    username = None
+    profile = None
+    if request.user.is_authenticated():
+        username = request.user.username
+        profile = UserProfile.objects.get(user=request.user)
+
     template = "no_content_found.html"
 
     likely_scenarios = {
@@ -125,7 +210,9 @@ def app_view(request):
             'important_links': important_links,
             'data_bounds': data_bounds,
             'data': OrderedDict(sorted(data.items(), key=lambda t: heading_tab_order[t[1]['heading'].lower()] )),
-            'quick_data_overview': quick_data_overview
+            'quick_data_overview': quick_data_overview,
+            'username': username,
+            'profile': profile
         })
 
 
@@ -135,5 +222,7 @@ def app_view(request):
             'location': location,
             'settings': settings,
             'data_bounds': data_bounds,
-            'quick_data_overview': quick_data_overview
+            'quick_data_overview': quick_data_overview,
+            'username': username,
+            'profile': profile
         })
