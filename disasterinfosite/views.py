@@ -48,6 +48,7 @@ def create_user(request):
     else:
         return HttpResponse(status=403)
 
+@ensure_csrf_cookie
 def login_view(request):
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
