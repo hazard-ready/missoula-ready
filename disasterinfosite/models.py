@@ -1,4 +1,4 @@
-
+from django.contrib.auth.models import User
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models import Extent
@@ -14,6 +14,22 @@ SNUG_VID = 2
 SNUGGET_TYPES = (
                  ('SNUG_TEXT', 'TextSnugget'),
                  )
+
+class UserProfile(models.Model):
+    """ A model representing a user's information that isn't their username, password, or email address """
+    user = models.OneToOneField(User)
+    address1 = models.CharField(max_length=200, blank=True)
+    address2 = models.CharField(max_length=200, blank=True)
+    city = models.CharField(max_length=200, blank=True)
+    state = models.CharField(max_length=50, blank=True)
+    zip_code = models.CharField(max_length=50, blank=True)
+
+    class Meta:
+        verbose_name = "User Profile"
+
+    def __str__(self):
+        return "{0}: {1}, {2} {3}, {4} {5}".format(self.user, self.address1, self.address2, self.city, self.state, self.zip_code)
+
 
 class SiteSettings(SingletonModel):
     """A singleton model to represent site-wide settings."""
@@ -360,6 +376,7 @@ class Snugget(models.Model):
 # GENERATED CODE GOES HERE
 # DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
 # modelsGeoFilters
+
         fire_snuggets = []
         flood_snuggets = []
         quake_snuggets = []
