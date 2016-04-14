@@ -363,7 +363,8 @@ label {
 }
 
 .past-photos {
-  width: 26em;
+  width: 416em;
+  height: 288em;
   padding: 10px;
   background-color: #91AB9B;
   margin: 0 auto;
@@ -550,7 +551,12 @@ label {
   }
 
   .past-photos {
-    width: 17em;
+    width: 272px;
+    height: 200px;
+  }
+
+  .slideshow-image {
+    width: 270px;
   }
 
   .tabs dd, .tabs .tab-title {
