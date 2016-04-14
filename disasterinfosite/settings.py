@@ -115,5 +115,5 @@ GDAL_LIBRARY_PATH = environ.get('GDAL_LIBRARY_PATH')
 ### ^^^^^^^^^^^^^^^^^^^^^^^^^ ###
 ### END HEROKU CONFIGURATIONS ###
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'img')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'img')
 MEDIA_URL = 'static/img/'
