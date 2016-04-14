@@ -94,7 +94,11 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+if DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Use this setting if the app is being served at the domain root (e.g. hazardready.org/ )
 STATIC_URL = '/static/'
@@ -115,5 +119,9 @@ GDAL_LIBRARY_PATH = environ.get('GDAL_LIBRARY_PATH')
 ### ^^^^^^^^^^^^^^^^^^^^^^^^^ ###
 ### END HEROKU CONFIGURATIONS ###
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'img')
+if DEBUG:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'img')
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'img')
+
 MEDIA_URL = 'static/img/'
