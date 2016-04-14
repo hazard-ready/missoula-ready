@@ -67,6 +67,7 @@ label {
 }
 
 .project-title {
+  padding-top: 1rem;
   text-align: center;
 }
 
@@ -111,12 +112,17 @@ label {
 ::-moz-placeholder { color: #444444; }
 :-ms-input-placeholder { color: #444444; }
 
+input:invalid {
+  border-color: #f03b20;
+  border-width: 2px;
+}
+
 .button {
   border-color: #fd8d3c;
   background-color: #fd8d3c;
 }
 
-.button:hover {
+.button:hover, .button:focus {
   background-color: #f03b20;
 }
 
@@ -129,11 +135,17 @@ label {
   border-radius: 0 3px 3px 0;
 }
 
-.auto-location-submit {
+.auto-location-submit, .button--top {
   /*background-image: url(../img/icon-target.png);
   background-repeat: no-repeat;*/
   border-radius: 3px;
   padding: 9px 1em;
+}
+
+#title .button--top {
+  position: absolute;
+  right: 5px;
+  font-size: 1em;
 }
 
 .geocode-error-message {
@@ -406,6 +418,41 @@ label {
     outline: none;
 }
 
+<<<<<<< HEAD
+.smart911-logo {
+  height: auto;
+  max-width: 200px;
+  padding: 30px;
+  vertical-align: top;
+}
+
+#user-interaction-container {
+  background-color: #f2f2f2;
+}
+
+.user-interaction__buttons {
+  text-align: right;
+}
+
+.user-interaction__buttons .button:not(:last-child) {
+  margin-right: 2rem;
+}
+
+#user-interaction-container label {
+  color: #444;
+}
+
+#user-info-container,
+#user-info-container--invalid,
+#user-signup-result-container,
+#user-login-container,
+#user-signup-container,
+#user-profile-container,
+#user-profile-result-container,
+#failure-container {
+  display: none;
+}
+
 .who-made-this-logo {
   max-width: 30%;
   max-height: 5rem;
@@ -414,6 +461,13 @@ label {
 
 /* adjustments for smaller screens */
 @media only screen and (max-width: 768px) {
+  .button {
+    font-size: 0.75em;
+  }
+
+  #title .button--top {
+    font-size: 0.75em;
+  }
 
   #location-submit {
     background-size: 23px 23px;
@@ -515,12 +569,29 @@ label {
   .form-icon-button {
     text-align: center;
   }
+
+  .user-interaction__buttons {
+    text-align: center;
+  }
+
+  .user-interaction__buttons .button:not(:last-child) {
+      margin-right: 1rem;
+  }
 }
 
 /* adjustments for the smallest screens */
 @media only screen and (max-width: 450px) {
   .button {
     margin: 0;
+    padding: 9px 1em;
+  }
+
+  #title .button--top {
+    width: 90px;
+  }
+
+  .user-interaction__buttons .button:not(:last-child) {
+      margin-right: 0.5rem;
   }
 
   #location-text {
@@ -578,9 +649,3 @@ label {
   }
 }
 
-.smart911-logo {
-  height: auto;
-  max-width: 200px;
-  padding: 30px;
-  vertical-align: top;
-}
