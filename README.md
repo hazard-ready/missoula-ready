@@ -37,6 +37,10 @@ Missoula County
 In the event of an emergency the Office of Emergency Management for Missoula County will be your place to go for information. Call 406-258-INFO (4636). This line is either recorded with a disaster specific message or is manned by live people depending on the situation.
 
 ### Settings
+
+###### About Text
+This site is a collaboration of HazardReady, the University of Montana, Missoula County, and the City of Missoula.
+
 ###### Site title
 Missoula Ready
 
@@ -50,7 +54,13 @@ A disaster preparedness website
 A natural disaster could strike your area at any time. Find out about where you live, work, or play in Missoula County, MT.
 
 ###### Who Made This
-`This is based on <a href="http://www.opb.org/news/widget/aftershock-find-your-cascadia-earthquake-story/">Aftershock</a>, an earthquake preparedness application for Oregon residents. Carson MacPherson-Krutsky and <a href="https://hs.umt.edu/geosciences/faculty/bendick/">Dr. Rebecca Bendick</a>, a graduate student and her advisor at the Unversity of Montana, had the idea to expand it for other locales and types of disasters. <a href="https://github.com/nein09">Melinda Minch</a> and <a href="https://github.com/eldang">Eldan Goldenberg</a> adapted it for that purpose.`
+`This is based on <a href="http://www.opb.org/news/widget/aftershock-find-your-cascadia-earthquake-story/" target="_blank">Aftershock</a>, an earthquake preparedness application for Oregon residents. Carson MacPherson-Krutsky and <a href="https://hs.umt.edu/geosciences/faculty/bendick/" target="_blank">Dr. Rebecca Bendick</a>, a graduate student and her advisor at the Unversity of Montana, had the idea to expand it for other locales and types of disasters. <a href="https://github.com/nein09" target="_blank">Melinda Minch</a> and <a href="https://github.com/eldang" target="_blank">Eldan Goldenberg</a> adapted it for that purpose.
+<br/>
+Content and data are supported by several entities including the <a href="http://www.umt.edu/" target="_blank">University of Montana</a>, <a href="http://www.missoulacounty.us/" target="_blank">Missoula County</a>, and the <a href="http://www.ci.missoula.mt.us/" target="_blank">City of Missoula</a>.
+<br/>
+<img class="who-made-this-logo umt-logo" src="static/img/umt_logo.png">
+<img class="who-made-this-logo county-logo" src="static/img/mc_logo.png">
+<img class="who-made-this-logo city-logo" src="static/img/city_logo.png">`
 
 ###### Data Download
 https://github.com/missoula-ready/missoula-ready/blob/master/disasterinfosite/data.zip
@@ -78,8 +88,8 @@ If you have a default Linode configuration running Ubuntu 15.04, you can follow 
 `Require all granted`
 `</Files>`
 `</Directory>`
-3. Edit the default apache website (usually `/etc/apache2/sites-available/000-default` to add: `Alias /WEBSITE_SUBDIRECTORY/static/ /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/static/`
-`<Directory /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/static>`
+3. Edit the default apache website (usually `/etc/apache2/sites-available/000-default`, though LetsEncrypt likes to rename it to things like `000-default-le-ssl.conf`) to add: `Alias /WEBSITE_SUBDIRECTORY/static/ /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/staticfiles/`
+`<Directory /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/staticfiles>`
 `Require all granted`
 `</Directory>`
 `WSGIScriptAlias /zr /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/wsgi.py`
@@ -88,7 +98,9 @@ If you have a default Linode configuration running Ubuntu 15.04, you can follow 
 `Require all granted`
 `</Files>`
 `</Directory>`
-4. Edit `disasterinfosite/settings.py` to remove the first forward slash from the value of `STATIC_URL`, leaving the relevant line as: `STATIC_URL = 'static/'`
+4. Edit `disasterinfosite/settings.py` to make value of `STATIC_URL`, match the website's directory structure.  For example, if this project is to be served at DOMAINNAME/ then set `STATIC_URL = '/static/'`, but if it's to be served at DOMAINNAME/SUBDIRECTORY/ then set `STATIC_URL = '/SUBDIRECTORY/static/'`
+5. Add your domain name[s] to the values of `ALLOWED_HOSTS` in `disasterinfosite/settings.py`.  Consider removing other values (e.g. the list of previous servers/domains we've used)
+
 
 #### General instructions
 
