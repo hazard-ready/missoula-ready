@@ -6,7 +6,6 @@
         <p>If your username isn't {{ username }}, you might want to log out.</p>
       </div>
       <div class="small-12 medium-6 columns user-interaction__buttons">
-        {% csrf_token %}
         <a href="#user-login-container" class="button radius caps button--logout">Log Out</a>
         <a href="#user-info-container" class="button radius caps button--update">Update My Info</a>
       </div>
@@ -26,7 +25,6 @@
     </div>
   <div id="user-login-container" class="row vert-pad-medium">
     <form id="user-login__form">
-      {% csrf_token %}
       <div class="small-12 medium-6 columns">
         <label>Username (your email address)
           <input type="text" id="user-login__username" required placeholder="Required."/>
@@ -43,7 +41,6 @@
   </div>
   <div id="user-signup-container" class="row vert-pad-medium">
     <form id="user-signup__form">
-      {% csrf_token %}
       <div class="small-12 medium-6 columns">
         <label>Email address (this will be your username)
           <input type="email" id="user-signup__username" required placeholder="Required."/>
@@ -95,7 +92,6 @@
      <p><strong>Welcome back, {{ username }}!</strong></p>
     </div>
     <div class="small-12 medium-6 columns user-interaction__buttons">
-      {% csrf_token %}
       <a href="#user-login-container" class="button radius caps button--logout">Log Out</a>
       <a href="#user-info-container" class="button radius caps button--update">Update My Info</a>
     </div>
@@ -112,7 +108,6 @@
    {% if username %}
      <div id="user-profile-container" class="row vert-pad-medium">
       <form id="user-profile__form">
-        {% csrf_token %}
         <div class="small-12 medium-6 columns">
           <label>Street Address
             <input type="text" id="user-profile__address1" value="{{ profile.address1 }}" />
