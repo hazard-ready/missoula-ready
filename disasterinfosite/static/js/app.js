@@ -167,12 +167,14 @@ $( document ).ready(function() {
 
   $(".button--signup").click(function() {
     $("#user-button-container").hide();
+    $("#failure-container").hide();
     $("#user-signup-container").show();
   });
 
   $(".button--login").click(function() {
     $("#user-button-container").hide();
     $("#user-info-container--invalid").hide();
+    $("#failure-container").hide();
     $("#user-login-container").show();
   });
 
@@ -190,6 +192,7 @@ $( document ).ready(function() {
   $(".button--update").click(function() {
     $("#user-info-container").hide();
     $("#user-button-container--logged-in").hide();
+    $("#failure-container").hide();
     $("#user-profile-container").show();
   });
 
@@ -205,6 +208,7 @@ $( document ).ready(function() {
       function() {
         $("#user-info-container").hide();
         $("#user-button-container--logged-in").hide();
+        $("#failure-container").hide();
         $("#user-button-container").show();
       }
     );
