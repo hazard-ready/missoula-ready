@@ -78,8 +78,8 @@ If you have a default Linode configuration running Ubuntu 15.04, you can follow 
 `Require all granted`
 `</Files>`
 `</Directory>`
-3. Edit the default apache website (usually `/etc/apache2/sites-available/000-default` to add: `Alias /WEBSITE_SUBDIRECTORY/static/ /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/static/`
-`<Directory /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/static>`
+3. Edit the default apache website (usually `/etc/apache2/sites-available/000-default`, though LetsEncrypt likes to rename it to things like `000-default-le-ssl.conf`) to add: `Alias /WEBSITE_SUBDIRECTORY/static/ /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/staticfiles/`
+`<Directory /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/staticfiles>`
 `Require all granted`
 `</Directory>`
 `WSGIScriptAlias /zr /home/USERNAME/INSTALLDIRECTORY/disasterinfosite/wsgi.py`
@@ -88,7 +88,9 @@ If you have a default Linode configuration running Ubuntu 15.04, you can follow 
 `Require all granted`
 `</Files>`
 `</Directory>`
-4. Edit `disasterinfosite/settings.py` to remove the first forward slash from the value of `STATIC_URL`, leaving the relevant line as: `STATIC_URL = 'static/'`
+4. Edit `disasterinfosite/settings.py` to make value of `STATIC_URL`, match the website's directory structure.  For example, if this project is to be served at DOMAINNAME/ then set `STATIC_URL = '/static/'`, but if it's to be served at DOMAINNAME/SUBDIRECTORY/ then set `STATIC_URL = '/SUBDIRECTORY/static/'`
+5. Add your domain name[s] to the values of `ALLOWED_HOSTS` in `disasterinfosite/settings.py`.  Consider removing other values (e.g. the list of previous servers/domains we've used)
+
 
 #### General instructions
 
