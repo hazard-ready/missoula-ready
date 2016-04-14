@@ -95,7 +95,13 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATIC_URL = '/zr/static/'
+# Use this setting if the app is being served at the domain root (e.g. hazardready.org/ )
+STATIC_URL = '/static/'
+
+# If the app is being served in a subdirectory of the domain (e.g. foo.com/SUBDIR/ ) then use a variant of:
+# STATIC_URL = '/SUBDIR/static/'
+# So for our current test server, eldang.eldan.co.uk/zr/ , we need:
+# STATIC_URL = '/zr/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
