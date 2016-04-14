@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.db.utils import IntegrityError
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 def create_user(request):
     if request.method == 'POST':
@@ -79,6 +80,7 @@ def update_profile(request):
     else:
         return HttpResponse(status=403)
 
+@ensure_csrf_cookie
 def app_view(request):
     location = Location.get_solo()
     important_links = ImportantLink.objects.all()
