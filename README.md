@@ -89,7 +89,7 @@ If you have a default Linode configuration running Ubuntu 15.04, you can follow 
 `</Files>`
 `</Directory>`
 4. Edit `disasterinfosite/settings.py` to make value of `STATIC_URL`, match the website's directory structure.  For example, if this project is to be served at DOMAINNAME/ then set `STATIC_URL = '/static/'`, but if it's to be served at DOMAINNAME/SUBDIRECTORY/ then set `STATIC_URL = '/SUBDIRECTORY/static/'`
-5. 
+5. Add your domain name[s] to the values of `ALLOWED_HOSTS` in `disasterinfosite/settings.py`.  Consider removing other values (e.g. the list of previous servers/domains we've used)
 
 
 #### General instructions
