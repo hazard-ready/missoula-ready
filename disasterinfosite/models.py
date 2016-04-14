@@ -5,6 +5,7 @@ from django.contrib.gis.db.models import Extent
 from embed_video.fields import EmbedVideoField
 from model_utils.managers import InheritanceManager
 from solo.models import SingletonModel
+from django.core.files.storage import FileSystemStorage
 
 SNUG_TEXT = 0
 SNUG_AUDIO = 1
@@ -358,7 +359,7 @@ class Snugget(models.Model):
 ######################################################
 # GENERATED CODE GOES HERE
 # DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
-# modelsGeoFilters        
+# modelsGeoFilters
         fire_snuggets = []
         flood_snuggets = []
         quake_snuggets = []
@@ -505,9 +506,14 @@ class PastEventsPhoto(models.Model):
     def __str__(self):
         return self.image.url
 
+class OverwriteStorage(FileSystemStorage):
+    def get_available_name(self, name):
+        self.delete(name)
+        return name
+
 class DataOverviewImage(models.Model):
     link_text = models.CharField(default="", max_length=100)
-    image = models.ImageField(upload_to="data")
+    image = models.ImageField(upload_to="data", storage=OverwriteStorage())
 
     def __str__(self):
         return self.image.url
