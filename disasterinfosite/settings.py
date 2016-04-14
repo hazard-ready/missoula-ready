@@ -108,9 +108,10 @@ STATIC_URL = '/static/'
 # So for our current test server, eldang.eldan.co.uk/zr/ , we need:
 # STATIC_URL = '/zr/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+if not DEBUG:
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
 
 # Specially for GeoDjango on Heroku
 GEOS_LIBRARY_PATH = environ.get('GEOS_LIBRARY_PATH')
