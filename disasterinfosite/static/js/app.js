@@ -146,7 +146,6 @@ $( document ).ready(function() {
     var currentSlideElement = $('.disaster-content.active .past-photos');
     currentSlideElement.slick({
       slidesToShow: 1,
-      lazyLoad: 'progressive',
       variableWidth: true,
       prevArrow: '<button type="button" class="slick-prev"><</button>',
       nextArrow: '<button type="button" class="slick-next">></button>'
