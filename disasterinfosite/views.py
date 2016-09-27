@@ -124,31 +124,6 @@ def app_view(request):
         }
     }
 
-    # Make sure that sections and subsections are always in the same order.
-    section_order = {
-        'what to expect': 0,
-        'past events': 2,
-        'how to prepare': 1
-    }
-
-    # Some of these are in different sections or are mutually exclusive, hence the non-unique values.
-    sub_section_order = {
-        'potential': 0,
-        'flood zones': 1,
-        'ground shaking': 1,
-        'worst case scenario': 2,
-        'safety issues': 3,
-        'historic events': 0,
-        'get earthquake ready': 0,
-        'get flood ready': 0,
-        'get wildfire ready': 0,
-        'get landslide ready': 0,
-        'stay tuned': 1,
-        'a word from your emergency managers': 2,
-        'get summer weather ready': 0,
-        'get winter weather ready': 0
-    }
-
     heading_tab_order = {
         'wildfire': 0,
         'flooding': 1,
@@ -188,7 +163,7 @@ def app_view(request):
                                 sections[text_snugget.section][text_snugget.sub_section] = [text_snugget]
 
                         for section, sub_section_dict in sections.items():
-                            sections[section] = OrderedDict(sorted(sub_section_dict.items(), key=lambda t: sort_by_name(t, sub_section_order)))
+                            sections[section] = OrderedDict(sorted(sub_section_dict.items(), key=lambda t: t[0].order))
 
                         photos = []
                         for p in PastEventsPhoto.objects.filter(heading__iexact=heading):
@@ -196,7 +171,7 @@ def app_view(request):
 
                         data[key] = {
                             'heading': heading,
-                            'sections': OrderedDict(sorted(sections.items(), key=lambda t: sort_by_name(t, section_order))),
+                            'sections': OrderedDict(sorted(sections.items(), key=lambda t: t[0].order )),
                             'likely_scenario_title': likely_scenarios[heading]['title'] if heading in likely_scenarios else "",
                             'likely_scenario_text': likely_scenarios[heading]['text'] if heading in likely_scenarios else "",
                             'photos': photos
