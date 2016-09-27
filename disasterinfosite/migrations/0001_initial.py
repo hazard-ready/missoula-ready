@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.db import migrations, models
 import embed_video.fields
 import django.db.models.deletion
 import django.contrib.gis.db.models.fields
+
+from disasterinfosite.models import OverwriteStorage
 
 class Migration(migrations.Migration):
     operations = [
@@ -119,7 +122,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(primary_key=True, verbose_name='ID', auto_created=True, serialize=False)),
                 ('name', models.CharField(max_length=50)),
-                ('order', models.IntegerField(default=0, help_text="The order in which you'd like this to appear in the section. 0 is at the top. These can be in different sections or mutually exclusive, hence the non-unique values.")
+                ('order', models.IntegerField(default=0, help_text="The order in which you'd like this to appear in the section. 0 is at the top. These can be in different sections or mutually exclusive, hence the non-unique values."))
             ],
         ),
         migrations.CreateModel(
@@ -162,7 +165,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('link_text', models.CharField(max_length=100, default='')),
-                ('image', models.ImageField(storage=disasterinfosite.models.OverwriteStorage(), upload_to='data')),
+                ('image', models.ImageField(storage=OverwriteStorage(), upload_to='data')),
             ],
         ),
         migrations.CreateModel(
