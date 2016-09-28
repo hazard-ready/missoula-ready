@@ -10,6 +10,29 @@ Note that the `python manage.py makemigrations` step will probably tell you ther
 
 # Values to put in Django Admin
 
+### Tab and Section orders
+
+###### Snugget Section
+What to expect: 0
+How to prepare: 1
+Past events: 2
+
+###### Snugget Subsection
+potential: 0
+flood zones: 1
+ground shaking: 1
+worst case scenario: 2
+safety issues: 3
+historic events: 0
+get earthquake ready: 0
+get flood ready: 0
+get wildfire ready: 0
+get landslide ready: 0
+stay tuned: 1
+a word from your emergency managers: 2
+get summer weather ready: 0
+get winter weather ready: 0
+
 ### Important links
 
 ###### Evacuation Information
