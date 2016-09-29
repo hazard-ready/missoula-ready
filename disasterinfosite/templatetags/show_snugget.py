@@ -25,16 +25,14 @@ class SnuggetNode(template.Node):
         except (template.base.VariableDoesNotExist):
             return ''
 
+        from django.template.loader import get_template, select_template
         from django.utils.itercompat import is_iterable
         if isinstance(file_name, template.Template):
             t = file_name
-        elif isinstance(getattr(file_name, 'template', None), template.Template):
-            t = file_name.template
         elif not isinstance(file_name, six.string_types) and is_iterable(file_name):
-            t = context.template.engine.select_template(file_name)
+            t = select_template(file_name)
         else:
-            t = context.template.engine.get_template(file_name)
-        context.render_context[self] = t
+            t = get_template(file_name)
         return t.render(context)
 
     @classmethod
