@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from collections import OrderedDict
-from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink, PastEventsPhoto, DataOverviewImage, UserProfile
+from .models import Snugget, Location, SiteSettings, SupplyKit, ImportantLink, PastEventsPhoto, DataOverviewImage, UserProfile, ShapefileGroup
 from .fire_dial import make_icon
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
@@ -97,42 +97,6 @@ def app_view(request):
 
     template = "no_content_found.html"
 
-    likely_scenarios = {
-        'Wildfire': {
-            'title': 'Likely Wildfire Scenario',
-            'text': "Wildfire season stretches from spring to fall in Missoula County. In a low snowpack year the potential for fires increases. Is the area where you live at risk for a potential burn?"
-        },
-        'Flooding': {
-            'title': 'Likely Flood Scenario',
-            'text': "It’s springtime in Missoula County and the temperature has been steadily rising causing the snowpack to melt. It has been raining for many days and the rivers begin flooding. Will you feel the flood effects?"
-        },
-        'Landslide': {
-            'title': 'Landslide',
-            'text': "Landslides typically happen after rainstorms come through and especially in burned areas without vegetation to stabilize the slopes. Find out if you should be concerned in your area."
-        },
-        'Earthquake': {
-            'title': 'Earthquake',
-            'text': "Earthquakes can happen anytime. In Missoula County there are five faults that are considered active. It is most likely that a small earthquake of magnitude 4 to 5 would strike here. What kind of shaking might you experience?"
-        },
-        'Winter Weather': {
-            'title': 'Likely Winter Storm Scenario',
-            'text': "In the wintertime in Missoula County you can expect to see low temperatures, inches to feet of snow, and inversions causing poor air quality in the valleys. This can stretch from October to May depending on the year. Go get some good winter boots and bundle up! What might your winter look like?"
-        },
-        'Summer Weather': {
-            'title': 'Likely Summer Storm Scenario',
-            'text': " In the summertime temperatures rise in Missoula County, sometimes into the 100s! There is potential for thunderstorms, high winds, and heat waves.  Besides planning your summer adventures, what should you prepare for?"
-        }
-    }
-
-    heading_tab_order = {
-        'wildfire': 0,
-        'flooding': 1,
-        'winter weather': 2,
-        'summer weather': 3,
-        'earthquake': 4,
-        'landslide': 5
-    }
-
     # Clean up the syntax for the ordered dicts below.
     def sort_by_name(value, sorting_dict):
         return sorting_dict[value[0].__str__().lower()]
@@ -151,7 +115,7 @@ def app_view(request):
                     sections = {}
                     if values:
                         template = 'found_content.html'
-                        heading = values[0].heading
+                        heading = values[0].group.display_name
                         for text_snugget in values:
                             if not text_snugget.image:
                                 text_snugget.dynamic_image = make_icon(text_snugget.percentage)
@@ -163,17 +127,17 @@ def app_view(request):
                                 sections[text_snugget.section][text_snugget.sub_section] = [text_snugget]
 
                         for section, sub_section_dict in sections.items():
-                            sections[section] = OrderedDict(sorted(sub_section_dict.items(), key=lambda t: t[0].order))
+                            sections[section] = OrderedDict(sorted(sub_section_dict.items(), key=lambda t: t[0].order_of_appearance))
 
                         photos = []
-                        for p in PastEventsPhoto.objects.filter(heading__iexact=heading):
+                        for p in PastEventsPhoto.objects.filter(group=values[0].group):
                             photos.append(str(p))
 
                         data[key] = {
                             'heading': heading,
-                            'sections': OrderedDict(sorted(sections.items(), key=lambda t: t[0].order )),
-                            'likely_scenario_title': likely_scenarios[heading]['title'] if heading in likely_scenarios else "",
-                            'likely_scenario_text': likely_scenarios[heading]['text'] if heading in likely_scenarios else "",
+                            'sections': OrderedDict(sorted(sections.items(), key=lambda t: t[0].order_of_appearance )),
+                            'likely_scenario_title': values[0].group.likely_scenario_title,
+                            'likely_scenario_text': values[0].group.likely_scenario_text,
                             'photos': photos
                         }
 
@@ -183,7 +147,7 @@ def app_view(request):
             'supply_kit': supply_kit,
             'important_links': important_links,
             'data_bounds': data_bounds,
-            'data': OrderedDict(sorted(data.items(), key=lambda t: heading_tab_order[t[1]['heading'].lower()] )),
+            'data': OrderedDict(sorted(data.items(), key=lambda t: ShapefileGroup.objects.get(name=t[0]).order_of_appearance )),
             'quick_data_overview': quick_data_overview,
             'username': username,
             'profile': profile
