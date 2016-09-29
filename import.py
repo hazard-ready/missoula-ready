@@ -285,7 +285,7 @@ def modelClassGen(stem, sf, keyField, srs, shapeType, shapefileGroup):
   text += "    " + keyField.lower() + " = models." + findFieldType(sf, keyField) + "\n"
   text += "    geom = models." + shapeType + "Field(srid=" + srs + ")\n"
   text += "    objects = ShapeManager()\n\n"
-  text += "    group = models.ForeignKey(ShapefileGroup, default=getGroup())\n"
+  text += "    group = models.ForeignKey(ShapefileGroup, default=getGroup)\n"
   text += "    def __str__(self):\n"
   text += "        return str(self." + keyField.lower() + ")\n\n"
 
