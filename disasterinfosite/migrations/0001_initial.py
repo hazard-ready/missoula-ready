@@ -108,8 +108,8 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=50)),
                 ('display_name', models.CharField(max_length=50)),
                 ('order_of_appearance', models.IntegerField(help_text='The order, from left to right, in which you would like this group to appear, when applicable.', default=0)),
-                ('likely_scenario_title', models.CharField(max_length=80)),
-                ('likely_scenario_text', models.TextField()),
+                ('likely_scenario_title', models.CharField(max_length=80, blank=True)),
+                ('likely_scenario_text', models.TextField(blank=True)),
             ],
         ),
         migrations.CreateModel(
