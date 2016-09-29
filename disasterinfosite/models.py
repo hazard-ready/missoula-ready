@@ -182,121 +182,121 @@ class ShapefileGroup(models.Model):
 # modelsClasses
 class EQ_Fault_Buffer(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='foo')[0]
+        return ShapefileGroup.objects.get_or_create(name='q')[0]
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup())
+    group = models.ForeignKey(ShapefileGroup, default=getGroup)
     def __str__(self):
         return str(self.lookup_val)
 
 class EQ_Fault_Shaking(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='foo')[0]
+        return ShapefileGroup.objects.get_or_create(name='q')[0]
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup())
+    group = models.ForeignKey(ShapefileGroup, default=getGroup)
     def __str__(self):
         return str(self.lookup_val)
 
 class EQ_Fault_Worst(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='foo')[0]
+        return ShapefileGroup.objects.get_or_create(name='q')[0]
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup())
+    group = models.ForeignKey(ShapefileGroup, default=getGroup)
     def __str__(self):
         return str(self.lookup_val)
 
 class EQ_Historic_Distance(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='foo')[0]
+        return ShapefileGroup.objects.get_or_create(name='q')[0]
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup())
+    group = models.ForeignKey(ShapefileGroup, default=getGroup)
     def __str__(self):
         return str(self.lookup_val)
 
 class Fire_Burn_Probability2(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='bar')[0]
+        return ShapefileGroup.objects.get_or_create(name='f')[0]
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup())
+    group = models.ForeignKey(ShapefileGroup, default=getGroup)
     def __str__(self):
         return str(self.lookup_val)
 
 class Fire_Hist_Bound(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='bar')[0]
+        return ShapefileGroup.objects.get_or_create(name='f')[0]
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup())
+    group = models.ForeignKey(ShapefileGroup, default=getGroup)
     def __str__(self):
         return str(self.lookup_val)
 
 class Fire_Worst_Case_ph2(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='bar')[0]
+        return ShapefileGroup.objects.get_or_create(name='f')[0]
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup())
+    group = models.ForeignKey(ShapefileGroup, default=getGroup)
     def __str__(self):
         return str(self.lookup_val)
 
 class Flood_Channel_Migration_Zones(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='baz')[0]
+        return ShapefileGroup.objects.get_or_create(name='w')[0]
 
     lookup_val = models.CharField(max_length=80)
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup())
+    group = models.ForeignKey(ShapefileGroup, default=getGroup)
     def __str__(self):
         return str(self.lookup_val)
 
 class Flood_FEMA_DFRIM_2015(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='baz')[0]
+        return ShapefileGroup.objects.get_or_create(name='w')[0]
 
     lookup_val = models.CharField(max_length=80)
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup())
+    group = models.ForeignKey(ShapefileGroup, default=getGroup)
     def __str__(self):
         return str(self.lookup_val)
 
 class Flood_Worst_Case(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='baz')[0]
+        return ShapefileGroup.objects.get_or_create(name='w')[0]
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup())
+    group = models.ForeignKey(ShapefileGroup, default=getGroup)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -308,7 +308,7 @@ class Landslide_placeholder2(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup())
+    group = models.ForeignKey(ShapefileGroup, default=getGroup)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -320,7 +320,7 @@ class summerstorm(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup())
+    group = models.ForeignKey(ShapefileGroup, default=getGroup)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -332,7 +332,7 @@ class winterstorm(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup())
+    group = models.ForeignKey(ShapefileGroup, default=getGroup)
     def __str__(self):
         return str(self.lookup_val)
 
