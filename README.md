@@ -10,7 +10,46 @@ Note that the `python manage.py makemigrations` step will probably tell you ther
 
 # Values to put in Django Admin
 
-### Tab and Section orders
+### Tabs
+
+######Fire
+    Display Name: Wildfire
+    Order: 0
+    Likely Scenario Title: Likely Wildfire Scenario
+    Likely Scenario Text: Wildfire season stretches from spring to fall in Missoula County. In a low snowpack year the potential for fires increases. Is the area where you live at risk for a potential burn?
+
+######Flooding
+    Display Name: Flooding
+    Order: 1
+    Likely Scenario Title: Likely Flood Scenario
+    Likely Scenario Text: It’s springtime in Missoula County and the temperature has been steadily rising causing the snowpack to melt. It has been raining for many days and the rivers begin flooding. Will you feel the flood effects?
+
+######Winter Weather
+    Display Name: Winter Weather
+    Order: 2
+    Likely Scenario Title: Likely Winter Storm Scenario
+    Likely Scenario Text: In the wintertime in Missoula County you can expect to see low temperatures, inches to feet of snow, and inversions causing poor air quality in the valleys. This can stretch from October to May depending on the year. Go get some good winter boots and bundle up! What might your winter look like?
+
+######Summer Weather
+    Display Name: Summer Weather
+    Order: 3
+    Likely Scenario Title: Likely Summer Storm Scenario
+    Likely Scenario Text: In the summertime temperatures rise in Missoula County, sometimes into the 100s! There is potential for thunderstorms, high winds, and heat waves.  Besides planning your summer adventures, what should you prepare for?
+
+######Earthquake
+    Display Name: Earthquake
+    Order: 4
+    Likely Scenario Title: Earthquake
+    Likely Scenario Text: Earthquakes can happen anytime. In Missoula County there are five faults that are considered active. It is most likely that a small earthquake of magnitude 4 to 5 would strike here. What kind of shaking might you experience?
+
+######Landslide:
+    Display Name: Landslide
+    Order: 5
+    Likely Scenario Title: Landslide
+    Likely Scenario Text: Landslides typically happen after rainstorms come through and especially in burned areas without vegetation to stabilize the slopes. Find out if you should be concerned in your area.
+
+
+### Section orders
 
 ###### Snugget Section
 What to expect: 0
