@@ -15,7 +15,7 @@ class SnuggetNode(template.Node):
         template object in render_context to avoid reparsing and
         loading when used in a for loop.
 
-        A lot of this is token from django.template.base's InclusionNode, for Django 1.8.6.
+        A lot of this is taken from django.template.base's InclusionNode, for Django 1.8.6.
         Upgrading Django should mean updating this to match.
         """
         try:
