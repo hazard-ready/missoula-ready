@@ -15,8 +15,8 @@ class SnuggetNode(template.Node):
         template object in render_context to avoid reparsing and
         loading when used in a for loop.
 
-        A lot of this is token from django.template.base's InclusionNode.
-        This behavior should be changed if we upgrade to Django 1.8.
+        A lot of this is token from django.template.base's InclusionNode, for Django 1.8.6.
+        Upgrading Django should mean updating this to match.
         """
         try:
             snugget = self.snugget.resolve(context)
@@ -34,15 +34,6 @@ class SnuggetNode(template.Node):
         else:
             t = get_template(file_name)
         return t.render(context)
-
-    def get_resolved_arguments(self, context):
-        """
-        This function is also snipped from django.template.base.
-        """
-        resolved_args = [var.resolve(context) for var in self.args]
-        resolved_args = [context] + resolved_args
-        resolved_kwargs = {k: v.resolve(context) for k, v in self.kwargs.items()}
-        return resolved_args, resolved_kwargs
 
     @classmethod
     def handle_token(cls, parser, token):
