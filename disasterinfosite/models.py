@@ -458,79 +458,79 @@ class Snugget(models.Model):
         EQ_Fault_Buffer_rating = qs_EQ_Fault_Buffer.values_list('lookup_val', flat=True)
         for rating in EQ_Fault_Buffer_rating:
             individualSnugget = Snugget.objects.filter(EQ_Fault_Buffer_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget.group.name].extend(individualSnugget)
+            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_EQ_Fault_Shaking = EQ_Fault_Shaking.objects.filter(geom__contains=pnt)
         EQ_Fault_Shaking_rating = qs_EQ_Fault_Shaking.values_list('lookup_val', flat=True)
         for rating in EQ_Fault_Shaking_rating:
             individualSnugget = Snugget.objects.filter(EQ_Fault_Shaking_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget.group.name].extend(individualSnugget)
+            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_EQ_Fault_Worst = EQ_Fault_Worst.objects.filter(geom__contains=pnt)
         EQ_Fault_Worst_rating = qs_EQ_Fault_Worst.values_list('lookup_val', flat=True)
         for rating in EQ_Fault_Worst_rating:
             individualSnugget = Snugget.objects.filter(EQ_Fault_Worst_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget.group.name].extend(individualSnugget)
+            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_EQ_Historic_Distance = EQ_Historic_Distance.objects.filter(geom__contains=pnt)
         EQ_Historic_Distance_rating = qs_EQ_Historic_Distance.values_list('lookup_val', flat=True)
         for rating in EQ_Historic_Distance_rating:
             individualSnugget = Snugget.objects.filter(EQ_Historic_Distance_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget.group.name].extend(individualSnugget)
+            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_Fire_Burn_Probability2 = Fire_Burn_Probability2.objects.filter(geom__contains=pnt)
         Fire_Burn_Probability2_rating = qs_Fire_Burn_Probability2.values_list('lookup_val', flat=True)
         for rating in Fire_Burn_Probability2_rating:
             individualSnugget = Snugget.objects.filter(Fire_Burn_Probability2_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget.group.name].extend(individualSnugget)
+            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_Fire_Hist_Bound = Fire_Hist_Bound.objects.filter(geom__contains=pnt)
         Fire_Hist_Bound_rating = qs_Fire_Hist_Bound.values_list('lookup_val', flat=True)
         for rating in Fire_Hist_Bound_rating:
             individualSnugget = Snugget.objects.filter(Fire_Hist_Bound_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget.group.name].extend(individualSnugget)
+            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_Fire_Worst_Case_ph2 = Fire_Worst_Case_ph2.objects.filter(geom__contains=pnt)
         Fire_Worst_Case_ph2_rating = qs_Fire_Worst_Case_ph2.values_list('lookup_val', flat=True)
         for rating in Fire_Worst_Case_ph2_rating:
             individualSnugget = Snugget.objects.filter(Fire_Worst_Case_ph2_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget.group.name].extend(individualSnugget)
+            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_Flood_Channel_Migration_Zones = Flood_Channel_Migration_Zones.objects.filter(geom__contains=pnt)
         Flood_Channel_Migration_Zones_rating = qs_Flood_Channel_Migration_Zones.values_list('lookup_val', flat=True)
         for rating in Flood_Channel_Migration_Zones_rating:
             individualSnugget = Snugget.objects.filter(Flood_Channel_Migration_Zones_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget.group.name].extend(individualSnugget)
+            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_Flood_FEMA_DFRIM_2015 = Flood_FEMA_DFRIM_2015.objects.filter(geom__contains=pnt)
         Flood_FEMA_DFRIM_2015_rating = qs_Flood_FEMA_DFRIM_2015.values_list('lookup_val', flat=True)
         for rating in Flood_FEMA_DFRIM_2015_rating:
             individualSnugget = Snugget.objects.filter(Flood_FEMA_DFRIM_2015_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget.group.name].extend(individualSnugget)
+            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_Flood_Worst_Case = Flood_Worst_Case.objects.filter(geom__contains=pnt)
         Flood_Worst_Case_rating = qs_Flood_Worst_Case.values_list('lookup_val', flat=True)
         for rating in Flood_Worst_Case_rating:
             individualSnugget = Snugget.objects.filter(Flood_Worst_Case_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget.group.name].extend(individualSnugget)
+            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_Landslide_placeholder2 = Landslide_placeholder2.objects.filter(geom__contains=pnt)
         Landslide_placeholder2_rating = qs_Landslide_placeholder2.values_list('lookup_val', flat=True)
         for rating in Landslide_placeholder2_rating:
             individualSnugget = Snugget.objects.filter(Landslide_placeholder2_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget.group.name].extend(individualSnugget)
+            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_summerstorm = summerstorm.objects.filter(geom__contains=pnt)
         summerstorm_rating = qs_summerstorm.values_list('lookup_val', flat=True)
         for rating in summerstorm_rating:
             individualSnugget = Snugget.objects.filter(summerstorm_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget.group.name].extend(individualSnugget)
+            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_winterstorm = winterstorm.objects.filter(geom__contains=pnt)
         winterstorm_rating = qs_winterstorm.values_list('lookup_val', flat=True)
         for rating in winterstorm_rating:
             individualSnugget = Snugget.objects.filter(winterstorm_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget.group.name].extend(individualSnugget)
+            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
 
         return {'groups': groupsDict,
