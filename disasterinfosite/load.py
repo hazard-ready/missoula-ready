@@ -97,9 +97,9 @@ def run(verbose=True):
 
 # loadGroups
     from .models import ShapefileGroup
-    foo = ShapefileGroup.objects.get_or_create(name='foo')
-    bar = ShapefileGroup.objects.get_or_create(name='bar')
-    baz = ShapefileGroup.objects.get_or_create(name='baz')
+    q = ShapefileGroup.objects.get_or_create(name='q')
+    f = ShapefileGroup.objects.get_or_create(name='f')
+    w = ShapefileGroup.objects.get_or_create(name='w')
     Landslide_placeholder2 = ShapefileGroup.objects.get_or_create(name='Landslide_placeholder2')
     summerstorm = ShapefileGroup.objects.get_or_create(name='summerstorm')
     winterstorm = ShapefileGroup.objects.get_or_create(name='winterstorm')
