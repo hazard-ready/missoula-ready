@@ -21,7 +21,7 @@ DEBUG = False
 if DEBUG:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 else:
-# hazardready.org is the current production server. 23.92.25.126 is its numeric address. eldang.eldan.co.uk is our demo/test server  
+# hazardready.org is the current production server. 23.92.25.126 is its numeric address. eldang.eldan.co.uk is our demo/test server
     ALLOWED_HOSTS = ['hazardready.org', '.hazardready.org', '23.92.25.126', 'eldang.eldan.co.uk']
 
 # Application definition
@@ -101,12 +101,13 @@ else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Use this setting if the app is being served at the domain root (e.g. hazardready.org/ )
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
 # If the app is being served in a subdirectory of the domain (e.g. foo.com/SUBDIR/ ) then use a variant of:
 # STATIC_URL = '/SUBDIR/static/'
 # So for our current test server, eldang.eldan.co.uk/zr/ , we need:
 # STATIC_URL = '/zr/static/'
+STATIC_URL = '/missoula/static/'
 
 if not DEBUG:
     STATICFILES_DIRS = (
