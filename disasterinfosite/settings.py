@@ -82,6 +82,7 @@ import dj_database_url
 
 DATABASES = {}
 DATABASES['default'] =  dj_database_url.config()
+print(DATABASES)
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
 # Allow database connections to persist
