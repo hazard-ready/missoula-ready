@@ -17,7 +17,7 @@ SNUGGET_TYPES = (
 
 class UserProfile(models.Model):
     """ A model representing a user's information that isn't their username, password, or email address """
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     address1 = models.CharField(max_length=200, blank=True)
     address2 = models.CharField(max_length=200, blank=True)
     city = models.CharField(max_length=200, blank=True)
@@ -156,7 +156,7 @@ class ImportantLink(models.Model):
     def __str__(self):
         return self.title +': ' + self.link
 
-class ShapeManager(models.GeoManager):
+class ShapeManager(models.Manager):
     def has_point(self, pnt):
         return self.filter(geom__contains=pnt)
 
@@ -188,7 +188,7 @@ class EQ_Fault_Buffer(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -200,7 +200,7 @@ class EQ_Fault_Shaking(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -212,7 +212,7 @@ class EQ_Fault_Worst(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -224,7 +224,7 @@ class EQ_Historic_Distance(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -236,7 +236,7 @@ class Fire_Burn_Probability2(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -248,7 +248,7 @@ class Fire_Hist_Bound(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -260,7 +260,7 @@ class Fire_Worst_Case_ph2(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -272,7 +272,7 @@ class Flood_Channel_Migration_Zones(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -284,7 +284,7 @@ class Flood_FEMA_DFRIM_2015(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -296,7 +296,7 @@ class Flood_Worst_Case(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -308,7 +308,7 @@ class Landslide_placeholder2(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -320,7 +320,7 @@ class summerstorm(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -332,7 +332,7 @@ class winterstorm(models.Model):
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.lookup_val)
 

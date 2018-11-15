@@ -79,3 +79,4 @@ staticfiles
 
 .DS_Store
 myenv/
+__MACOSX/
