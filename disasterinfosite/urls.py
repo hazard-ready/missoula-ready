@@ -7,8 +7,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from disasterinfosite import views
 
 urlpatterns = [
-   url(r'^$', views.app_view, name='index'),
-   url(r'^$', views.app_view, name='index'),
+   url(r'^$', views.app_view),
    url(r'^admin/', admin.site.urls),
    url(r'^accounts/login/$',  LoginView),
    url(r'^accounts/logout/$', LogoutView),
