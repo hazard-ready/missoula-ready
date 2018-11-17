@@ -97,7 +97,7 @@ def run(verbose=True):
 
 # loadGroups
     from .models import ShapefileGroup
-    Quake = ShapefileGroup.objects.get_or_create(name='Quake')
+    quake = ShapefileGroup.objects.get_or_create(name='quake')
     flood = ShapefileGroup.objects.get_or_create(name='flood')
     fire = ShapefileGroup.objects.get_or_create(name='fire')
     slide = ShapefileGroup.objects.get_or_create(name='slide')
