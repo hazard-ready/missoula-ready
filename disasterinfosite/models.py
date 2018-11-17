@@ -182,8 +182,7 @@ class ShapefileGroup(models.Model):
 # modelsClasses
 class EQ_Fault_Shaking(models.Model):
     def getGroup():
-        print(ShapefileGroup.objects.get_or_create(name='Quake')[0])
-        return ShapefileGroup.objects.get_or_create(name='Quake')[0]
+        return ShapefileGroup.objects.get_or_create(name='quake')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -195,7 +194,7 @@ class EQ_Fault_Shaking(models.Model):
 
 class Flood_FEMA_DFRIM_2015(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='flood')[0]
+        return ShapefileGroup.objects.get_or_create(name='flood')[0].id
 
     lookup_val = models.CharField(max_length=80)
     geom = models.MultiPolygonField(srid=4326)
@@ -207,7 +206,7 @@ class Flood_FEMA_DFRIM_2015(models.Model):
 
 class Fire_Worst_Case_ph2(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='fire')[0]
+        return ShapefileGroup.objects.get_or_create(name='fire')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -219,7 +218,7 @@ class Fire_Worst_Case_ph2(models.Model):
 
 class EQ_Fault_Worst(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='Quake')[0]
+        return ShapefileGroup.objects.get_or_create(name='quake')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -231,7 +230,7 @@ class EQ_Fault_Worst(models.Model):
 
 class Landslide_placeholder2(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='slide')[0]
+        return ShapefileGroup.objects.get_or_create(name='slide')[0].id
 
     lookup_val = models.FloatField()
     geom = models.MultiPolygonField(srid=4326)
@@ -243,7 +242,7 @@ class Landslide_placeholder2(models.Model):
 
 class summerstorm(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='summer')[0]
+        return ShapefileGroup.objects.get_or_create(name='summer')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -255,7 +254,7 @@ class summerstorm(models.Model):
 
 class Flood_Worst_Case(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='flood')[0]
+        return ShapefileGroup.objects.get_or_create(name='flood')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -267,7 +266,7 @@ class Flood_Worst_Case(models.Model):
 
 class Fire_Hist_Bound(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='fire')[0]
+        return ShapefileGroup.objects.get_or_create(name='fire')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -279,7 +278,7 @@ class Fire_Hist_Bound(models.Model):
 
 class EQ_Fault_Buffer(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='Quake')[0]
+        return ShapefileGroup.objects.get_or_create(name='quake')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -291,7 +290,7 @@ class EQ_Fault_Buffer(models.Model):
 
 class EQ_Historic_Distance(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='Quake')[0]
+        return ShapefileGroup.objects.get_or_create(name='quake')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -303,7 +302,7 @@ class EQ_Historic_Distance(models.Model):
 
 class winterstorm(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='winter')[0]
+        return ShapefileGroup.objects.get_or_create(name='winter')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -315,7 +314,7 @@ class winterstorm(models.Model):
 
 class Fire_Burn_Probability2(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='fire')[0]
+        return ShapefileGroup.objects.get_or_create(name='fire')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -327,7 +326,7 @@ class Fire_Burn_Probability2(models.Model):
 
 class Flood_Channel_Migration_Zones(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='flood')[0]
+        return ShapefileGroup.objects.get_or_create(name='flood')[0].id
 
     lookup_val = models.CharField(max_length=80)
     geom = models.MultiPolygonField(srid=4326)

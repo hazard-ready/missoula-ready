@@ -31,7 +31,7 @@ $( document ).ready(function() {
   layer.setOpacity(0.6);
 
   $.ajax({
-    type: "POST",
+    type: "GET",
     url: "static/img/boundary.geojson",
     dataType: "json",
     success: function(boundaryShape) {
