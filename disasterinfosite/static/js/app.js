@@ -1,3 +1,19 @@
+require('../css/normalize.css');
+require('../css/foundation.min.css');
+require('leaflet/dist/leaflet.css');
+require("slick-carousel/slick/slick.css");
+require("slick-carousel/slick/slick-theme.css");
+require('../css/app.css');
+
+var boundaryShape = require('../img/boundary.json');
+
+require('../img/marker-icon.png');
+require('../img/marker-shadow.png');
+require('../img/thinking.gif');
+require('../img/mc_logo.png');
+
+require('slick-carousel');
+
 $( document ).ready(function() {
   $(document).foundation();
 
@@ -30,23 +46,16 @@ $( document ).ready(function() {
   var layer = new L.TileLayer(osmUrl, {attribution: osmAttrib}).addTo(map);
   layer.setOpacity(0.6);
 
-  $.ajax({
-    type: "GET",
-    url: "static/img/boundary.geojson",
-    dataType: "json",
-    success: function(boundaryShape) {
-      var boundaryStyle = {
-        "color": "rgb(253, 141, 60)",
-        "weight": 4,
-        "opacity": 1,
-        "fillColor": "#ffffff",
-        "fillOpacity": 0.7
-      };
-      var boundaryLayer = L.geoJson(boundaryShape, {
-        style: boundaryStyle
-      }).addTo(map);
-    }
-  });
+  var boundaryStyle = {
+    "color": "rgb(253, 141, 60)",
+    "weight": 4,
+    "opacity": 1,
+    "fillColor": "#ffffff",
+    "fillOpacity": 0.7
+  };
+  var boundaryLayer = L.geoJson(boundaryShape, {
+    style: boundaryStyle
+  }).addTo(map);
 
   document.getElementById('map').style.cursor='default';
   if (query_lat && query_lng) {
