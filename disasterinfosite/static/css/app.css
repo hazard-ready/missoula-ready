@@ -95,7 +95,7 @@ label {
   padding-left: 100px; /* make it line up with the text in the header, not the image */
 }
 
-#location-text {
+#location-text, .mq-input {
   color: #444444;
   font-weight: bold;
   font-size: 20px;
@@ -115,6 +115,10 @@ label {
 input:invalid {
   border-color: #f03b20;
   border-width: 2px;
+}
+
+.mq-input-icon {
+  display: none;
 }
 
 .button {
@@ -313,7 +317,7 @@ input:invalid {
   color: #fff;
 }
 
-/* overriding ugly Leaflet defaults */
+/* overriding Leaflet defaults */
 /* Change cursor when mousing over the area masked because it's outside the covered area */
 .leaflet-clickable {
   cursor: not-allowed !important;
@@ -323,10 +327,23 @@ input:invalid {
   cursor: default !important;
 }
 
+/* Chill out the z-index a little so the placeSearch UI can show up above it */
+.leaflet-pane         { z-index: 40; }
+
+.leaflet-tile-pane    { z-index: 30; }
+.leaflet-overlay-pane { z-index: 40; }
+.leaflet-shadow-pane  { z-index: 50; }
+.leaflet-marker-pane  { z-index: 60; }
+.leaflet-tooltip-pane   { z-index: 65; }
+.leaflet-popup-pane   { z-index: 70; }
+
+.leaflet-map-pane canvas { z-index: 20; }
+.leaflet-map-pane svg    { z-index: 30; }
+
 /* loading spinner during geolocation */
 .loading {
   position: fixed;
-  z-index: 999;
+  z-index: 99;
   height: 100%;
   width: 100%;
   top: 0;
@@ -394,7 +411,7 @@ input:invalid {
     color: #FFFFFF;
     background: #000000;
     opacity: .75;
-    z-index: 9999;
+    z-index: 99;
     font-size: 2rem;
     padding: 1rem;
 }
