@@ -20,8 +20,9 @@
 
   <script src="{% static 'build/vendor.js' %}"></script>
 
-  <!-- Load Google Maps from CDN-->
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBAHGWsE1UQKYha7_E-tN01yVg_St2KWQw&libraries=places"></script>
+  <!-- Load MapQuest Places search (for autocomplete) from CDN -->
+  <script src="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.css"/>
 
   <script src="{% static 'build/app.js' %}"></script>
 
