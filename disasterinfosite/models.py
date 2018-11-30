@@ -17,7 +17,7 @@ SNUGGET_TYPES = (
 
 class UserProfile(models.Model):
     """ A model representing a user's information that isn't their username, password, or email address """
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     address1 = models.CharField(max_length=200, blank=True)
     address2 = models.CharField(max_length=200, blank=True)
     city = models.CharField(max_length=200, blank=True)
@@ -97,19 +97,19 @@ class Location(SingletonModel):
     # GENERATED CODE GOES HERE
     # DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
     # locationsList
-            'EQ_Fault_Buffer': EQ_Fault_Buffer.objects.data_bounds(),
             'EQ_Fault_Shaking': EQ_Fault_Shaking.objects.data_bounds(),
-            'EQ_Fault_Worst': EQ_Fault_Worst.objects.data_bounds(),
-            'EQ_Historic_Distance': EQ_Historic_Distance.objects.data_bounds(),
-            'Fire_Burn_Probability2': Fire_Burn_Probability2.objects.data_bounds(),
-            'Fire_Hist_Bound': Fire_Hist_Bound.objects.data_bounds(),
-            'Fire_Worst_Case_ph2': Fire_Worst_Case_ph2.objects.data_bounds(),
-            'Flood_Channel_Migration_Zones': Flood_Channel_Migration_Zones.objects.data_bounds(),
             'Flood_FEMA_DFRIM_2015': Flood_FEMA_DFRIM_2015.objects.data_bounds(),
-            'Flood_Worst_Case': Flood_Worst_Case.objects.data_bounds(),
+            'Fire_Worst_Case_ph2': Fire_Worst_Case_ph2.objects.data_bounds(),
+            'EQ_Fault_Worst': EQ_Fault_Worst.objects.data_bounds(),
             'Landslide_placeholder2': Landslide_placeholder2.objects.data_bounds(),
             'summerstorm': summerstorm.objects.data_bounds(),
-            'winterstorm': winterstorm.objects.data_bounds()
+            'Flood_Worst_Case': Flood_Worst_Case.objects.data_bounds(),
+            'Fire_Hist_Bound': Fire_Hist_Bound.objects.data_bounds(),
+            'EQ_Fault_Buffer': EQ_Fault_Buffer.objects.data_bounds(),
+            'EQ_Historic_Distance': EQ_Historic_Distance.objects.data_bounds(),
+            'winterstorm': winterstorm.objects.data_bounds(),
+            'Fire_Burn_Probability2': Fire_Burn_Probability2.objects.data_bounds(),
+            'Flood_Channel_Migration_Zones': Flood_Channel_Migration_Zones.objects.data_bounds()
     # END OF GENERATED CODE BLOCK
     ######################################################
         }
@@ -156,7 +156,7 @@ class ImportantLink(models.Model):
     def __str__(self):
         return self.title +': ' + self.link
 
-class ShapeManager(models.GeoManager):
+class ShapeManager(models.Manager):
     def has_point(self, pnt):
         return self.filter(geom__contains=pnt)
 
@@ -180,159 +180,159 @@ class ShapefileGroup(models.Model):
 # GENERATED CODE GOES HERE
 # DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
 # modelsClasses
-class EQ_Fault_Buffer(models.Model):
-    def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='q')[0]
-
-    lookup_val = models.IntegerField()
-    geom = models.MultiPolygonField(srid=4326)
-    objects = ShapeManager()
-
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
-    def __str__(self):
-        return str(self.lookup_val)
-
 class EQ_Fault_Shaking(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='q')[0]
+        return ShapefileGroup.objects.get_or_create(name='quake')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
-    def __str__(self):
-        return str(self.lookup_val)
-
-class EQ_Fault_Worst(models.Model):
-    def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='q')[0]
-
-    lookup_val = models.IntegerField()
-    geom = models.MultiPolygonField(srid=4326)
-    objects = ShapeManager()
-
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
-    def __str__(self):
-        return str(self.lookup_val)
-
-class EQ_Historic_Distance(models.Model):
-    def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='q')[0]
-
-    lookup_val = models.IntegerField()
-    geom = models.MultiPolygonField(srid=4326)
-    objects = ShapeManager()
-
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
-    def __str__(self):
-        return str(self.lookup_val)
-
-class Fire_Burn_Probability2(models.Model):
-    def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='f')[0]
-
-    lookup_val = models.IntegerField()
-    geom = models.MultiPolygonField(srid=4326)
-    objects = ShapeManager()
-
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
-    def __str__(self):
-        return str(self.lookup_val)
-
-class Fire_Hist_Bound(models.Model):
-    def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='f')[0]
-
-    lookup_val = models.IntegerField()
-    geom = models.MultiPolygonField(srid=4326)
-    objects = ShapeManager()
-
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
-    def __str__(self):
-        return str(self.lookup_val)
-
-class Fire_Worst_Case_ph2(models.Model):
-    def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='f')[0]
-
-    lookup_val = models.IntegerField()
-    geom = models.MultiPolygonField(srid=4326)
-    objects = ShapeManager()
-
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
-    def __str__(self):
-        return str(self.lookup_val)
-
-class Flood_Channel_Migration_Zones(models.Model):
-    def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='w')[0]
-
-    lookup_val = models.CharField(max_length=80)
-    geom = models.MultiPolygonField(srid=4326)
-    objects = ShapeManager()
-
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.PROTECT)
     def __str__(self):
         return str(self.lookup_val)
 
 class Flood_FEMA_DFRIM_2015(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='w')[0]
+        return ShapefileGroup.objects.get_or_create(name='flood')[0].id
 
     lookup_val = models.CharField(max_length=80)
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.PROTECT)
     def __str__(self):
         return str(self.lookup_val)
 
-class Flood_Worst_Case(models.Model):
+class Fire_Worst_Case_ph2(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='w')[0]
+        return ShapefileGroup.objects.get_or_create(name='fire')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.PROTECT)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class EQ_Fault_Worst(models.Model):
+    def getGroup():
+        return ShapefileGroup.objects.get_or_create(name='quake')[0].id
+
+    lookup_val = models.IntegerField()
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.PROTECT)
     def __str__(self):
         return str(self.lookup_val)
 
 class Landslide_placeholder2(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='Landslide_placeholder2')[0]
+        return ShapefileGroup.objects.get_or_create(name='slide')[0].id
 
     lookup_val = models.FloatField()
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.PROTECT)
     def __str__(self):
         return str(self.lookup_val)
 
 class summerstorm(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='summerstorm')[0]
+        return ShapefileGroup.objects.get_or_create(name='summer')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.PROTECT)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Flood_Worst_Case(models.Model):
+    def getGroup():
+        return ShapefileGroup.objects.get_or_create(name='flood')[0].id
+
+    lookup_val = models.IntegerField()
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.PROTECT)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Fire_Hist_Bound(models.Model):
+    def getGroup():
+        return ShapefileGroup.objects.get_or_create(name='fire')[0].id
+
+    lookup_val = models.IntegerField()
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.PROTECT)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class EQ_Fault_Buffer(models.Model):
+    def getGroup():
+        return ShapefileGroup.objects.get_or_create(name='quake')[0].id
+
+    lookup_val = models.IntegerField()
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.PROTECT)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class EQ_Historic_Distance(models.Model):
+    def getGroup():
+        return ShapefileGroup.objects.get_or_create(name='quake')[0].id
+
+    lookup_val = models.IntegerField()
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.PROTECT)
     def __str__(self):
         return str(self.lookup_val)
 
 class winterstorm(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='winterstorm')[0]
+        return ShapefileGroup.objects.get_or_create(name='winter')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
     objects = ShapeManager()
 
-    group = models.ForeignKey(ShapefileGroup, default=getGroup)
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.PROTECT)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Fire_Burn_Probability2(models.Model):
+    def getGroup():
+        return ShapefileGroup.objects.get_or_create(name='fire')[0].id
+
+    lookup_val = models.IntegerField()
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.PROTECT)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Flood_Channel_Migration_Zones(models.Model):
+    def getGroup():
+        return ShapefileGroup.objects.get_or_create(name='flood')[0].id
+
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.PROTECT)
     def __str__(self):
         return str(self.lookup_val)
 
@@ -416,19 +416,19 @@ class Snugget(models.Model):
 # GENERATED CODE GOES HERE
 # DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
 # modelsFilters
-    EQ_Fault_Buffer_filter = models.ForeignKey(EQ_Fault_Buffer, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
     EQ_Fault_Shaking_filter = models.ForeignKey(EQ_Fault_Shaking, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
-    EQ_Fault_Worst_filter = models.ForeignKey(EQ_Fault_Worst, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
-    EQ_Historic_Distance_filter = models.ForeignKey(EQ_Historic_Distance, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
-    Fire_Burn_Probability2_filter = models.ForeignKey(Fire_Burn_Probability2, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
-    Fire_Hist_Bound_filter = models.ForeignKey(Fire_Hist_Bound, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
-    Fire_Worst_Case_ph2_filter = models.ForeignKey(Fire_Worst_Case_ph2, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
-    Flood_Channel_Migration_Zones_filter = models.ForeignKey(Flood_Channel_Migration_Zones, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
     Flood_FEMA_DFRIM_2015_filter = models.ForeignKey(Flood_FEMA_DFRIM_2015, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
-    Flood_Worst_Case_filter = models.ForeignKey(Flood_Worst_Case, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Fire_Worst_Case_ph2_filter = models.ForeignKey(Fire_Worst_Case_ph2, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    EQ_Fault_Worst_filter = models.ForeignKey(EQ_Fault_Worst, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
     Landslide_placeholder2_filter = models.ForeignKey(Landslide_placeholder2, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
     summerstorm_filter = models.ForeignKey(summerstorm, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Flood_Worst_Case_filter = models.ForeignKey(Flood_Worst_Case, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Fire_Hist_Bound_filter = models.ForeignKey(Fire_Hist_Bound, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    EQ_Fault_Buffer_filter = models.ForeignKey(EQ_Fault_Buffer, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    EQ_Historic_Distance_filter = models.ForeignKey(EQ_Historic_Distance, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
     winterstorm_filter = models.ForeignKey(winterstorm, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Fire_Burn_Probability2_filter = models.ForeignKey(Fire_Burn_Probability2, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Flood_Channel_Migration_Zones_filter = models.ForeignKey(Flood_Channel_Migration_Zones, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
 # END OF GENERATED CODE BLOCK
 ######################################################
 
@@ -454,99 +454,112 @@ class Snugget(models.Model):
 # GENERATED CODE GOES HERE
 # DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
 # modelsGeoFilters
-        qs_EQ_Fault_Buffer = EQ_Fault_Buffer.objects.filter(geom__contains=pnt)
-        EQ_Fault_Buffer_rating = qs_EQ_Fault_Buffer.values_list('lookup_val', flat=True)
-        for rating in EQ_Fault_Buffer_rating:
-            individualSnugget = Snugget.objects.filter(EQ_Fault_Buffer_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
-
         qs_EQ_Fault_Shaking = EQ_Fault_Shaking.objects.filter(geom__contains=pnt)
         EQ_Fault_Shaking_rating = qs_EQ_Fault_Shaking.values_list('lookup_val', flat=True)
         for rating in EQ_Fault_Shaking_rating:
             individualSnugget = Snugget.objects.filter(EQ_Fault_Shaking_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
-
-        qs_EQ_Fault_Worst = EQ_Fault_Worst.objects.filter(geom__contains=pnt)
-        EQ_Fault_Worst_rating = qs_EQ_Fault_Worst.values_list('lookup_val', flat=True)
-        for rating in EQ_Fault_Worst_rating:
-            individualSnugget = Snugget.objects.filter(EQ_Fault_Worst_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
-
-        qs_EQ_Historic_Distance = EQ_Historic_Distance.objects.filter(geom__contains=pnt)
-        EQ_Historic_Distance_rating = qs_EQ_Historic_Distance.values_list('lookup_val', flat=True)
-        for rating in EQ_Historic_Distance_rating:
-            individualSnugget = Snugget.objects.filter(EQ_Historic_Distance_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
-
-        qs_Fire_Burn_Probability2 = Fire_Burn_Probability2.objects.filter(geom__contains=pnt)
-        Fire_Burn_Probability2_rating = qs_Fire_Burn_Probability2.values_list('lookup_val', flat=True)
-        for rating in Fire_Burn_Probability2_rating:
-            individualSnugget = Snugget.objects.filter(Fire_Burn_Probability2_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
-
-        qs_Fire_Hist_Bound = Fire_Hist_Bound.objects.filter(geom__contains=pnt)
-        Fire_Hist_Bound_rating = qs_Fire_Hist_Bound.values_list('lookup_val', flat=True)
-        for rating in Fire_Hist_Bound_rating:
-            individualSnugget = Snugget.objects.filter(Fire_Hist_Bound_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
-
-        qs_Fire_Worst_Case_ph2 = Fire_Worst_Case_ph2.objects.filter(geom__contains=pnt)
-        Fire_Worst_Case_ph2_rating = qs_Fire_Worst_Case_ph2.values_list('lookup_val', flat=True)
-        for rating in Fire_Worst_Case_ph2_rating:
-            individualSnugget = Snugget.objects.filter(Fire_Worst_Case_ph2_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
-
-        qs_Flood_Channel_Migration_Zones = Flood_Channel_Migration_Zones.objects.filter(geom__contains=pnt)
-        Flood_Channel_Migration_Zones_rating = qs_Flood_Channel_Migration_Zones.values_list('lookup_val', flat=True)
-        for rating in Flood_Channel_Migration_Zones_rating:
-            individualSnugget = Snugget.objects.filter(Flood_Channel_Migration_Zones_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
+            if individualSnugget:
+                groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_Flood_FEMA_DFRIM_2015 = Flood_FEMA_DFRIM_2015.objects.filter(geom__contains=pnt)
         Flood_FEMA_DFRIM_2015_rating = qs_Flood_FEMA_DFRIM_2015.values_list('lookup_val', flat=True)
         for rating in Flood_FEMA_DFRIM_2015_rating:
             individualSnugget = Snugget.objects.filter(Flood_FEMA_DFRIM_2015_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
+            if individualSnugget:
+                groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
-        qs_Flood_Worst_Case = Flood_Worst_Case.objects.filter(geom__contains=pnt)
-        Flood_Worst_Case_rating = qs_Flood_Worst_Case.values_list('lookup_val', flat=True)
-        for rating in Flood_Worst_Case_rating:
-            individualSnugget = Snugget.objects.filter(Flood_Worst_Case_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
+        qs_Fire_Worst_Case_ph2 = Fire_Worst_Case_ph2.objects.filter(geom__contains=pnt)
+        Fire_Worst_Case_ph2_rating = qs_Fire_Worst_Case_ph2.values_list('lookup_val', flat=True)
+        for rating in Fire_Worst_Case_ph2_rating:
+            individualSnugget = Snugget.objects.filter(Fire_Worst_Case_ph2_filter__lookup_val__exact=rating).select_subclasses()
+            if individualSnugget:
+                groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
+
+        qs_EQ_Fault_Worst = EQ_Fault_Worst.objects.filter(geom__contains=pnt)
+        EQ_Fault_Worst_rating = qs_EQ_Fault_Worst.values_list('lookup_val', flat=True)
+        for rating in EQ_Fault_Worst_rating:
+            individualSnugget = Snugget.objects.filter(EQ_Fault_Worst_filter__lookup_val__exact=rating).select_subclasses()
+            if individualSnugget:
+                groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_Landslide_placeholder2 = Landslide_placeholder2.objects.filter(geom__contains=pnt)
         Landslide_placeholder2_rating = qs_Landslide_placeholder2.values_list('lookup_val', flat=True)
         for rating in Landslide_placeholder2_rating:
             individualSnugget = Snugget.objects.filter(Landslide_placeholder2_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
+            if individualSnugget:
+                groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_summerstorm = summerstorm.objects.filter(geom__contains=pnt)
         summerstorm_rating = qs_summerstorm.values_list('lookup_val', flat=True)
         for rating in summerstorm_rating:
             individualSnugget = Snugget.objects.filter(summerstorm_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
+            if individualSnugget:
+                groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
+
+        qs_Flood_Worst_Case = Flood_Worst_Case.objects.filter(geom__contains=pnt)
+        Flood_Worst_Case_rating = qs_Flood_Worst_Case.values_list('lookup_val', flat=True)
+        for rating in Flood_Worst_Case_rating:
+            individualSnugget = Snugget.objects.filter(Flood_Worst_Case_filter__lookup_val__exact=rating).select_subclasses()
+            if individualSnugget:
+                groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
+
+        qs_Fire_Hist_Bound = Fire_Hist_Bound.objects.filter(geom__contains=pnt)
+        Fire_Hist_Bound_rating = qs_Fire_Hist_Bound.values_list('lookup_val', flat=True)
+        for rating in Fire_Hist_Bound_rating:
+            individualSnugget = Snugget.objects.filter(Fire_Hist_Bound_filter__lookup_val__exact=rating).select_subclasses()
+            if individualSnugget:
+                groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
+
+        qs_EQ_Fault_Buffer = EQ_Fault_Buffer.objects.filter(geom__contains=pnt)
+        EQ_Fault_Buffer_rating = qs_EQ_Fault_Buffer.values_list('lookup_val', flat=True)
+        for rating in EQ_Fault_Buffer_rating:
+            individualSnugget = Snugget.objects.filter(EQ_Fault_Buffer_filter__lookup_val__exact=rating).select_subclasses()
+            if individualSnugget:
+                groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
+
+        qs_EQ_Historic_Distance = EQ_Historic_Distance.objects.filter(geom__contains=pnt)
+        EQ_Historic_Distance_rating = qs_EQ_Historic_Distance.values_list('lookup_val', flat=True)
+        for rating in EQ_Historic_Distance_rating:
+            individualSnugget = Snugget.objects.filter(EQ_Historic_Distance_filter__lookup_val__exact=rating).select_subclasses()
+            if individualSnugget:
+                groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
         qs_winterstorm = winterstorm.objects.filter(geom__contains=pnt)
         winterstorm_rating = qs_winterstorm.values_list('lookup_val', flat=True)
         for rating in winterstorm_rating:
             individualSnugget = Snugget.objects.filter(winterstorm_filter__lookup_val__exact=rating).select_subclasses()
-            groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
+            if individualSnugget:
+                groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
+
+        qs_Fire_Burn_Probability2 = Fire_Burn_Probability2.objects.filter(geom__contains=pnt)
+        Fire_Burn_Probability2_rating = qs_Fire_Burn_Probability2.values_list('lookup_val', flat=True)
+        for rating in Fire_Burn_Probability2_rating:
+            individualSnugget = Snugget.objects.filter(Fire_Burn_Probability2_filter__lookup_val__exact=rating).select_subclasses()
+            if individualSnugget:
+                groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
+
+        qs_Flood_Channel_Migration_Zones = Flood_Channel_Migration_Zones.objects.filter(geom__contains=pnt)
+        Flood_Channel_Migration_Zones_rating = qs_Flood_Channel_Migration_Zones.values_list('lookup_val', flat=True)
+        for rating in Flood_Channel_Migration_Zones_rating:
+            individualSnugget = Snugget.objects.filter(Flood_Channel_Migration_Zones_filter__lookup_val__exact=rating).select_subclasses()
+            if individualSnugget:
+                groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
 
         return {'groups': groupsDict,
-                'EQ_Fault_Buffer_rating': EQ_Fault_Buffer_rating,
                 'EQ_Fault_Shaking_rating': EQ_Fault_Shaking_rating,
-                'EQ_Fault_Worst_rating': EQ_Fault_Worst_rating,
-                'EQ_Historic_Distance_rating': EQ_Historic_Distance_rating,
-                'Fire_Burn_Probability2_rating': Fire_Burn_Probability2_rating,
-                'Fire_Hist_Bound_rating': Fire_Hist_Bound_rating,
-                'Fire_Worst_Case_ph2_rating': Fire_Worst_Case_ph2_rating,
-                'Flood_Channel_Migration_Zones_rating': Flood_Channel_Migration_Zones_rating,
                 'Flood_FEMA_DFRIM_2015_rating': Flood_FEMA_DFRIM_2015_rating,
-                'Flood_Worst_Case_rating': Flood_Worst_Case_rating,
+                'Fire_Worst_Case_ph2_rating': Fire_Worst_Case_ph2_rating,
+                'EQ_Fault_Worst_rating': EQ_Fault_Worst_rating,
                 'Landslide_placeholder2_rating': Landslide_placeholder2_rating,
                 'summerstorm_rating': summerstorm_rating,
-                'winterstorm_rating': winterstorm_rating
+                'Flood_Worst_Case_rating': Flood_Worst_Case_rating,
+                'Fire_Hist_Bound_rating': Fire_Hist_Bound_rating,
+                'EQ_Fault_Buffer_rating': EQ_Fault_Buffer_rating,
+                'EQ_Historic_Distance_rating': EQ_Historic_Distance_rating,
+                'winterstorm_rating': winterstorm_rating,
+                'Fire_Burn_Probability2_rating': Fire_Burn_Probability2_rating,
+                'Flood_Channel_Migration_Zones_rating': Flood_Channel_Migration_Zones_rating
                 }
 # END OF GENERATED CODE BLOCK
 ######################################################

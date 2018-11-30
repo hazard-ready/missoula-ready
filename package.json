@@ -1,0 +1,33 @@
+{
+  "name": "missoula-ready",
+  "version": "1.0.0",
+  "description": "Hazard Ready for Missoula County, Montana",
+  "main": "app.js",
+  "scripts": {
+    "webpack": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hazard-ready/missoula-ready.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hazard-ready/missoula-ready/issues"
+  },
+  "homepage": "https://github.com/hazard-ready/missoula-ready#readme",
+  "devDependencies": {
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^0.11.2",
+    "style-loader": "^0.18.2",
+    "url-loader": "^1.1.2",
+    "webpack": "^3.0.0",
+    "webpack-bundle-tracker": "^0.4.2-beta"
+  },
+  "dependencies": {
+    "jquery": "^2.2.4",
+    "leaflet": "^1.3.4",
+    "slick-carousel": "^1.6.0"
+  }
+}

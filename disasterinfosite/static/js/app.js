@@ -1,3 +1,21 @@
+require('../css/normalize.css');
+require('../css/foundation.min.css');
+require("slick-carousel/slick/slick.css");
+require("slick-carousel/slick/slick-theme.css");
+require('leaflet/dist/leaflet.css');
+require('../css/app.css');
+
+var boundaryShape = require('../img/boundary.json');
+
+require('../img/marker-icon.png');
+require('../img/marker-shadow.png');
+require('../img/thinking.gif');
+require('../img/mc_logo.png');
+
+require('slick-carousel');
+
+var MAPQUEST_KEY='O9xONxvpJOn6EXSMxHao40h2PXxizN3P';
+
 $( document ).ready(function() {
   $(document).foundation();
 
@@ -16,42 +34,36 @@ $( document ).ready(function() {
   var query_lng = getURLParameter('lng');
 
   // set up the map
-  var map = L.map('map');
+  var map = new L.Map('map', {
+    scrollWheelZoom: false
+  });
   if (query_lat && query_lng) {
     zoom = 14;
     map.setView([query_lat, query_lng], zoom);
   } else { // use the data bounds if we don't have a position in the query string
     map.fitBounds(mapBounds);
   }
-  map.scrollWheelZoom.disable();
 
   var osmUrl='//{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=3a70462b44dd431586870baee15607e4';
   var osmAttrib='Map data © <a href="//openstreetmap.org">OpenStreetMap</a> contributors';
-  var layer = new L.TileLayer(osmUrl, {attribution: osmAttrib}).addTo(map);
+  var layer = L.tileLayer(osmUrl, {attribution: osmAttrib}).addTo(map);
   layer.setOpacity(0.6);
 
-  $.ajax({
-    type: "POST",
-    url: "static/img/boundary.geojson",
-    dataType: "json",
-    success: function(boundaryShape) {
-      var boundaryStyle = {
-        "color": "rgb(253, 141, 60)",
-        "weight": 4,
-        "opacity": 1,
-        "fillColor": "#ffffff",
-        "fillOpacity": 0.7
-      };
-      var boundaryLayer = L.geoJson(boundaryShape, {
-        style: boundaryStyle
-      }).addTo(map);
-    }
-  });
+  var boundaryStyle = {
+    "color": "rgb(253, 141, 60)",
+    "weight": 4,
+    "opacity": 1,
+    "fillColor": "#ffffff",
+    "fillOpacity": 0.7
+  };
+  var boundaryLayer = L.geoJson(boundaryShape, {
+    style: boundaryStyle
+  }).addTo(map);
 
   document.getElementById('map').style.cursor='default';
   if (query_lat && query_lng) {
     var icon = new L.Icon.Default;
-    icon.options.iconUrl = "static/img/marker-icon.png";
+    icon.options.iconUrl = "marker-icon.png";
     var marker = L.marker([query_lat, query_lng], {
       icon: icon,
       clickable: false,
@@ -76,7 +88,12 @@ $( document ).ready(function() {
 
   // Set up autocomplete
   var input = document.getElementById('location-text');
-  var autocomplete = new google.maps.places.Autocomplete(input);
+
+  placeSearch({
+    key: MAPQUEST_KEY,
+    container: input,
+    useDeviceLocation: true
+  });
 
   // hitting enter key in the textfield will trigger submit
   $("#location-text").keydown(function(event) {
@@ -93,15 +110,30 @@ $( document ).ready(function() {
     if (location_query_text.length == 0) return;
     disableForm();
 
-    // request geocoding from google CLIENT SIDE!
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode( { 'address': location_query_text}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        var lat = results[0].geometry.location.lat();
-        var lon = results[0].geometry.location.lng();
-        submitLocation(lat,lon);
-      } else {
+    // Geocode our location text
+    $.ajax({
+      type: 'GET',
+      url: 'https://www.mapquestapi.com/geocoding/v1/address',
+      data: {
+        key: MAPQUEST_KEY,
+        location: location_query_text,
+        outFormat: 'json',
+        thumbMaps: false,
+        boundingBox: mapBounds
+      },
+      error: function(error) {
+        console.log('error', error);
         $(".geocode-error-message").html($('p').text("We had a problem finding that location."));
+      },
+      success: function(result) {
+        if(result.info.statuscode === 0) {
+          var lat = result.results[0].locations[0].latLng.lat;
+          var lon = result.results[0].locations[0].latLng.lng;
+          submitLocation(lat,lon);
+        } else {
+          console.log('Geocoding error messages', result.info.messages);
+          $(".geocode-error-message").html($('p').text("We had a problem finding that location."));
+        }
       }
     });
   });
@@ -142,7 +174,7 @@ $( document ).ready(function() {
 
   function submitLocation(lat,lng) {
     // reload the page with the lat,lng
-    document.location =  encodeURI(document.location.pathname + "?lat=" + lat + "&lng=" + lng + "&loc=" + location_query_text);
+    document.location = encodeURI(document.location.pathname + "?lat=" + lat + "&lng=" + lng + "&loc=" + location_query_text);
   }
 
   // Set up slick photo slideshow
