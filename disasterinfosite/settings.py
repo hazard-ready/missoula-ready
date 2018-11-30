@@ -1,7 +1,6 @@
 """
 Django settings for disasterinfosite project.
 """
-
 ADMINS = (
           ('Melinda Minch', 'melinda@melindaminch.com')
          )
@@ -38,12 +37,11 @@ INSTALLED_APPS = (
     'solo'
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -65,14 +63,19 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Enable template caching, per http://blog.ionelmc.ro/2012/01/19/tweaks-for-making-django-admin-faster/
-TEMPLATE_LOADERS = (
-    ('django.template.loaders.cached.Loader', (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-    )),
-)
-
+TEMPLATES = [{
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'DIRS': [],
+    'APP_DIRS': True,
+    'OPTIONS': {
+        'context_processors': [
+            'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.contrib.messages.context_processors.messages',
+        ],
+    },
+}]
 
 ### HEROKU CONFIGURATIONS ###
 # Added per instructions at https://devcenter.heroku.com/articles/getting-started-with-django
@@ -93,7 +96,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Static asset configuration
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 if DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')

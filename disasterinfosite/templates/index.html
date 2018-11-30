@@ -10,27 +10,25 @@
 
   <title>{{ settings.site_title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link type="text/css" rel="stylesheet" href="{% static 'css/normalize.css' %}">
-  <link type="text/css" rel="stylesheet" href="{% static 'css/foundation.css' %}">
-  <link type="text/css" rel="stylesheet" href="{% static 'css/app.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'build/app.css' %}">
+  <!-- Load Slick CSS -->
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
 
-  <script src="{% static 'js/vendor/modernizr.js' %}"></script>
-  <script src="{% static 'js/vendor/jquery.js' %}"></script>
-  <script src="{% static 'js/foundation.min.js' %}"></script>
-  <link rel="stylesheet" href="{% static 'css/leaflet.css' %}" />
-  <script src="{% static 'js/leaflet/leaflet.js' %}"></script>
+  <!-- Load fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
 
-  <!-- Load Google Maps from CDN-->
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBAHGWsE1UQKYha7_E-tN01yVg_St2KWQw&libraries=places"></script>
+  <script src="{% static 'build/vendor.js' %}"></script>
 
-  <!-- Load Slick from CDN -->
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
-<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+  <!-- Load MapQuest Places search (for autocomplete) from CDN -->
+  <script src="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.css"/>
+
+  <script src="{% static 'build/app.js' %}"></script>
 
 <script type="text/javascript">
   var mapBounds = {{ data_bounds | js }};
 </script>
-<script src="{% static 'js/app.js' %}"></script>
 
 </head>
 <body>
