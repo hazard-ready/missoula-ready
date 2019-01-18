@@ -391,10 +391,10 @@ input:invalid {
 
 .past-photos {
   width: 416px;
-  height: 288px;
   padding: 10px;
   background-color: #91AB9B;
   margin: 0 auto;
+  overflow-y: hidden;
 }
 
 .slideshow-image {
@@ -402,35 +402,27 @@ input:invalid {
 }
 
 /* Arrows for photo slider */
-.slick-prev,
-.slick-next
-{
-    position: absolute;
-    top: 40%;
-    cursor: pointer;
-    color: #FFFFFF;
-    background: #000000;
-    opacity: .75;
-    z-index: 99;
-    font-size: 2rem;
-    padding: 1rem;
-}
-
 .slick-prev {
-  left: 0px;
-}
-.slick-next
-{
-  right: 0px;
+  left: 15px;
+  width: 36px;
+  z-index: 9;
 }
 
-.slick-prev:hover,
-.slick-prev:focus,
-.slick-next:hover,
-.slick-next:focus
+.slick-next {
+  right: 15px;
+  width: 36px;
+  z-index: 9;
+}
+
+.slick-prev::before,
+.slick-next::before
 {
-    background: #000000;
-    outline: none;
+  color: #ccc;
+  font-size: 36px;
+
+  &:hover {
+    color: #fff;
+  }
 }
 
 .smart911-logo {
@@ -568,7 +560,7 @@ input:invalid {
   }
 
   .tabs dd > a, .tabs .tab-title > a {
-    padding: 0.5rem 1rem
+    padding: 0.5em 1em
   }
 
   .disaster-tabs {
