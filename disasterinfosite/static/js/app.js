@@ -11,6 +11,9 @@ require('../img/marker-icon.png');
 require('../img/marker-shadow.png');
 require('../img/thinking.gif');
 require('../img/mc_logo.png');
+require('../img/umt_logo.png');
+require('../img/city_logo.png');
+
 
 require('slick-carousel');
 
@@ -183,8 +186,8 @@ $( document ).ready(function() {
     currentSlideElement.slick({
       slidesToShow: 1,
       variableWidth: true,
-      prevArrow: '<button type="button" class="slick-prev"><</button>',
-      nextArrow: '<button type="button" class="slick-next">></button>'
+      prevArrow: '<button type="button" class="slick-prev"></button>',
+      nextArrow: '<button type="button" class="slick-next"></button>'
     });
     return currentSlideElement;
   }
