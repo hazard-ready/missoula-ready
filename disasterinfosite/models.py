@@ -100,6 +100,7 @@ class Location(SingletonModel):
             'EQ_Fault_Shaking': EQ_Fault_Shaking.objects.data_bounds(),
             'Flood_FEMA_DFRIM_2015': Flood_FEMA_DFRIM_2015.objects.data_bounds(),
             'Fire_Worst_Case_ph2': Fire_Worst_Case_ph2.objects.data_bounds(),
+            'WildfireHazard': WildfireHazard.objects.data_bounds(),
             'EQ_Fault_Worst': EQ_Fault_Worst.objects.data_bounds(),
             'Landslide_placeholder2': Landslide_placeholder2.objects.data_bounds(),
             'summerstorm': summerstorm.objects.data_bounds(),
@@ -182,7 +183,7 @@ class ShapefileGroup(models.Model):
 # modelsClasses
 class EQ_Fault_Shaking(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='quake')[0].id
+        return ShapefileGroup.objects.get_or_create(name='Quake')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -194,7 +195,7 @@ class EQ_Fault_Shaking(models.Model):
 
 class Flood_FEMA_DFRIM_2015(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='flood')[0].id
+        return ShapefileGroup.objects.get_or_create(name='Flood')[0].id
 
     lookup_val = models.CharField(max_length=80)
     geom = models.MultiPolygonField(srid=4326)
@@ -206,7 +207,7 @@ class Flood_FEMA_DFRIM_2015(models.Model):
 
 class Fire_Worst_Case_ph2(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='fire')[0].id
+        return ShapefileGroup.objects.get_or_create(name='Fire')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -216,9 +217,21 @@ class Fire_Worst_Case_ph2(models.Model):
     def __str__(self):
         return str(self.lookup_val)
 
+class WildfireHazard(models.Model):
+    def getGroup():
+        return ShapefileGroup.objects.get_or_create(name='Fire')[0].id
+
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    group = models.ForeignKey(ShapefileGroup, default=getGroup, on_delete=models.PROTECT)
+    def __str__(self):
+        return str(self.lookup_val)
+
 class EQ_Fault_Worst(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='quake')[0].id
+        return ShapefileGroup.objects.get_or_create(name='Quake')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -230,7 +243,7 @@ class EQ_Fault_Worst(models.Model):
 
 class Landslide_placeholder2(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='slide')[0].id
+        return ShapefileGroup.objects.get_or_create(name='Slide')[0].id
 
     lookup_val = models.FloatField()
     geom = models.MultiPolygonField(srid=4326)
@@ -242,7 +255,7 @@ class Landslide_placeholder2(models.Model):
 
 class summerstorm(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='summer')[0].id
+        return ShapefileGroup.objects.get_or_create(name='summerstorm')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -254,7 +267,7 @@ class summerstorm(models.Model):
 
 class Flood_Worst_Case(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='flood')[0].id
+        return ShapefileGroup.objects.get_or_create(name='Flood')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -266,7 +279,7 @@ class Flood_Worst_Case(models.Model):
 
 class Fire_Hist_Bound(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='fire')[0].id
+        return ShapefileGroup.objects.get_or_create(name='Fire')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -278,7 +291,7 @@ class Fire_Hist_Bound(models.Model):
 
 class EQ_Fault_Buffer(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='quake')[0].id
+        return ShapefileGroup.objects.get_or_create(name='Quake')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -290,7 +303,7 @@ class EQ_Fault_Buffer(models.Model):
 
 class EQ_Historic_Distance(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='quake')[0].id
+        return ShapefileGroup.objects.get_or_create(name='Quake')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -302,7 +315,7 @@ class EQ_Historic_Distance(models.Model):
 
 class winterstorm(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='winter')[0].id
+        return ShapefileGroup.objects.get_or_create(name='winterstorm')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -314,7 +327,7 @@ class winterstorm(models.Model):
 
 class Fire_Burn_Probability2(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='fire')[0].id
+        return ShapefileGroup.objects.get_or_create(name='Fire')[0].id
 
     lookup_val = models.IntegerField()
     geom = models.MultiPolygonField(srid=4326)
@@ -326,7 +339,7 @@ class Fire_Burn_Probability2(models.Model):
 
 class Flood_Channel_Migration_Zones(models.Model):
     def getGroup():
-        return ShapefileGroup.objects.get_or_create(name='flood')[0].id
+        return ShapefileGroup.objects.get_or_create(name='Flood')[0].id
 
     lookup_val = models.CharField(max_length=80)
     geom = models.MultiPolygonField(srid=4326)
@@ -419,6 +432,7 @@ class Snugget(models.Model):
     EQ_Fault_Shaking_filter = models.ForeignKey(EQ_Fault_Shaking, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
     Flood_FEMA_DFRIM_2015_filter = models.ForeignKey(Flood_FEMA_DFRIM_2015, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
     Fire_Worst_Case_ph2_filter = models.ForeignKey(Fire_Worst_Case_ph2, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    WildfireHazard_filter = models.ForeignKey(WildfireHazard, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
     EQ_Fault_Worst_filter = models.ForeignKey(EQ_Fault_Worst, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
     Landslide_placeholder2_filter = models.ForeignKey(Landslide_placeholder2, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
     summerstorm_filter = models.ForeignKey(summerstorm, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
@@ -472,6 +486,13 @@ class Snugget(models.Model):
         Fire_Worst_Case_ph2_rating = qs_Fire_Worst_Case_ph2.values_list('lookup_val', flat=True)
         for rating in Fire_Worst_Case_ph2_rating:
             individualSnugget = Snugget.objects.filter(Fire_Worst_Case_ph2_filter__lookup_val__exact=rating).select_subclasses()
+            if individualSnugget:
+                groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
+
+        qs_WildfireHazard = WildfireHazard.objects.filter(geom__contains=pnt)
+        WildfireHazard_rating = qs_WildfireHazard.values_list('lookup_val', flat=True)
+        for rating in WildfireHazard_rating:
+            individualSnugget = Snugget.objects.filter(WildfireHazard_filter__lookup_val__exact=rating).select_subclasses()
             if individualSnugget:
                 groupsDict[individualSnugget[0].group.name].extend(individualSnugget)
 
@@ -550,6 +571,7 @@ class Snugget(models.Model):
                 'EQ_Fault_Shaking_rating': EQ_Fault_Shaking_rating,
                 'Flood_FEMA_DFRIM_2015_rating': Flood_FEMA_DFRIM_2015_rating,
                 'Fire_Worst_Case_ph2_rating': Fire_Worst_Case_ph2_rating,
+                'WildfireHazard_rating': WildfireHazard_rating,
                 'EQ_Fault_Worst_rating': EQ_Fault_Worst_rating,
                 'Landslide_placeholder2_rating': Landslide_placeholder2_rating,
                 'summerstorm_rating': summerstorm_rating,
@@ -600,7 +622,7 @@ class PastEventsPhoto(models.Model):
         return self.image.url
 
 class OverwriteStorage(FileSystemStorage):
-    def get_available_name(self, name):
+    def get_available_name(self, name, max_length=None):
         self.delete(name)
         return name
 
