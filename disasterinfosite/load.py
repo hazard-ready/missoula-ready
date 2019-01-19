@@ -21,6 +21,11 @@ Fire_Worst_Case_ph2_mapping = {
     'geom': 'MULTIPOLYGON'
 }
 
+WildfireHazard_mapping = {
+    'lookup_val': 'lookup_val',
+    'geom': 'MULTIPOLYGON'
+}
+
 EQ_Fault_Worst_mapping = {
     'lookup_val': 'lookup_val',
     'geom': 'MULTIPOLYGON'
@@ -75,6 +80,7 @@ Flood_Channel_Migration_Zones_mapping = {
 EQ_Fault_Shaking_shp = os.path.abspath(os.path.join(os.path.dirname(__file__), '../disasterinfosite/data/simplified/EQ_Fault_Shaking.shp'))
 Flood_FEMA_DFRIM_2015_shp = os.path.abspath(os.path.join(os.path.dirname(__file__), '../disasterinfosite/data/simplified/Flood_FEMA_DFRIM_2015.shp'))
 Fire_Worst_Case_ph2_shp = os.path.abspath(os.path.join(os.path.dirname(__file__), '../disasterinfosite/data/simplified/Fire_Worst_Case_ph2.shp'))
+WildfireHazard_shp = os.path.abspath(os.path.join(os.path.dirname(__file__), '../disasterinfosite/data/simplified/WildfireHazard.shp'))
 EQ_Fault_Worst_shp = os.path.abspath(os.path.join(os.path.dirname(__file__), '../disasterinfosite/data/simplified/EQ_Fault_Worst.shp'))
 Landslide_placeholder2_shp = os.path.abspath(os.path.join(os.path.dirname(__file__), '../disasterinfosite/data/simplified/Landslide_placeholder2.shp'))
 summerstorm_shp = os.path.abspath(os.path.join(os.path.dirname(__file__), '../disasterinfosite/data/simplified/summerstorm.shp'))
@@ -97,12 +103,12 @@ def run(verbose=True):
 
 # loadGroups
     from .models import ShapefileGroup
-    quake = ShapefileGroup.objects.get_or_create(name='quake')
-    flood = ShapefileGroup.objects.get_or_create(name='flood')
-    fire = ShapefileGroup.objects.get_or_create(name='fire')
-    slide = ShapefileGroup.objects.get_or_create(name='slide')
-    summer = ShapefileGroup.objects.get_or_create(name='summer')
-    winter = ShapefileGroup.objects.get_or_create(name='winter')
+    Quake = ShapefileGroup.objects.get_or_create(name='Quake')
+    Flood = ShapefileGroup.objects.get_or_create(name='Flood')
+    Fire = ShapefileGroup.objects.get_or_create(name='Fire')
+    Slide = ShapefileGroup.objects.get_or_create(name='Slide')
+    summerstorm = ShapefileGroup.objects.get_or_create(name='summerstorm')
+    winterstorm = ShapefileGroup.objects.get_or_create(name='winterstorm')
 # END OF GENERATED CODE BLOCK
 ######################################################
 
@@ -122,6 +128,10 @@ def run(verbose=True):
     from .models import Fire_Worst_Case_ph2
     lm_Fire_Worst_Case_ph2 = LayerMapping(Fire_Worst_Case_ph2, Fire_Worst_Case_ph2_shp, Fire_Worst_Case_ph2_mapping, transform=True, encoding='UTF-8', unique=['lookup_val'])
     lm_Fire_Worst_Case_ph2.save(strict=True, verbose=verbose)
+
+    from .models import WildfireHazard
+    lm_WildfireHazard = LayerMapping(WildfireHazard, WildfireHazard_shp, WildfireHazard_mapping, transform=True, encoding='UTF-8', unique=['lookup_val'])
+    lm_WildfireHazard.save(strict=True, verbose=verbose)
 
     from .models import EQ_Fault_Worst
     lm_EQ_Fault_Worst = LayerMapping(EQ_Fault_Worst, EQ_Fault_Worst_shp, EQ_Fault_Worst_mapping, transform=True, encoding='UTF-8', unique=['lookup_val'])
