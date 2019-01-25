@@ -95,12 +95,21 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Static asset configuration
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
+# https://docs.djangoproject.com/en/1.10/howto/static-files/
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-if DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'build/', # must end with slash
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': ['.+\.map']
+    }
+}
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Use this setting if the app is being served at the domain root (e.g. hazardready.org/ )
 # STATIC_URL = '/static/'
@@ -111,10 +120,6 @@ else:
 # STATIC_URL = '/zr/static/'
 STATIC_URL = '/missoula/static/'
 
-if not DEBUG:
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-    )
 
 # Specially for GeoDjango on Heroku
 GEOS_LIBRARY_PATH = environ.get('GEOS_LIBRARY_PATH')
