@@ -103,10 +103,10 @@ def run(verbose=True):
 
 # loadGroups
     from .models import ShapefileGroup
-    Quake = ShapefileGroup.objects.get_or_create(name='Quake')
-    Flood = ShapefileGroup.objects.get_or_create(name='Flood')
-    Fire = ShapefileGroup.objects.get_or_create(name='Fire')
-    Slide = ShapefileGroup.objects.get_or_create(name='Slide')
+    Quake = ShapefileGroup.objects.get_or_create(name='quake')
+    Flood = ShapefileGroup.objects.get_or_create(name='flood')
+    fire = ShapefileGroup.objects.get_or_create(name='fire')
+    landslide = ShapefileGroup.objects.get_or_create(name='landslide')
     summerstorm = ShapefileGroup.objects.get_or_create(name='summerstorm')
     winterstorm = ShapefileGroup.objects.get_or_create(name='winterstorm')
 # END OF GENERATED CODE BLOCK
