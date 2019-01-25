@@ -15,7 +15,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 if DEBUG:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
@@ -112,13 +112,13 @@ WEBPACK_LOADER = {
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Use this setting if the app is being served at the domain root (e.g. hazardready.org/ )
-# STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 
 # If the app is being served in a subdirectory of the domain (e.g. foo.com/SUBDIR/ ) then use a variant of:
 # STATIC_URL = '/SUBDIR/static/'
 # So for our current test server, eldang.eldan.co.uk/zr/ , we need:
 # STATIC_URL = '/zr/static/'
-STATIC_URL = '/missoula/static/'
+#STATIC_URL = '/missoula/static/'
 
 
 # Specially for GeoDjango on Heroku
