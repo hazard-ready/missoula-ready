@@ -30,11 +30,11 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'django.contrib.gis',
     'embed_video',
     'disasterinfosite',
-    'solo'
+    'solo',
+    'webpack_loader'
 )
 
 MIDDLEWARE = (
@@ -118,7 +118,7 @@ STATIC_URL = '/static/'
 # STATIC_URL = '/SUBDIR/static/'
 # So for our current test server, eldang.eldan.co.uk/zr/ , we need:
 # STATIC_URL = '/zr/static/'
-#STATIC_URL = '/missoula/static/'
+# STATIC_URL = '/missoula/static/'
 
 
 # Specially for GeoDjango on Heroku
@@ -128,9 +128,7 @@ GDAL_LIBRARY_PATH = environ.get('GDAL_LIBRARY_PATH')
 ### ^^^^^^^^^^^^^^^^^^^^^^^^^ ###
 ### END HEROKU CONFIGURATIONS ###
 
-if DEBUG:
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'img')
-else:
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'img')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'img')
 
 MEDIA_URL = 'static/img/'

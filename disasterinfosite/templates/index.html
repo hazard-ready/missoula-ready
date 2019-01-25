@@ -1,5 +1,7 @@
-{% load staticfiles %}
+{% load static %}
 {% load js %}
+{% load render_bundle from webpack_loader %}
+{% load webpack_static from webpack_loader %}
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -7,10 +9,10 @@
   <meta property="og:url" content="{{ settings.site_url }}"/>
   <meta property="og:title" content="{{ settings.site_description }}">
   <meta property="og:description" content="{{ settings.intro_text }} Enter your location for a personalized report on your risks and how to prepare.">
-
+  <link rel="shortcut icon" href="{% webpack_static 'build/favicon.ico' %}"/>
   <title>{{ settings.site_title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="{% static 'build/app.css' %}">
+  {% render_bundle 'app' 'css' %}
   <!-- Load Slick CSS -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
 
@@ -18,13 +20,13 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
 
-  <script src="{% static 'build/vendor.js' %}"></script>
+  {% render_bundle 'vendor' 'js' %}
 
   <!-- Load MapQuest Places search (for autocomplete) from CDN -->
   <script src="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.js"></script>
   <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.css"/>
 
-  <script src="{% static 'build/app.js' %}"></script>
+ {% render_bundle 'app' 'js' %}
 
 <script type="text/javascript">
   var mapBounds = {{ data_bounds | js }};
