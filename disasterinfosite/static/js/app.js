@@ -6,7 +6,7 @@ require('leaflet/dist/leaflet.css');
 require('../css/app.css');
 
 var boundaryShape = require('../img/boundary.json');
-
+require('../img/favicon.ico');
 require('../img/marker-icon.png');
 require('../img/marker-shadow.png');
 require('../img/thinking.gif');

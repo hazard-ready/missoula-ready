@@ -3,7 +3,7 @@ var webpack = require('webpack')
 var BundleTracker = require('webpack-bundle-tracker')
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-var vendorPath = path.join(__dirname, "disasterinfosite/static/js/vendor/");
+var vendorPath = path.join(__dirname, "static/js/vendor/");
 
 module.exports = {
   context: __dirname,
@@ -11,16 +11,16 @@ module.exports = {
     modules: [
       vendorPath,
       path.join(__dirname, 'node_modules'),
-      path.join(__dirname, "disasterinfosite/static/js/")
+      path.join(__dirname, "static/js/")
     ],
   },
   entry: {
     vendor: ["foundation.min", "modernizr", "leaflet", "jquery", "slick-carousel"],
-    app: './disasterinfosite/static/js/app'
+    app: './static/js/app'
   },
 
   output: {
-      path: path.resolve('disasterinfosite/static/build/'),
+      path: path.resolve('static/build/'),
       filename: "[name].js",
   },
 
