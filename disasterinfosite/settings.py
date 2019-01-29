@@ -19,6 +19,7 @@ DEBUG = False
 
 if DEBUG:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+    SITE_URL: 'http://127.0.0.1:8000'
 else:
 # hazardready.org is the current production server. 23.92.25.126 is its numeric address. eldang.eldan.co.uk is our demo/test server
     ALLOWED_HOSTS = ['hazardready.org', '.hazardready.org', '23.92.25.126', 'eldang.eldan.co.uk']
@@ -30,6 +31,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.staticfiles',
     'django.contrib.gis',
     'embed_video',
     'disasterinfosite',
@@ -109,17 +111,23 @@ WEBPACK_LOADER = {
     }
 }
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Use this setting if the app is being served at the domain root (e.g. hazardready.org/ )
-STATIC_URL = '/static/'
+if DEBUG:
+    # Use this setting if the app is being served at the domain root (e.g. hazardready.org/ )
+    STATIC_URL = '/static/'
+else:
+    # If the app is being served in a subdirectory of the domain (e.g. foo.com/SUBDIR/ ) then use a variant of:
+    # STATIC_URL = '/SUBDIR/static/'
+    # So for our current test server, eldang.eldan.co.uk/zr/ , we need:
+    # STATIC_URL = '/zr/static/'
+    STATIC_URL = '/missoula/static/'
 
-# If the app is being served in a subdirectory of the domain (e.g. foo.com/SUBDIR/ ) then use a variant of:
-# STATIC_URL = '/SUBDIR/static/'
-# So for our current test server, eldang.eldan.co.uk/zr/ , we need:
-# STATIC_URL = '/zr/static/'
 # STATIC_URL = '/missoula/static/'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # Specially for GeoDjango on Heroku
 GEOS_LIBRARY_PATH = environ.get('GEOS_LIBRARY_PATH')
@@ -129,6 +137,9 @@ GDAL_LIBRARY_PATH = environ.get('GDAL_LIBRARY_PATH')
 ### END HEROKU CONFIGURATIONS ###
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'img')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'img')
 
-MEDIA_URL = '/static/img/'
+if DEBUG:
+    MEDIA_URL = '/static/img/'
+else:
+    MEDIA_URL = '/missoula/static/img'
