@@ -142,4 +142,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'img')
 if DEBUG:
     MEDIA_URL = '/static/img/'
 else:
-    MEDIA_URL = '/missoula/static/img'
+    MEDIA_URL = '/missoula/static/img/'
