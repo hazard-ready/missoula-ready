@@ -8,8 +8,7 @@ require("../css/app.css");
 var boundaryShape = require("../img/boundary.json");
 require("../img/favicon.ico");
 require("../img/marker-icon.png");
-require("../img/marker-icon.png");
-require("../img/marker-icon@2x.png");
+require("../img/marker-icon-2x.png");
 require("../img/marker-shadow.png");
 require("../img/thinking.gif");
 require("../img/mc_logo.png");
@@ -73,7 +72,7 @@ $(document).ready(function() {
   if (query_lat && query_lng) {
     var icon = new L.Icon.Default();
     icon.options.iconUrl = "marker-icon.png";
-    icon.options.iconRetinaUrl = "marker-icon@2x.png";
+    icon.options.iconRetinaUrl = "marker-icon-2x.png";
     var marker = L.marker([query_lat, query_lng], {
       icon: icon,
       clickable: false,
