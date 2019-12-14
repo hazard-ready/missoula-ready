@@ -26,7 +26,7 @@
     "webpack-bundle-tracker": "^0.4.2-beta"
   },
   "dependencies": {
-    "jquery": "^2.2.4",
+    "jquery": "^3.4.0",
     "leaflet": "^1.5.1",
     "slick-carousel": "^1.6.0"
   }
