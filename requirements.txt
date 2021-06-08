@@ -10,5 +10,5 @@ pyshp==1.2.12
 requests==2.21.0
 static3==0.7.0
 django-solo==1.1.3
-Pillow==6.2.0
+Pillow==8.2.0
 django-webpack-loader==0.6.0
