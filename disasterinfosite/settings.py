@@ -21,8 +21,7 @@ if DEBUG:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
     SITE_URL= 'http://127.0.0.1:8000'
 else:
-# hazardready.org is the current production server. 23.92.25.126 is its numeric address. eldang.eldan.co.uk is our demo/test server
-    ALLOWED_HOSTS = ['hazardready.org', '.hazardready.org', '23.92.25.126', 'eldang.eldan.co.uk']
+    ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = (
@@ -111,6 +110,7 @@ WEBPACK_LOADER = {
     }
 }
 
+FORCE_SCRIPT_NAME='/missoula/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 if DEBUG:
