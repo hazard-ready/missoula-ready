@@ -20,6 +20,7 @@ DEBUG = False
 if DEBUG:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
     SITE_URL= 'http://127.0.0.1:8000'
+    logging.basicConfig(level = logging.DEBUG, format = '%(asctime)s %(levelname)s %(message)s')
 else:
     ALLOWED_HOSTS = ['*']
 
@@ -39,6 +40,8 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE = (
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -111,7 +114,7 @@ WEBPACK_LOADER = {
 }
 
 FORCE_SCRIPT_NAME='/missoula/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'media')
 
 if DEBUG:
     # Use this setting if the app is being served at the domain root (e.g. hazardready.org/ )
@@ -123,7 +126,8 @@ else:
     # STATIC_URL = '/zr/static/'
     STATIC_URL = '/missoula/static/'
 
-# STATIC_URL = '/missoula/static/'
+WHITENOISE_STATIC_PREFIX='/static/'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
@@ -137,9 +141,9 @@ GDAL_LIBRARY_PATH = environ.get('GDAL_LIBRARY_PATH')
 ### END HEROKU CONFIGURATIONS ###
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'img')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media', 'img')
 
 if DEBUG:
-    MEDIA_URL = '/staticfiles/img/'
+    MEDIA_URL = '/media/img/'
 else:
-    MEDIA_URL = '/missoula/static/img/'
+    MEDIA_URL = '/static/img/'
