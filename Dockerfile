@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libjpeg-dev       \
     g++               \
     libgdal-dev       \
+    nodejs            \
+    npm               \
     postgresql-client \
     unzip             \
     zip               \
@@ -42,11 +44,17 @@ RUN pip install --no-cache-dir -r requirements.txt
 # verify pip install
 RUN pip list
 
-# unzip and load data
-RUN python manage.py migrate
+# build front-end code
+WORKDIR /app/disasterinfosite
+RUN mkdir -p media
+RUN npm install && npm run webpack
+
+WORKDIR /app
+
+RUN python manage.py collectstatic
 
 EXPOSE 8000
 
 # Run the application:
-ENTRYPOINT ["python"]
-CMD ["manage.py", "runserver", "0.0.0.0:8000"]
+ENTRYPOINT ["/home/django/.local/bin/gunicorn"]
+CMD ["--log-file=-", "--bind", ":8000", "--workers", "3", "disasterinfosite.wsgi:application"]
