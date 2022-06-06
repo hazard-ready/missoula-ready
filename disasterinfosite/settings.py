@@ -17,10 +17,10 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 if DEBUG:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+    ALLOWED_HOSTS = ['*']
     SITE_URL= 'http://127.0.0.1:8000'
     logging.basicConfig(level = logging.DEBUG, format = '%(asctime)s %(levelname)s %(message)s')
 else:

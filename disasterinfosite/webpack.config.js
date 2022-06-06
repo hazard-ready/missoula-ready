@@ -55,10 +55,10 @@ module.exports = {
       },
       {
         test: /\.(png|gif|jpe?g|svg|ttf|eot|ico|pdf)(\?v=\d+\.\d+\.\d+)?$/i,
-        loader: "file-loader",
-        options: {
-          name: "[name].[ext]",
-          limit: 1000
+        exclude: path.join(__dirname, "node_modules/leaflet/"), // Leaflet default marker icons
+        type: 'asset/resource',
+        generator : {
+          filename : '[name][ext]',
         }
       },
       {
@@ -67,10 +67,9 @@ module.exports = {
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          mimetype: "application/font-woff"
+        type: 'asset/resource',
+        generator : {
+          filename : '[name][ext]',
         }
       }
     ]
