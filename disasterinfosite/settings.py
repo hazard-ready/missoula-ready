@@ -1,9 +1,11 @@
 """
 Django settings for disasterinfosite project.
 """
-ADMINS = (
+import logging
+
+ADMINS = [
           ('Melinda Minch', 'melinda@melindaminch.com')
-         )
+         ]
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -18,11 +20,11 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 DEBUG = False
 
 if DEBUG:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+    ALLOWED_HOSTS = ['*']
     SITE_URL= 'http://127.0.0.1:8000'
+    logging.basicConfig(level = logging.DEBUG, format = '%(asctime)s %(levelname)s %(message)s')
 else:
-# hazardready.org is the current production server. 23.92.25.126 is its numeric address. eldang.eldan.co.uk is our demo/test server
-    ALLOWED_HOSTS = ['hazardready.org', '.hazardready.org', '23.92.25.126', 'eldang.eldan.co.uk']
+    ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = (
@@ -40,6 +42,8 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE = (
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -89,6 +93,9 @@ DATABASES = {}
 DATABASES['default'] =  dj_database_url.config()
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
 # Allow database connections to persist
 CONN_MAX_AGE = environ.get('CONN_MAX_AGE') or 0
 
@@ -111,7 +118,8 @@ WEBPACK_LOADER = {
     }
 }
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+FORCE_SCRIPT_NAME='/missoula/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'media')
 
 if DEBUG:
     # Use this setting if the app is being served at the domain root (e.g. hazardready.org/ )
@@ -123,7 +131,8 @@ else:
     # STATIC_URL = '/zr/static/'
     STATIC_URL = '/missoula/static/'
 
-# STATIC_URL = '/missoula/static/'
+WHITENOISE_STATIC_PREFIX='/static/'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
@@ -137,9 +146,9 @@ GDAL_LIBRARY_PATH = environ.get('GDAL_LIBRARY_PATH')
 ### END HEROKU CONFIGURATIONS ###
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'img')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media', 'img')
 
 if DEBUG:
-    MEDIA_URL = '/staticfiles/img/'
+    MEDIA_URL = '/media/img/'
 else:
     MEDIA_URL = '/missoula/static/img/'

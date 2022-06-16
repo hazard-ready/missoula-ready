@@ -8,7 +8,6 @@ require("../css/app.css");
 var boundaryShape = require("../img/boundary.json");
 require("../img/favicon.ico");
 require("../img/marker-icon.png");
-require("../img/marker-icon-2x.png");
 require("../img/marker-shadow.png");
 require("../img/thinking.gif");
 require("../img/mc_logo.png");
@@ -16,8 +15,12 @@ require("../img/umt_logo.png");
 require("../img/city_logo.png");
 
 require("slick-carousel");
+var L = require('leaflet');
+var $ = require('jquery');
+var Foundation = require('foundation-sites');
 
 var MAPQUEST_KEY = "O9xONxvpJOn6EXSMxHao40h2PXxizN3P";
+Foundation.Foundation.addToJquery($);
 
 $(document).ready(function() {
   $(document).foundation();
@@ -70,9 +73,12 @@ $(document).ready(function() {
 
   document.getElementById("map").style.cursor = "default";
   if (query_lat && query_lng) {
-    var icon = new L.Icon.Default();
-    icon.options.iconUrl = "marker-icon.png";
-    icon.options.iconRetinaUrl = "marker-icon-2x.png";
+    var icon = L.icon({
+      iconUrl: require("../img/marker-icon.png"),
+      shadowUrl: require("../img/marker-shadow.png"),
+      iconSize: [25, 41],
+      iconAnchor: [25, 41],
+    });
     var marker = L.marker([query_lat, query_lng], {
       icon: icon,
       clickable: false,

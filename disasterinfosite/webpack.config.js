@@ -1,7 +1,7 @@
 var path = require("path");
 var webpack = require("webpack");
 var BundleTracker = require("webpack-bundle-tracker");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 var vendorPath = path.join(__dirname, "static/js/vendor/");
 
@@ -15,59 +15,51 @@ module.exports = {
     ]
   },
   entry: {
-    vendor: [
-      "foundation.min",
-      "modernizr",
-      "leaflet",
-      "jquery",
-      "slick-carousel"
-    ],
-    app: "./static/js/app"
+    vendor: ["foundation-sites", "modernizr", "leaflet", "jquery", "slick-carousel"],
+    app: "./static/js/app.js"
   },
 
   output: {
     path: path.resolve("static/build/"),
     filename: "[name].js"
   },
-
   plugins: [
     new BundleTracker({ filename: "./webpack-stats.json" }),
     new webpack.ProvidePlugin({
       $: "jquery",
-      jQuery: "jquery"
+      jQuery: "jquery",
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor",
-      minChunks: Infinity
-    }),
-    new ExtractTextPlugin({
-      filename: "[name].css",
-      allChunks: true
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
+    new MiniCssExtractPlugin({
+      filename: "[name].css"
     })
   ],
   devtool: "eval-source-map",
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.css(\?v=\d+\.\d+\.\d+)?$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            {
-              loader: "css-loader",
-              query: { sourceMap: true }
-            }
-          ]
-        })
+        test: /\.scss$/,
+        use: [
+          "style-loader", // creates style nodes from JS strings
+          "css-loader", // translates CSS into CommonJS
+          "sass-loader" // compiles Sass to CSS, using Node Sass by default
+        ]
       },
       {
-        test: /\.(png|gif|jpe?g|svg|ttf|eot|ico)(\?v=\d+\.\d+\.\d+)?$/i,
-        loader: "file-loader?name=[name].[ext],limit=1000"
+        test: /\.css(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          "css-loader"
+        ]
+      },
+      {
+        test: /\.(png|gif|jpe?g|svg|ttf|eot|ico|pdf)(\?v=\d+\.\d+\.\d+)?$/i,
+        exclude: path.join(__dirname, "node_modules/leaflet/"), // Leaflet default marker icons
+        type: 'asset/resource',
+        generator : {
+          filename : '[name][ext]',
+        }
       },
       {
         test: /\.html(\?v=\d+\.\d+\.\d+)?$/i,
@@ -75,7 +67,10 @@ module.exports = {
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "url-loader?limit=10000&minetype=application/font-woff"
+        type: 'asset/resource',
+        generator : {
+          filename : '[name][ext]',
+        }
       }
     ]
   }
