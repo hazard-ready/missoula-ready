@@ -13,7 +13,7 @@ request_url = '/accounts/create_user/'
 class CreateUserViewTestCase(TestCase):
   def makeRequest(self, body):
     request = self.request_factory.post(request_url, body)
-    middleware = SessionMiddleware()
+    middleware = SessionMiddleware(request)
     middleware.process_request(request)
     request.session.save()
     return request
@@ -100,7 +100,7 @@ class CreateUserViewTestCase(TestCase):
     }
     create_user(self.makeRequest(request_body))
     user = User.objects.get(username=request_body['username'])
-    self.assertTrue(user.is_authenticated())
+    self.assertTrue(user.is_authenticated)
 
   def test201OnSuccess(self):
     """ If a user is successfully created, it returns a 201. """
