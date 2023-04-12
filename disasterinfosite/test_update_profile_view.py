@@ -9,14 +9,14 @@ import unittest
 from unittest.mock import patch
 
 request_url = '/accounts/update_profile/'
+
 class FakeUser():
-  def is_authenticated(self):
-    return False
+    is_authenticated = False
 
 class UpdateProfileViewTestCase(TestCase):
   def makeRequest(self, body):
     request = self.request_factory.post(request_url, body)
-    middleware = SessionMiddleware()
+    middleware = SessionMiddleware(request)
     middleware.process_request(request)
     request.session.save()
     return request
