@@ -168,6 +168,7 @@ input:invalid {
 
 .disaster-tabs-content {
   background-color: #91AB9B;
+  border: none;
 }
 
 .disaster-container {
@@ -356,21 +357,32 @@ input:invalid {
   display: block;
 }
 
-.tab-title {
+.tabs {
+  border-bottom: none;
+}
+
+.tabs-title {
   font-weight: bold;
+}
+
+.tabs-title a {
+  color: #222;
+  font-size: 1rem;
+  padding: 1rem 2rem;
 }
 
 .tabs-content > .content {
   width: auto;
 }
 
-.tabs-content > .content.active {
+.tabs-content > .content.is-active {
   margin-top: 10px;
-  padding: 1rem;
+  padding: 2rem;
 }
 
-.tabs dd.active a, .tabs .tab-title.active a {
+.tabs dd.is-active a, .tabs .tabs-title.is-active a {
   background-color: #91AB9B;
+  color: #222;
 }
 
 .likely-scenario {
@@ -532,7 +544,7 @@ input:invalid {
     font-size: 1rem;
   }
 
-  .tabs-content > .content.active {
+  .tabs-content > .content.is-active {
     margin-top: 0;
   }
 
@@ -559,7 +571,7 @@ input:invalid {
     padding: 0;
   }
 
-  .tabs dd > a, .tabs .tab-title > a {
+  .tabs dd > a, .tabs .tabs-title > a {
     padding: 0.5em 1em
   }
 
@@ -642,11 +654,11 @@ input:invalid {
     width: 270px;
   }
 
-  .tabs dd, .tabs .tab-title {
+  .tabs dd, .tabs .tabs-title {
     width: 100%;
   }
 
-  .tabs dd > a, .tabs .tab-title > a {
+  .tabs dd > a, .tabs .tabs-title > a {
     padding: 0.3rem 0.5rem
   }
 

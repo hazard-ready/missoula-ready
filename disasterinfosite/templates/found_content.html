@@ -15,22 +15,22 @@
 
 {% block main-content %}
   <div role="main" class="row disaster-container">
-    <div class="small-12 column">
-      <ul role="group" class="tabs disaster-tabs" data-tab>
+    <div class="small-12 column disaster-tabs-content">
+      <ul role="group" class="tabs disaster-tabs" id="disaster-tabs" data-tabs>
         {% for group, hazard in data.items %}
           {% if forloop.first %}
-            <li class="tab-title active"><a href="#{{group}}">{{hazard.heading}}</a></li>
+            <li class="tabs-title is-active"><a href="#{{group}}">{{hazard.heading}}</a></li>
           {% else %}
-            <li class="tab-title"><a href="#{{group}}">{{hazard.heading}}</a></li>
+            <li class="tabs-title"><a href="#{{group}}">{{hazard.heading}}</a></li>
           {% endif %}
         {% endfor %}
       </ul>
-      <div class="tabs-content disaster-tabs-content">
+      <div class="tabs-content disaster-tabs-content" data-tabs-content="disaster-tabs">
       {% for group, hazard in data.items %}
         {% if forloop.first %}
-          <div class="content active disaster-content" id="{{group}}">
+          <div class="content is-active disaster-content tabs-panel" id="{{group}}">
         {% else %}
-          <div class="content disaster-content" id="{{group}}">
+          <div class="content disaster-content tabs-panel" id="{{group}}">
         {% endif %}
         {% if hazard.likely_scenario_title %}
           <div class="likely-scenario">
