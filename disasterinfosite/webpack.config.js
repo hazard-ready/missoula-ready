@@ -54,7 +54,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|gif|jpe?g|svg|ttf|eot|ico|pdf|map)(\?v=\d+\.\d+\.\d+)?$/i,
+        test: /\.(png|gif|jpe?g|svg|ttf|eot|ico|pdf)(\?v=\d+\.\d+\.\d+)?$/i,
         exclude: path.join(__dirname, "node_modules/leaflet/"), // Leaflet default marker icons
         type: 'asset/resource',
         generator : {
