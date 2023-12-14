@@ -1,5 +1,5 @@
 require("../css/normalize.css");
-require("../css/foundation.min.css");
+require("../css/foundation.css");
 require("slick-carousel/slick/slick.css");
 require("slick-carousel/slick/slick-theme.css");
 require("leaflet/dist/leaflet.css");
