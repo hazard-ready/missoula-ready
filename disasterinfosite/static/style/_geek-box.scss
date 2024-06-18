@@ -1,0 +1,52 @@
+/* Geek box */
+
+#geek-box {
+  background-color: $deep-grey;
+  color: $soft-white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  @include breakpoint(medium-and-up) {
+    flex-direction: row;
+  }
+
+  h3 {
+    color: $soft-white;
+  }
+
+  ul {
+    list-style: none;
+    padding-inline-start: 15px;
+  }
+
+  a {
+    color: $low-intensity;
+  }
+  a:hover,
+  a:visited,
+  a:active {
+    color: $bright-accent;
+  }
+}
+
+.geek-box-logo {
+  margin: 0 auto;
+  flex: 0 1 150px;
+
+  img {
+    height: 150px;
+
+    @include breakpoint(medium-and-up) {
+      height: auto;
+    }
+  }
+}
+
+.geek-text {
+  flex: 1 0;
+
+  @include breakpoint(medium-and-up) {
+    margin-inline-start: 10px;
+  }
+}

@@ -1,0 +1,33 @@
+{% load js %}
+{% load i18n %}
+
+{% load render_bundle from webpack_loader %}
+{% load webpack_static from webpack_loader %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+{% include "head-meta.html" with file="data" %}
+
+<body>
+{% include "simple-header.html" %}
+  <div class="content-container">
+    <h2>{% trans "Data overview images for Hazard Ready" %}</h2>
+    <div class="data__list">
+      {% for item in quick_data_overview %}
+        <div class="data__image">
+          <a target="_blank" rel="noopener" href="{{ item.pdf.url }}">
+            {{ item.link_text }}
+            <img class="data__thumbnail" src="{{ item }}" alt="{% trans 'A map of the affected area, indicating hazard intensity' %}">
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% include "geek_box.html" %}
+{% include "page-end-meta.html" with file="data" %}
+
+</body>
+</html>

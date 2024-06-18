@@ -1,0 +1,163 @@
+{% load js %}
+{% load i18n %}
+{% load show_cost %}
+{% load show_cost_header %}
+
+{% load render_bundle from webpack_loader %}
+{% load webpack_static from webpack_loader %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+  {% include "head-meta.html" with file="prepare" %}
+
+  <body>
+    {% include "prepare-header.html" %}
+    <div class="content-container">
+      <div class="prepare-hero" style="background-image: url({% webpack_static 'build/basic_kit.jpg' %})">
+        <div class="overlay">
+          <h1 class="h1-sans-serif hero__text">{% trans 'Take the first step toward getting prepared' %}</h1>
+        </div>
+      </div>
+      <p class="prepare-intro">{% trans "There are a few simple steps we can take to make our families and community more prepared for emergencies. It doesn't have to be expensive or difficult. You may have already done some of it! You can use the checklist at the bottom of this page to keep track of how much you've done." %}</p>
+      <div class="prepare-container">
+        <div class="prepare-actions">
+          {% regroup actions by cost as actions_by_cost %}
+          {% for cost, items in actions_by_cost %}
+            <h4 class="section-title section-title--collapse" data-section="cost--{{cost}}" role="button">
+              <img class="caret{% if forloop.first %} caret--up{% endif %}" src="{% webpack_static 'build/caret.svg' %}" alt=""/>
+              {{ cost | show_cost_header }}
+            </h4>
+            <div class="{% if forloop.first %}section-content{% else %}section-content section-content--collapse{% endif %} prepare-content" id="cost--{{cost}}">
+                <ul class="prepare-content__list">
+                  {% for item in items %}
+                    <li class="prepare-content__item{% if forloop.first %} prepare-content__item--active{% endif %}" role="button" aria-controls="{{ item.slug }}" data-item="{{ item.slug }}" id="{{ item.slug }}-control">{{ item.title }}</li>
+                  {% endfor %}
+                </ul>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="prepare-detail">
+          {% for item in actions %}
+            <div class="{% if forloop.first %}prepare-item{% else %}prepare-item hide{% endif %}" id="{{ item.slug }}" data-section="cost--{{item.cost}}" role="region"  aria-labelledby="{{ item.slug }}-control">
+              {% if item.image %}
+                <img class="prepare-item__image" alt="" src="{{ item.image.url }}">
+              {% endif %}
+
+              <h3 class="h3--sans-serif">{{ item.title }}</h3>
+
+              {{ item.content_text | safe }}
+
+              {% if item.happy_text %}
+              <p>
+                <img class="prepare__icon" src="{% webpack_static 'build/icon-happy.svg' %}" alt=""> {{ item.happy_text }}
+              </p>
+              {% endif %}
+              {% if item.useful_text %}
+              <p>
+                <img class="prepare__icon" src="{% webpack_static 'build/icon-useful.svg' %}" alt=""> {{ item.useful_text }}
+              </p>
+              {% endif %}
+              {% if item.property_text %}
+              <p>
+                <img class="prepare__icon" src="{% webpack_static 'build/icon-home.svg' %}" alt=""> {{ item.property_text }}
+              </p>
+              {% endif %}
+              {% with links=item.preparednesslink_set.all %}
+                  {% for link in links %}
+                    <div class="prepare-item__link">
+                      <a href="{{ link.url }}" target="_blank" rel="noopener">
+                        {% if item.link_icon %}
+                          <img class="prepare-item__link-icon" alt="" src="{{ link.url }}">
+                        {% endif %}
+                        {% if link.text %}
+                          {{ link.text }}
+                        {% endif %}
+                      </a>
+                    </div>
+                  {% endfor %}
+              {% endwith %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="print-container">
+        <div class="print-header">
+          <div class="print-header__activity">{% trans 'This activity' %}&hellip;</div>
+          <div class="print-button"><img class="prepare__icon" src="{% webpack_static 'build/icon-print.svg' %}" alt=""> {% trans 'Print Checklist' %}</div>
+        </div>
+        <table class="print-table">
+          <tr>
+            <th class="center-align">{% trans 'Completed?' %}</th>
+            <th>{% trans 'Activity' %}</th>
+            <th class="center-align">&hellip;{% trans 'reduces emotional and physical harm' %}<br><img class="print-table__icon" src="{% webpack_static 'build/icon-happy.svg' %}" alt="">
+            </th>
+            <th class="center-align">&hellip;{% trans 'is useful for other situations' %}<br><img class="print-table__icon" src="{% webpack_static 'build/icon-useful.svg' %}" alt="">
+            </th>
+            <th class="center-align">&hellip;{% trans 'helps protect property' %}<br><img class="print-table__icon" src="{% webpack_static 'build/icon-home.svg' %}" alt="">
+            </th>
+            <th class="center-align">&hellip;{% trans 'costs' %}<br><img class="print-table__icon" src="{% webpack_static 'build/icon-money.svg' %}" alt="">
+            </th>
+            <th class="resources">{% trans 'Resources' %}
+          </tr>
+          {% for item in actions %}
+            <tr>
+              <td class="center-align">
+                <input type="checkbox" aria-label="completed" class="checkbox--action-taken" value="{{ item.id }}" {% if item.id in actions_taken %}checked{% endif %}>
+              </td>
+              <td>{{ item.title }}</td>
+              <td class="center-align">{% if item.happy_text %}<img class="print-table__icon" src="{% webpack_static 'build/icon-check.svg' %}" alt="{% trans 'reduces emotional and physical harm' %}">{% endif %}
+              </td>
+              <td class="center-align">{% if item.useful_text %}<img class="print-table__icon" src="{% webpack_static 'build/icon-check.svg' %}" alt="{% trans 'is useful for other situations' %}">{% endif %}
+              </td>
+              <td class="center-align">{% if item.property_text %}<img class="print-table__icon" src="{% webpack_static 'build/icon-check.svg' %}" alt="{% trans 'helps protect property' %}">{% endif %}
+              </td>
+              <td class="center-align">{{ item.cost | show_cost }}</td>
+              <td class="resources">
+                {% with links=item.preparednesslink_set.all %}
+                  <ul>
+                  {% for link in links %}
+                    <li>
+                      <a href="{{ link.url }}" target="_blank" rel="noopener">
+                        {% if item.link_icon %}
+                          <img class="prepare-item__link-icon" alt="" src="{{ link.url }}">
+                        {% endif %}
+                        {% if link.text %}
+                          {{ link.text }}
+                        {% endif %}
+                      </a>
+                    </li>
+                  {% endfor %}
+                  </ul>
+                {% endwith %}
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+        <div class="print-footer">
+          <div class="print-key">
+            {% trans 'Key:' %} $ = $1 - $30
+          </div>
+          <div class="print-key">
+            $$ = $31 - $100
+          </div>
+          <div class="print-key">
+            $$$ = $101 - $300
+          </div>
+          <div class="print-key">
+            $$$$ = $301 {% trans 'or more' %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include "geek_box.html" %}
+    <script type="text/javascript">
+      var loggedIn = {{ logged_in | js }};
+    </script>
+    {% include "page-end-meta.html" with file="prepare" %}
+
+  </body>
+</html>

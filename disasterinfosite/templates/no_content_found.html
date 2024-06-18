@@ -1,33 +1,27 @@
 {% extends "index.html" %}
-{% load static %}
+{% load i18n %}
 
- {% block info-instructions %}
+{% block info-instructions %}
   <div class="information-container">
-    <div class="information-instructions" role="complementary">
-      <p class="location-instructions-large">Give your location by typing in the box below, clicking on the map, or clicking 'find me'. You'll get a personalized report on your natural hazard risks and how to prepare.</p>
-      <p class="location-instructions-small">Give your location by typing in the box below or clicking 'find me'. You'll get a personalized report on your natural hazard risks and how to prepare.</p>
-    </div>
+    <h1><span class="info__header">{% trans "No information available for" %}</span> <span class="info__location">{{ location_name }}</span></h1>
+    <div class="info__start-over">
+      <a class="link--grey" href="{{ settings.site_url }}">
+        {% trans "Wrong address? Start over" %}
+      </a>
     </div>
   </div>
 {% endblock info-instructions %}
+{% block risks %}{% endblock risks %}
+{% block disclaimer %}{% endblock disclaimer %}
 
-{% block map %}
-  <div class="row">
-    <div class="small-12 column">
-      <div id="map" style="height: 300px;"></div>
-    </div>
-  </div>
-{% endblock map %}
-
+{% block hazard-menu %}{% endblock hazard-menu %}
 
 {% block main-content %}
-    <div role="main" class="row vert-pad-medium">
-        <div class="medium-8 column medium-push-1">
-          <h2 class="caps">No information available.</h2>
-          <div>
-            <p>It looks like your location is outside of {{ location.area_name }}.</p>
-            <p>While we value and promote resilience everywhere, the data that powers this site isn't available for other places yet.</p>
-        </div>
-      </div>
-    </div>
+  <div class="disaster-container">
+    <h2 class="link--grey">{% trans "No information available." %}</h2>
+    <p>
+      {% blocktrans with area_name=settings.area_name %}It looks like your location is outside of {{ area_name }}.{% endblocktrans %}
+      {% trans "While we value and promote resilience everywhere, the data that powers this site isn't available for other places yet." %}
+    </p>
+  </div>
 {% endblock main-content %}

@@ -1,0 +1,38 @@
+{% load i18n %}
+
+{% load webpack_static from webpack_loader %}
+{% load render_bundle from webpack_loader %}
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:url" content="{{ settings.site_url }}"/>
+  <meta property="og:title" content="{{ settings.site_title }}">
+  {% trans "Enter your location for a personalized report on your risks and how to prepare." as meta_description %}
+  <meta property="og:description" content="{{ settings.site_description }} {{ settings.intro_text }} {{ meta_description }}">
+
+  <!-- Google tag (gtag.js) -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y1BD1N0PXZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-KFNKBG2EV2');
+  </script>
+
+  <title>{{ settings.site_title }}</title>
+
+  <style>html{visibility: hidden; opacity:0;}</style>
+
+ <!-- Load fonts -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+KR:wght@400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+
+{% render_bundle file 'css' %}
+
+  <link rel="shortcut icon" href="{% webpack_static 'build/favicon.ico' %}"/>
+</head>

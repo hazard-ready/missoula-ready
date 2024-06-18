@@ -1,94 +1,148 @@
 {% extends "index.html" %}
+{% load i18n %}
+{% load l10n %}
 {% load show_snugget %}
+{% load webpack_static from webpack_loader %}
+
 
 {% block info-instructions %}
-  <div class="information-instructions" role="complementary"></div>
-{% endblock info-instructions %}
-
-{% block map %}
-<div class="row">
-  <div class="small-12 column">
-    <div id="map"></div>
+<div class="information-container information-container--found-content">
+  <h1 class="info__title">
+    <span class="info__header">{% trans "What to expect for" %}</span>
+    <img class="info__pin" src="{% webpack_static 'build/marker-icon.png' %}" alt="">
+    <span class="info__location">{{ location_name }}</span>
+  </h1>
+  <div class="info__start-over">
+    <a class="link--grey" href="{{ settings.site_url }}">
+      {% trans "try&nbsp;a&nbsp;new&nbsp;address" %}
+    </a>
   </div>
 </div>
-{% endblock map %}
+
+{% endblock info-instructions %}
+
+{% block map-container %}
+  <div class="map-container map-container--found-content" aria-hidden="true">
+    <div id="map"></div>
+  </div>
+{% endblock map-container %}
+{% block risks %}{% endblock risks %}
+{% block disclaimer %}{% endblock disclaimer %}
+{% block hazard-menu %}
+  <div class="hazard-container" role="navigation">
+    {% for group, hazard in data.items %}
+      <a class="hazard-link caps" href="#{{group.name}}">{{group.display_name}}</a>
+    {% endfor %}
+    <a class="prepare-link caps" href="{% url 'prepare' %}" target="_blank">{% trans "Prepare!" %}</a>
+  </div>
+{% endblock hazard-menu %}
+
 
 {% block main-content %}
-  <div role="main" class="row disaster-container">
-    <div class="small-12 column disaster-tabs-content">
-      <ul role="group" class="tabs disaster-tabs" id="disaster-tabs" data-tabs>
-        {% for group, hazard in data.items %}
-          {% if forloop.first %}
-            <li class="tabs-title is-active"><a href="#{{group}}">{{hazard.heading}}</a></li>
-          {% else %}
-            <li class="tabs-title"><a href="#{{group}}">{{hazard.heading}}</a></li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-      <div class="tabs-content disaster-tabs-content" data-tabs-content="disaster-tabs">
-      {% for group, hazard in data.items %}
-        {% if forloop.first %}
-          <div class="content is-active disaster-content tabs-panel" id="{{group}}">
-        {% else %}
-          <div class="content disaster-content tabs-panel" id="{{group}}">
-        {% endif %}
-        {% if hazard.likely_scenario_title %}
-          <div class="likely-scenario">
-            <p>{{ hazard.likely_scenario_text }}</p>
+  {% for group, hazard in data.items %}
+  <div class="disaster-container" role="region">
+    <div class="anchor" id="{{group.name}}"></div>
+    <h2>{{group.display_name}}</h2>
+    <div class="disaster-content">
+      {% if group.percentage is not None %}
+        <div class="intensity-meter">
+          <div class="sr-only">{% blocktrans with percentage=group.percentage %}An intensity meter at {{percentage}}%{% endblocktrans %}</div>
+          {% localize off %}
+            <div class="intensity-marker" style="inset-inline-start: {{group.percentage}}%"></div>
+          {% endlocalize %}
+        </div>
+        <div class="intensity-captions">
+          <div class="intensity-caption intensity-caption--low" aria-hidden="true">
+            {% if group.name == 'quake' %}
+              {% trans "Light shaking&nbsp;&mdash; No damage" %}
+            {% else %}
+              {% trans "Very Low Hazard" %}
+            {% endif %}
           </div>
-          {% endif %}
-          {% for section, sub_sections in hazard.sections.items %}
-            <div class="snugget-text">
-              <div class="section-icon section-icon--dynamic section-icon--{{ section }}">
-                <h2 class="caps section-title">{{ section }}</h2>
-              </div>
-              <div class="section-content">
-                {% for sub_section, snuggets in sub_sections.items %}
-                  <h3>{{ sub_section }}</h3>
-                  {% for snugget in snuggets %}
-                    {% show_snugget snugget %}
-                  {% endfor %}
+          <div class="intensity-caption intensity-caption--high" aria-hidden="true">
+            {% if group.name == 'quake' %}
+              {% trans "Violent shaking&nbsp;&mdash; Heavy damage" %}
+            {% else %}
+              {% trans "Very High Hazard" %}
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+      {% if group.note %}
+      <div class="disaster-content__note">
+        {{ group.note | safe }}
+      </div>
+      {% endif %}
+      <!-- Non-collapsible snuggets and popouts for large screen sizes -->
+        <div class="section-content section-content--static hide-for-medium-down--flex">
+          <div class="snugget__content snugget__content---static">
+            {% for section, snuggets in hazard.static.items %}
+              {% with snuggets|dictsort:"order" as sorted_snuggets %}
+                <h4 class="section-title--static">{{ section.display_name }}</h4>
+                {% for snugget in sorted_snuggets %}
+                  {% show_snugget snugget %}
                 {% endfor %}
-                {% if section.name == "Past Events" and hazard.photos %}
-                  <h3>Photos of Past Events</h3>
-                  <div class="past-photos">
-                    {% for photo in hazard.photos %}
-                     <img alt="A historical image of {{ hazard.heading }} in {{ location.areaname }}" class="slideshow-image" src="{{ photo }}"/>
-                    {% endfor %}
-                  </div>
-                {% endif %}
-              </div>
+              {% endwith %}
+            {% endfor %}
+          </div>
+          <div class="snugget__popout snugget__popout--static" role="complementary">
+            {% for section, snuggets in hazard.static.items %}
+              {% with snuggets|dictsort:"order" as sorted_snuggets %}
+                {% for snugget in sorted_snuggets %}
+                  {% if snugget.photos or snugget.pop_out.has_content %}
+                    {% include "pop_out.html" %}
+                  {% endif %}
+                {% endfor %}
+              {% endwith %}
+            {% endfor %}
+          </div>
+      </div>
+      <!-- Non-collapsible snuggets and popouts for medium and small screens -->
+      {% for section, snuggets in hazard.static.items %}
+        <div class="section-content section-content--static hide-for-large--flex">
+          <h4 class="section-title section-title--static">{{ section.display_name }}</h4>
+          {% with snuggets|dictsort:"order" as sorted_snuggets %}
+            <div class="snugget__content">
+              {% for snugget in sorted_snuggets %}
+                {% show_snugget snugget %}
+              {% endfor %}
             </div>
-          {% endfor %}
+            <div class="snugget__popout" role="complementary">
+              {% for snugget in sorted_snuggets %}
+                {% if snugget.photos or snugget.pop_out.has_content %}
+                  {% include "pop_out.html" %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endwith %}
+        </div>
+      {% endfor %}
+      {% for section, snuggets in hazard.collapsible.items %}
+        <h4 class="section-title section-title--collapse" data-section="{{group.name}}-{{section.name|slugify}}" role="button">
+          <div class="sr-only">click to display more information</div>
+          <img class="caret" src="{% webpack_static 'build/caret.svg' %}" alt=""/>{{ section.display_name }}
+        </h4>
+        <div class="section-content section-content--collapse" id="{{group.name}}-{{section.name|slugify}}">
+          {% with snuggets|dictsort:"order" as sorted_snuggets %}
+            <div class="snugget__content">
+              {% for snugget in sorted_snuggets %}
+                {% show_snugget snugget %}
+              {% endfor %}
+            </div>
+            <div class="snugget__popout">
+              {% for snugget in sorted_snuggets %}
+                {% if snugget.photos or snugget.pop_out.has_content %}
+                  {% include "pop_out.html" %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endwith %}
         </div>
       {% endfor %}
       </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="section-icon section-icon--supply-kit small-2 column"></div>
-    <div class="small-10 medium-5 column">
-      <h2 class="caps">Supply Kit</h2>
-      {% include "supply-kit.html" %}
-    </div>
-
-    <div class="section-icon section-icon--link small-2 column"></div>
-    <div class="small-10 medium-5 column end">
-      <h2 class="caps">Important Links</h2>
-      {% for link in important_links %}
-      <h4>{{ link.title }}</h4>
-      <p>{{ link.link | safe }}
-      {% endfor %}
-    </div>
-  </div>
-
-  <div class="row">
-      <div class="section-icon section-icon--community small-2 column"></div>
-      <div class="small-10 medium-5 column end">
-      <h2 class="caps">Community Leaders</h2>
-      <p>{{ location.community_leaders | safe }}</p>
-    </div>
-  </div>
-
+  {% endfor %}
 {% endblock main-content %}
+
+<!-- For Spreaker embeds inside the snuggets -->
+<script async src="https://widget.spreaker.com/widgets.js"></script>

@@ -1,0 +1,192 @@
+/* Main elements */
+html {
+  width: auto !important;
+  height: auto !important;
+}
+
+body {
+  background-color: $soft-white;
+  color: $soft-black;
+  height: auto !important;
+  width: auto !important;
+  font-family: $sans-serif;
+  font-size: 16px;
+  font-weight: $font-weight-regular;
+  line-height: $body-line-height;
+}
+
+/* Other important elements */
+img {
+  max-width: 100%;
+}
+
+button {
+  background-color: $dark-accent;
+  border: 1px solid $dark-accent;
+  border-radius: 4px;
+  color: $white;
+  cursor: pointer;
+  flex-grow: 0;
+  margin: 0;
+  padding: 10px;
+  transition: background-color 1s;
+
+  &:focus,
+  &:focus-within,
+  &:active,
+  &:hover {
+    background-color: $light-accent;
+    border: 1px solid $light-accent;
+  }
+}
+
+input:invalid {
+  border-width: 2px;
+}
+
+form:invalid {
+  .button--submit {
+    background-color: $light-grey;
+    border: 1px solid $light-grey;
+    color: $dark-grey;
+    cursor: default;
+  }
+}
+
+input {
+  line-height: 2;
+  height: 40px;
+}
+
+.select {
+  height: 40px;
+  padding-inline-end: 0.5rem;
+  width: max-content;
+}
+
+
+/* Base typographical styles */
+h1 {
+  color: $soft-black;
+  font-family: $serif;
+  font-size: 28px;
+  line-height: $big-header-line-height;
+
+  @include breakpoint(large-and-up) {
+    font-size: 32px;
+  }
+}
+
+.h1-sans-serif {
+  color: $soft-white;
+  font-family: $sans-serif;
+  font-weight: $font-weight-bold;
+}
+
+h2 {
+  border-bottom: 2px solid $light-grey;
+  color: $dark-accent;
+  font-family: $serif;
+  font-size: 28px;
+  font-weight: $font-weight-semibold;
+  line-height: $big-header-line-height;
+  padding-bottom: 20px;
+
+  @include breakpoint(large-and-up) {
+    font-size: 32px;
+  }
+
+  .description {
+    text-transform: none;
+    font-size: 24px;
+    color: $dark-grey;
+    font-family: $sans-serif;
+  }
+}
+
+.h2--sans-serif {
+  font-family: $sans-serif;
+  font-weight: $font-weight-bold;
+  line-height: $small-header-line-height;
+}
+
+h3 {
+  color: $soft-black;
+  font-family: $serif;
+  font-size: 21px;
+  font-weight: $font-weight-bold;
+  line-height: $small-header-line-height;
+  @include breakpoint(large-and-up) {
+    font-size: 24px;
+  }
+}
+
+.h3--sans-serif {
+  font-family: $sans-serif;
+  font-weight: $font-weight-bold;
+  line-height: $small-header-line-height;
+}
+
+h4 {
+  color: $light-accent;
+  font-family: $serif;
+  font-size: 21px;
+  font-weight: $font-weight-bold;
+  line-height: $small-header-line-height;
+  margin-bottom: 10px;
+  @include breakpoint(large-and-up) {
+    font-size: 24px;
+  }
+}
+
+.h4--sans-serif {
+  color: $bright-accent;
+  font-family: $sans-serif;
+}
+
+h5 {
+  color: $soft-black;
+  font-family: $sans-serif;
+  font-size: 16px;
+  font-weight: $font-weight-bold;
+  line-height: $small-header-line-height;
+  margin: 0;
+}
+
+.caption {
+  color: $dark-grey;
+  font-size: 12px;
+  line-height: $body-line-height;
+}
+
+.caps {
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: $font-weight-bold;
+}
+
+@media print {
+  @page :left {
+    margin: 0;
+  }
+
+  @page :right {
+    margin: 0;
+  }
+
+  header,
+  .prepare-hero,
+  .prepare-container,
+  .print-header,
+  .resources,
+  #user-interaction-container,
+  #geek-box {
+    display: none !important;
+  }
+
+  .content-container {
+    margin: 0;
+    max-width: none;
+    padding: 0 !important;
+  }
+}

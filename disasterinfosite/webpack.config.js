@@ -15,8 +15,11 @@ module.exports = {
     ]
   },
   entry: {
-    vendor: ["foundation-sites", "modernizr", "leaflet", "jquery", "slick-carousel"],
-    app: "./static/js/app.js"
+    vendor: ["leaflet", "jquery", "slick-carousel", "@geoapify/geocoder-autocomplete"],
+    app: "./static/js/app.js",
+    prepare: "./static/js/prepare.js",
+    about: "./static/js/about.js",
+    data: "./static/js/data.js"
   },
 
   output: {
@@ -27,7 +30,7 @@ module.exports = {
     new BundleTracker({ filename: "./webpack-stats.json" }),
     new webpack.ProvidePlugin({
       $: "jquery",
-      jQuery: "jquery",
+      jQuery: "jquery"
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css"

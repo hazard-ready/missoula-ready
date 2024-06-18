@@ -1,0 +1,136 @@
+/* Utility styles */
+
+.hide {
+  display: none;
+}
+
+.hide-for-small {
+  display: none;
+
+  @include breakpoint(medium-and-up) {
+    display: inline-block;
+  }
+}
+
+.hide-for-medium-down {
+  display: none;
+
+  @include breakpoint(large-and-up) {
+    display: inline-block;
+  }
+}
+
+.hide-for-medium-up {
+  display: inline-block;
+
+  @include breakpoint(medium-and-up) {
+    display: none;
+  }
+}
+
+.hide-for-small--flex {
+  display: none;
+
+  @include breakpoint(medium-and-up) {
+    display: flex;
+  }
+}
+
+.hide-for-medium-down--flex {
+  display: none;
+
+  @include breakpoint(large-and-up) {
+    display: flex;
+  }
+}
+
+.hide-for-medium-up--flex {
+  display: flex;
+
+  @include breakpoint(medium-and-up) {
+    display: none;
+  }
+}
+
+.hide-for-large--flex {
+  display: flex;
+
+  @include breakpoint(large-and-up) {
+    display: none;
+  }
+}
+
+.hide-for-large-down--flex {
+  display: none;
+
+  @include breakpoint(xlarge) {
+    display: flex;
+  }
+
+}
+
+.hide-for-xlarge--flex {
+  display: flex;
+
+  @include breakpoint(xlarge) {
+    display: none;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.link--plain {
+  text-decoration: none;
+}
+
+.link--grey {
+  text-decoration: none;
+  border-bottom: 2px solid $light-grey;
+  color: $soft-black;
+
+  &:visited,
+  &:hover {
+    color: $dark-grey;
+  }
+}
+
+.content-container {
+  padding: 0 10px 10px;
+
+  @include breakpoint(medium) {
+    padding: 30px;
+  }
+
+  @include breakpoint(large-and-up) {
+    margin: 0 auto;
+    padding: 40px;
+  }
+
+  @include breakpoint(xlarge) {
+    max-width: 1200px;
+  }
+}
+
+.center-align {
+  text-align: center !important;
+}
+
+.anchor {
+  position: absolute;
+  top: -110px;
+}
+
+/* This needs to stay the last piece of css that gets loaded, to prevent a FOUC */
+html {
+  visibility: visible;
+  opacity: 1;
+}

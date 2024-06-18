@@ -10,13 +10,14 @@ secure_settings.py
 # Data directory full of binary or large data sets we don't need in a code repository.
 disasterinfosite/data/
 
-# Site assets uploaded through admin UI
-disasterinfosite/static/img/photos/
-disasterinfosite/static/img/data/
+# Temp directories made by the importer
+disasterinfosite/data/reprojected/
+disasterinfosite/data/simplified/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.pyc
 
 # C extensions
 *.so
@@ -76,17 +77,45 @@ docs/_build/
 # PyBuilder
 target/
 staticfiles
+media
 
 .DS_Store
-myenv/
 __MACOSX/
+myenv/
 
 # Node Modules
 node_modules/
+disasterinfosite/data/~$snuggets.xlsx
 
 # Static files that we don't own
 disasterinfosite/static/admin
 disasterinfosite/static/gis
 disasterinfosite/static/modeltranslation
 
+disasterinfosite/webpack-stats.json
+
+# Data files
+disasterinfosite/data
+
+.DS_Store
+myenv/
+__MACOSX
+
+# Node Modules
+node_modules/
+
 webpack-stats.json
+
+# Excel temp files
+~$*.xlsx
+
+# Auto-assembled media folder
+disasterinfosite/media/*
+
+*__MACOSX*
+
+# The actual keys to our test environment
+docker-test.env
+
+# the actual keys to our prod environment
+docker-prod.env
