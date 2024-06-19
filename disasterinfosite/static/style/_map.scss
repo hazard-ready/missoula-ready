@@ -1,0 +1,168 @@
+/* Information and Instructions */
+.hero-container {
+  background-color: $soft-white;
+  min-height: 300px;
+  transition: 0.5s min-height ease;
+}
+
+.map-info-container {
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint(medium-and-up) {
+    flex-direction: row;
+  }
+}
+
+.hero-container.sticky {
+  background-color: $soft-white;
+  box-shadow: 0 2px 12px $grey-shadow;
+  min-height: 90px;
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: $z-index-top;
+
+  .info__title {
+    display: inline;
+    margin-top: 0;
+  }
+
+  .info__header {
+    display: none;
+  }
+
+  .info__pin {
+    display: inline-block;
+    height: 25px;
+    vertical-align: middle;
+
+    @include breakpoint(large-and-up) {
+      height: 30px;
+    }
+  }
+
+  .info__location {
+    font-size: 20px;
+
+    @include breakpoint(large-and-up) {
+      font-size: 24px;
+    }
+  }
+
+  .info__start-over {
+    display: inline;
+    line-height: 2;
+    margin-inline-start: 20px;
+    vertical-align: top;
+
+    @include breakpoint(large-and-up) {
+      line-height: 2.5;
+    }
+  }
+
+  .information-container {
+    margin: 0;
+  }
+
+  .map-container {
+    display: none;
+  }
+
+  .link--grey {
+    border-color: $dark-grey;
+  }
+
+  .hazard-link.selected {
+    border-bottom: 2px solid $dark-accent;
+    color: $dark-accent;
+  }
+}
+
+.information-container {
+  flex-grow: 1;
+  margin: 0 0 20px;
+
+  @include breakpoint(medium) {
+    margin-inline-end: 10px;
+    margin-top: 10px;
+  }
+
+  @include breakpoint(large-and-up) {
+    margin-inline-end: 20px;
+    margin-top: 30px;
+  }
+}
+
+.info__title {
+  display: block;
+}
+
+.info__header {
+  display: block;
+  font-weight: $font-weight-regular;
+}
+
+.info__pin {
+  display: none;
+}
+
+.info__start-over {
+  color: $dark-grey;
+  display: block;
+  font-weight: $font-weight-regular;
+}
+
+.hazard-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow-x: scroll;
+  padding-bottom: 5px;
+}
+
+.hazard-link, .prepare-link {
+  border-bottom: 2px solid $soft-white;
+  color: $light-accent;
+  margin: 5px 10px;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:focus, &:hover, &:active {
+    border-bottom: 2px solid $dark-accent;
+    color: $dark-accent;
+  }
+
+  @include breakpoint(medium-and-up) {
+    margin: 10px;
+  }
+}
+
+/* Map */
+.map-container {
+  flex-grow: 2;
+  height: 400px;
+  min-width: 50%;
+}
+
+
+.map-container--found-content {
+    height: 300px;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+/* overriding Leaflet defaults */
+/* Change cursor when mousing over the area masked because it's outside the covered area */
+.leaflet-clickable {
+  cursor: not-allowed;
+}
+/* Change cursor when over the area users can click in */
+.leaflet-container {
+  cursor: default;
+}

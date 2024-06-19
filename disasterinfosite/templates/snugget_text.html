@@ -1,18 +1,3 @@
 {% block snugget-content %}
-  {% if snugget.image or snugget.dynamic_image %}
-    <div class="intensity">
-      <div class="intensity-meter">
-        {% if snugget.image %}
-          <img alt="Image representing an intensity of {{ snugget.percentage }}%" src="static/img/{{ snugget.image }}">
-        {% elif snugget.dynamic_image %}
-          {{ snugget.dynamic_image | safe }}
-        {% endif %}
-      </div>
-      <div class="intensity-content">
-        <p>{{ snugget.content | safe }}</p>
-      </div>
-    </div>
-    {% else %}
-      <p>{{ snugget.content | safe }}</p>
-  {% endif %}
+  {{ snugget.content | safe }}
 {% endblock %}

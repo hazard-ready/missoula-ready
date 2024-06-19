@@ -1,0 +1,254 @@
+/* Prepare page */
+
+.prepare-hero {
+  background-position: bottom center;
+  height: 200px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.overlay {
+  background-color: $black-tint;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.hero__text {
+  position: absolute;
+  inset-inline-start: 10px;
+  top: 0;
+  width: 70%;
+
+  @include breakpoint(medium) {
+    inset-inline-start: 20px;
+    width: 60%;
+  }
+
+  @include breakpoint(large-and-up) {
+    top: 30px;
+  }
+}
+
+.prepare-intro {
+  margin: 0 auto;
+  max-width: 975px;
+}
+
+.prepare-container {
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 5px 10px;
+
+  @include breakpoint(medium) {
+    flex-direction: row;
+    margin-top: 30px;
+    padding: 5px 20px;
+  }
+
+  @include breakpoint(large-and-up) {
+    flex-direction: row;
+    margin-top: 30px;
+    padding: 5px 40px;
+  }
+}
+
+.prepare-actions {
+  flex: 1 0 40%;
+}
+
+.prepare-content {
+  flex-direction: column;
+}
+
+.prepare-content__list {
+  list-style: none;
+  padding: 0;
+
+  li {
+    cursor: pointer;
+    margin: 10px 5px;
+
+    &:hover, &:focus {
+      text-decoration: underline;
+    }
+  }
+}
+
+.prepare-content__item--active {
+  font-weight: $font-weight-bold;
+}
+
+.prepare-detail {
+  padding: 10px;
+
+  @include breakpoint(medium) {
+    border-inline-start: 2px solid $light-grey;
+    padding: 20px;
+    padding-inline-end: 0;
+  }
+
+  @include breakpoint(large-and-up) {
+    border-inline-start: 2px solid $light-grey;
+    padding: 40px;
+    padding-inline-end: 0;
+
+  }
+}
+
+.prepare__icon {
+  vertical-align: middle;
+  width: 28px;
+}
+
+.prepare-item__link {
+  margin-bottom: 12px;
+  text-align: end;
+
+  a {
+    color: $soft-black;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: $font-weight-bold;
+
+    &:focus, &:hover, &:active {
+      color: $bright-accent;
+    }
+  }
+}
+
+.prepare-item__image {
+  width: 100%; /* ie11 needs this apparently */
+}
+
+.print-container {
+  background-color: $white;
+  overflow-x: scroll;
+  margin-top: 20px;
+  padding: 5px 10px;
+
+  @include breakpoint(medium) {
+    overflow-x: scroll;
+    padding: 5px 20px;
+  }
+
+  @include breakpoint(large-and-up) {
+    overflow-x: auto;
+    padding: 5px 40px;
+  }
+}
+
+.print-header {
+  display: flex;
+  flex-direction: column-reverse;
+  font-weight: $font-weight-bold;
+  height: auto;
+
+  @include breakpoint(medium-and-up) {
+    flex-direction: row;
+    height: 60px;
+
+  }
+}
+
+.print-button {
+  cursor: pointer;
+  margin-top: 12px;
+  text-align: end;
+}
+
+.print-header__activity {
+  flex: 1 0 auto;
+  font-size: 20px;
+  margin-top: 12px;
+}
+
+.print-table {
+  border-collapse: collapse;
+  th {
+    border-bottom: 2px solid $light-grey;
+    color: $dark-grey;
+    padding: 10px;
+    text-align: start;
+    vertical-align: bottom;
+  }
+
+  tr:nth-child(even) {
+    background-color: $soft-white;
+  }
+
+  td {
+    padding: 5px;
+
+    @include breakpoint(medium-and-up) {
+      padding: 10px;
+    }
+  }
+
+  a {
+    color: $light-accent;
+    text-decoration: none;
+  }
+
+  a:focus, a:hover {
+    color: $bright-accent;
+    text-decoration: none;
+  }
+
+  .resources {
+    li {
+      color: $light-accent;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.print-table__icon {
+  width: 28px;
+}
+
+.print-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 5px 10px;
+
+  @include breakpoint(medium) {
+    padding: 5px 20px;
+  }
+
+  @include breakpoint(large-and-up) {
+    padding: 5px 40px;
+  }
+}
+
+.print-key {
+  color: $dark-grey;
+}
+
+@media print {
+  .print-header {
+    display: none !important;
+  }
+
+  .print-container {
+    font-size: 14px;
+    padding: 0;
+  }
+
+  .print-table th {
+    padding: 0 5px;
+  }
+
+  .print-table td {
+    padding: 2px 0;
+  }
+
+  .print-footer {
+    padding: 10px 0;
+  }
+}

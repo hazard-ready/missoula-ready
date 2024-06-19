@@ -1,0 +1,288 @@
+/* Header, search, and language picker styles */
+header {
+  display: flex;
+  background-color: $white;
+  flex-direction: column;
+  padding: 2px 2px 10px;
+
+  @include breakpoint(medium-and-up) {
+    padding: 5px;
+  }
+
+  @include breakpoint(large-and-up) {
+    padding: 5px 10px;
+  }
+
+  @include breakpoint(xlarge) {
+    flex-direction: row;
+    padding: 5px 20px;
+  }
+}
+
+.small-header__container {
+  overflow: auto;
+  margin: 0;
+  position: relative;
+
+  @include breakpoint(medium-and-up) {
+    display: flex;
+    margin-inline-end: 5px;
+    min-width: 195px;
+  }
+
+  @include breakpoint(large-and-up) {
+    min-width: unset
+  }
+}
+
+.logo__container {
+  display: flex;
+}
+
+.logo--header {
+  display: inline-block;
+  /* Nestle the text a little closer to the logo. */
+  margin-inline-end: -20px;
+  max-height: 48px;
+
+  @include breakpoint(medium) {
+    margin-inline-end: -13px;
+    max-height: 60px;
+  }
+
+  @include breakpoint(large-and-up) {
+    margin-inline-end: -13px;
+    max-height: 65px;
+  }
+
+  @include breakpoint(xlarge) {
+    margin-inline-end: -15px;
+  }
+}
+
+.logo__text {
+  display: inline;
+
+  h3 {
+    margin: 0.75rem;
+
+    @include breakpoint(medium) {
+      font-size: 21px;
+    }
+
+    @include breakpoint(large-and-up) {
+      margin-inline-end: 0.25rem;
+    }
+
+    @include breakpoint(xlarge) {
+      margin-inline-end: 0.75rem;
+    }
+  }
+
+}
+
+.header__about {
+  align-items: baseline;
+  flex-shrink: 0;
+  margin: 0;
+  margin-top: 0.25rem;
+  margin-inline-start: auto;
+}
+
+.header__about--small {
+  justify-content: flex-end;
+  margin: 0;
+  margin-inline-end: 0.5rem;
+  margin-inline-start: auto;
+
+  @include breakpoint(medium-and-up) {
+    margin-inline-end: 0;
+  }
+}
+
+.about__link {
+  color: $soft-black;
+  font-family: $sans-serif;
+  font-size: 16px;
+  line-height: $small-header-line-height;
+  margin: 0 5px;
+
+  @include breakpoint(medium) {
+    margin: 15px 5px 0;
+  }
+
+  @include breakpoint(large-and-up) {
+    font-size: 18px;
+    margin: 0;
+    margin-top: 18px;
+    margin-inline-start: 10px;
+    margin-inline-end: 5px;
+  }
+}
+
+/* Search */
+.location-form {
+  border-radius: 4px;
+  border: solid 1px $light-grey;
+  display: flex;
+  flex: 2 1 auto;
+  margin: 10px 5px 0;
+  position: relative;
+
+  @include breakpoint(xlarge) {
+    margin: 0 4px auto;
+    max-width: 800px;
+    flex: 1 0 auto;
+  }
+}
+
+.location-text__container {
+  flex: 1 1 auto;
+  position: relative;
+
+}
+
+.geoapify-autocomplete-input {
+  border: none;
+  font-size: 16px;
+  height: 50px;
+  margin-top: 0;
+  margin-bottom: 2px;
+  margin-inline-end: 2px;
+  margin-inline-start: 8px;
+  outline: none;
+  padding-inline-start: 0;
+  padding-inline-end: 35px;
+  width: 80%;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.geoapify-autocomplete-items {
+  z-index: $z-index-high;
+}
+
+.geoapify-close-button {
+  inset-inline-end: 5px;
+  right: unset;
+}
+
+.geoapify-close-button.visible {
+    display: inline-flex;
+}
+
+#location-submit {
+  background-color: $light-accent;
+  border: 1px solid $light-accent;
+  border-end-start-radius: 0;
+  border-start-start-radius: 0;
+  flex-shrink: 0;
+  padding: 4px 8px;
+
+  &:focus,
+  &:focus-within,
+  &:active,
+  &:hover {
+    background-color: $dark-accent;
+    border: 1px solid $dark-accent;
+  }
+}
+
+#auto-location {
+  background-color: $white;
+  border: none;
+  color: $light-accent;
+  flex: 0 1 140px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-inline-start: auto;
+  padding: 0;
+  padding-inline-end: 4px;
+  transition: color 1s;
+  width: min-content;
+  z-index: $z-index-next;
+
+  &:focus,
+  &:hover {
+    background-color: $light-accent;
+    color: $white;
+
+    .target {
+      fill: $white;
+    }
+  }
+
+  @include breakpoint(xlarge) {
+    flex: 0 1 120px;
+  }
+}
+
+.icon--locate-me {
+  margin: 3px 0;
+  vertical-align: top;
+
+  .target {
+    fill: $light-accent;
+    transition: color 1s;
+  }
+
+  @include breakpoint(large-and-up) {
+    height: 18px;
+  }
+}
+
+.icon--search {
+  height: 20px;
+  width: 20px;
+  padding-top: 4px;
+}
+
+.geocode-error-message,
+.geocode-disabled-message {
+  color: $error-red;
+  inset-inline-start: 5px;
+}
+
+/* Language Picker */
+
+.language__form {
+  width: auto;
+  margin-inline-start: 10px;
+
+  @include breakpoint(medium) {
+    margin-inline-start: 15px;
+    margin-top: 15px;
+  }
+
+  @include breakpoint(large-and-up) {
+    margin-inline-start: 0;
+  }
+}
+
+.language-icon {
+  margin-inline-end: 5px;
+  vertical-align: top;
+}
+
+.language-icon--select {
+  vertical-align: middle;
+  margin-inline-start: 10px;
+}
+
+.language__button {
+  border: none;
+  background-color: $white;
+  color: $soft-black;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: $font-weight-bold;
+  line-height: 1.5;
+  padding: 5px;
+
+  &:focus, &:focus-within, &:hover, &:active {
+    background-color: $white;
+    border: none;
+  }
+}

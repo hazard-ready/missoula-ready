@@ -1,121 +1,77 @@
-{% load static %}
-{% load js %}
+{% load i18n %}
 {% load render_bundle from webpack_loader %}
 {% load webpack_static from webpack_loader %}
-<!doctype html>
-<html class="no-js" lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta property="og:url" content="{{ settings.site_url }}"/>
-  <meta property="og:title" content="{{ settings.site_description }}">
-  <meta property="og:description" content="{{ settings.intro_text }} Enter your location for a personalized report on your risks and how to prepare.">
-  <link rel="shortcut icon" href="{% webpack_static 'build/favicon.ico' %}"/>
-  <title>{{ settings.site_title }}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KFNKBG2EV2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 
-    gtag('config', 'G-KFNKBG2EV2');
-  </script>
+<!DOCTYPE html>
+<html class="no-js" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+  {% include "head-meta.html" with file="app" %}
 
-  {% render_bundle 'app' 'css' %}
-  <!-- Load Slick CSS -->
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+  <body>
+    {% include "header.html" %}
 
-  <!-- Load fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+    <div class="content-container" role="main">
+      <div class="hero-container">
+        <div class="map-info-container">
+          {% block info-instructions %}
+          <div class="information-container information-container--landing">
+            <h2 class="caps">{{ settings.site_title }} <br><span class="description">{{ settings.site_description }}</span></h2>
+            <h3 class="information-header">{% trans "Natural disasters can strike at any time." %}</h3>
+            {{ settings.intro_text | safe }}
+            <h3 class="information-header">{% trans 'Get a personalized report' %}</h3>
+            {% trans "Give a location by typing in the box at the top of the page, clicking on the map, or clicking 'find me'. You'll get a personalized report on your natural hazard risks and steps you can take to prepare." %}
+          </div>
+          {% endblock info-instructions %}
 
-  {% render_bundle 'vendor' 'js' %}
+          {% block map-container %}
+            <div class="map-container" aria-hidden="true">
+              <div id="map"></div>
+            </div>
+          {% endblock map-container %}
+        </div>
+        {% block risks %}
+          <div role="region">
+            <h3 class="h3--sans-serif risks-header">{% trans "What are my risks?" %}</h3>
+            <h4>{% trans "What to Expect" %}</h4>
+              {% blocktrans with site_title=settings.site_title area_name=settings.area_name %} {{ site_title }} gives you an idea of which
+              natural disasters you might experience in the future based on a
+              location in {{ area_name }}. {% endblocktrans %}
+            <h4>{% trans "How to Prepare" %}</h4>
+              {% trans "You have the power to make a difference. Find out how you can protect your loved ones and home before the next disaster hits." %}
+            <h4>{% trans "In Recent History" %}</h4>
+              {% blocktrans %} Find out which disasters have struck {{ settings.area_name }} in the past, what impact they had, and where
+              they happened. {% endblocktrans %}
+          </div>
+        {% endblock risks %}
+        {% block disclaimer %}
+        <div class="disclaimer-container" role="region" aria-label="disclaimer">
+          <h3 class="information-header">{% trans 'About the Data' %}</h3>
+          {% url 'data' as data_source_link %}
+              {% blocktrans with area_name=settings.area_name %}This site uses the most up-to-date hazard risk data available for {{ area_name }}. The user of this site is responsible for verifying any particular information with the original <a href="{{ data_source_link }}" target="_blank">data sources</a>. Although these data represent the best current assessment of hazards, they are not predictive of future events. The descriptions of risk and how to prepare for those risks are based on best information from the American Red Cross and the Federal Emergency Management Agency.{% endblocktrans %}
+        </div>
+        {% endblock disclaimer %}
 
-  <!-- Load MapQuest Places search (for autocomplete) from CDN -->
-  <script src="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.css"/>
-
- {% render_bundle 'app' 'js' %}
-
-<script type="text/javascript">
-  var mapBounds = {{ data_bounds | js }};
-</script>
-
-</head>
-
-<body>
-  <div class="row top-header">
-    <div id="title" class="title-header">
-      <a href="#user-interaction-container" class="button radius caps button--top">Sign Up / Log In</a>
-      <h1 class="project-title caps">
-        <img class="title-image" src="{% static 'img/missoulacountyboundary.png' %}" alt="An outline of Missoula County">
-        <a href="{{ settings.site_url }}">{{ settings.site_title }}</a>
-      </h1>
-      <h2 class="project-subtitle">{{ settings.site_description | safe }}</h2>
+        {% block hazard-menu %}{% endblock hazard-menu %}
     </div>
-    {% block info-instructions %}
-      <div class="information-container">
-      <div class="information-instructions" role="main">
-        <p class="organization-information">{{ settings.about_text | safe }}</p>
-        <p>{{ settings.intro_text | safe }}</p>
-        <p class="location-instructions">Give a location by typing in the box below, clicking on the map, or clicking 'find me'. You'll get a personalized report on your natural hazard risks and steps you can take to prepare.</p>
+
+      {% block main-content %}
+      <div class="intro-container" role="region">
+        {% include "registration/user_interactions.html" %}
       </div>
-      </div>
-    {% endblock info-instructions %}
-  </div>
+      {% endblock main-content %}
+    </div>
 
-{% block search %}
-      <div class="location-form" role="form">
-        <div class="row">
-           <div class="small-12 medium-8 medium-push-2 columns">
-               <div class="row collapse">
-                  <label for="location-text">Location</label>
-                 <div class="small-10 columns">
-                   <input name="location-text" id="location-text" type="text" placeholder="Your address, your city" />
-                   <div class="geocode-error-message"></div>
-                 </div>
-                 <div class="small-2 end columns">
-                   <a id="location-submit" class="button postfix"></a>
-                 </div>
-               </div>
-              <div class="row">
-                <div class="small-12 medium-3 columns small-centered form-icon-button">
-                  <a class="auto-location-submit button radius caps">Find Me</a>
-               </div>
-              </div>
-           </div>
-        </div>
-      </div>
-{% endblock search %}
+    {% include "geek_box.html" %}
 
-{% block map %}
-      <div class="row map-container">
-        <div class="small-12 medium-7 hide-for-small column">
-          <div id="map" style="height: 400px;"></div>
-        </div>
-      <div class="small-12 medium-5 column">
-        <h2 class="caps">What are my risks?</h2>
-        <h4 class>What to Expect</h4>
-        <p>{{ settings.site_title }} gives you an idea of which natural disasters you might experience in the future based on a location in {{ location.area_name }}.</p>
+    <div class="loading hide">
+      <h1 class="loading-text caps">
+        {% trans "Getting results for your location..." %}
+      </h1>
+      <img class="loading-spinner" src="{% webpack_static 'build/thinking.gif' %}">
+    </div>
+    {% include "page-end-meta.html" with file="app" %}
 
-        <h4>How to Prepare</h4>
-        <p>You have the power to make a difference. Find out how you can protect your loved ones and home before the next disaster hits.</p>
-
-        <h4>In Recent History</h4>
-        <p>Find out which disasters have struck {{ location.area_name }} in the past, what impact they had, and where they happened.</p>
-      </div>
-      </div>
-{% endblock map %}
-
-{% block main-content %}
-{% endblock main-content %}
-
-{% include "user_interactions.html" %}
-
-{% include "geek_box.html" %}
-
-<div class="loading hide"></div>
-</body>
+  </body>
 </html>

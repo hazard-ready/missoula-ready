@@ -1,0 +1,38 @@
+{% load render_bundle from webpack_loader %}
+{% load js %}
+
+
+{% render_bundle 'vendor' 'js' %}
+
+<script>
+    // so our js can know what our data bounds are
+  var mapBounds = {{ data_bounds | js }};
+
+  // so our js can know where our api urls are when we run in a subdirectory
+  var loginApiUrl = "{% url "login" %}"
+  var logoutApiUrl = "{% url "logout" %}"
+  var createUserApiUrl = "{% url "create_user" %}"
+  var updateProfileApiUrl = "{% url "update_profile" %}"
+  var prepareActionApiUrl = "{% url "prepare_action_update" %}"
+
+
+  /**
+  * Function that registers a click on an outbound link in Analytics.
+  * This function takes a valid URL string as an argument, and uses that URL string
+  * as the event label. Setting the transport method to 'beacon' lets the hit be sent
+  * using 'navigator.sendBeacon' in browser that support it.
+  */
+  var trackOutboundLink = function(url, new_tab) {
+    gtag('event', 'click', {
+      'event_category': 'outbound',
+      'event_label': url,
+      'transport_type': 'beacon',
+      'event_callback': new_tab ? function() {} : function(){document.location = url;}
+    });
+    return new_tab;
+  }
+</script>
+<script src="{% url 'javascript-catalog' %}"></script>
+
+{% render_bundle file 'js' %}
+

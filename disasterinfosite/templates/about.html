@@ -1,0 +1,111 @@
+{% load js %}
+{% load i18n %}
+
+{% load render_bundle from webpack_loader %}
+{% load webpack_static from webpack_loader %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+{% include "head-meta.html" with file="about" %}
+
+<body>
+{% include "simple-header.html" %}
+
+  <div class="content-container">
+    <div class="about-container">
+      <h3 class="caps">{% trans "The Hazard Ready Team" %}</h3>
+      <div class="bio-container">
+        <div class="bio bio--carson">
+          <div class="bio__image">
+            <img src="{% webpack_static 'build/cmk_headshot.jpg' %}" alt="">
+          </div>
+          <div class="bio__other">
+            <div class="bio__text">
+              <h4 class="bio__name h4--sans-serif">Carson MacPherson-Krutsky</h4>
+              <p>
+                {% trans "Carson has a B.Sc. and M.Sc. in Geology from Western Washington University and the University of Montana. She is now working on her PhD at Boise State University where she studies how to best communicate natural hazard risk information to broad audiences. She writes the content and processes the data for each HazardReady site." %}
+              </p>
+            </div>
+            <p class="bio__links">
+              <a href="https://www.linkedin.com/in/carsonmk/" target="_blank" rel="noopener"><img src="{% webpack_static 'build/linkedin-logo.png' %}" alt=""><span class="sr-only">LinkedIn Profile</span></a> <a href="https://sites.google.com/view/carsonmk/about" target="_blank" rel="noopener"><img class="link-icon" src="{% webpack_static 'build/about-link.svg' %}" alt=""><span class="sr-only">personal website</span></a>
+            </p>
+            </div>
+          </div>
+        </div>
+        <div class="bio bio--becks">
+          <div class="bio__image">
+            <img src="{% webpack_static 'build/rbk_headshot.jpg' %}" alt="">
+          </div>
+          <div class="bio__other bio__other--reverse">
+            <div class="bio__text">
+              <h4 class="bio__name h4--sans-serif">Rebecca Bendick</h4>
+              <p>
+                {% trans "Rebecca Bendick has a Ph.D. in geophysics from the University of Colorado. Her research on tectonics and earthquake mechanics led to an interest in how human communities are affected by natural disasters, and inspires her ongoing efforts to help people better understand and prepare for them. She writes and lectures on the ethics of science communication as well as on her basic geophysical research." %}
+              </p>
+            </div>
+            <p class="bio__links bio__links--reverse">
+              <a href="https://hs.umt.edu/geosciences/faculty/bendick/" target="_blank" rel="noopener"><img class="link-icon" src="{% webpack_static 'build/about-link.svg' %}" alt=""><span class="sr-only">personal website</span></a>
+            </p>
+          </div>
+        </div>
+        <div class="bio bio--grant">
+          <div class="bio__image">
+            <img src="{% webpack_static 'build/gk_headshot.jpg' %}" alt="">
+          </div>
+          <div class="bio__other">
+            <div class="bio__text">
+              <h4 class="bio__name h4--sans-serif">Grant Kier</h4>
+              <p>
+                {% trans "Grant Kier has a M.Sc. in geology from the University of Colorado. He is broadly interested in community resilience in the context of manmade and natural changes. He also has a background in business practices and currently works on economic development, fostering small and startup companies in western Montana." %}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-container about-container--hazardready">
+        <h3 class="caps about--hazardready">{% trans "The Hazard Ready Project" %}</h3>
+        <div class="hazardready-container">
+          <a href="https://hazardready.org" target="_blank" rel="noopener">
+            <img class="hazardready-logo" src="{% webpack_static 'build/logo.png' %}" alt=""><span class="sr-only">{% trans "Hazard Ready homepage" %}</span></a>
+          <p>{{ settings.about_text | safe }}</p>
+        </div>
+      </div>
+      <div class="about-container">
+        {{ settings.about_text | safe }}
+      </div>
+      <div class="about-container">
+        <div class="about-content__text">
+          <p>
+              {% blocktrans with title=settings.site_title area_name=settings.area_name %}{{ title }} is designed to help educate and prepare people for disasters that occur in their area. Disasters don’t strike locations equally so we found it important to give location specific information in order to properly prepare. {{ title }} organizes current information and packages it in a way that makes it accessible for any {{ area_name }} resident.{% endblocktrans %}
+          </p>
+          <p>
+              {% blocktrans with area_name=settings.area_name %}This site uses the most up-to-date hazard risk data available for {{ area_name }}. The user of this site is responsible for verifying any particular information with the original data sources. Although these data represent the best current assessment of hazards, they are not predictive of future events. The descriptions of risk and how to prepare for those risks are based on best information from the American Red Cross and the Federal Emergency Management Agency.{% endblocktrans %}
+          </p>
+        </div>
+        <div class="about-content__flowchart">
+          {% trans 'build/flowchart.jpg' as flowchart %}
+          <img src="{% webpack_static flowchart %}" alt="">
+          <p class="sr-only">
+            {% blocktrans %}How we build Hazard Ready Sites: 1. Gather data. Locate the most relevant and up-to-date data on natural hazards for your region from trusted sources like FEMA, NOAA, and the USGS. 2. Quality Check. Work with local partners (community groups & emergency managers) to ensure the data and infomration are accurate. 3. Process data. Make the data compatible with Hazard Ready software. 4. Build content. Write the webpage text, gather images and videos, locate local resources for each hazard and region. 5. Feedback and focus groups. Discuss content and designs to ensure the information fits each community's needs. 6. Revise, revise, revise and launch site!{% endblocktrans %}
+          </p>
+        </div>
+      </div>
+      {% if settings.data_download %}
+        <div class="about-container">
+
+          <p>
+              {% blocktrans with title=settings.site_title download=settings.data_download%}Data used for {{ title }} is available for download <a href="{{ download }}" target="_blank" rel="noopener">here</a>.{% endblocktrans %}
+          </p>
+        </div>
+      {% endif %}
+  </div>
+
+{% include "geek_box.html" %}
+{% include "page-end-meta.html" with file="about" %}
+
+</body>
+</html>
+
