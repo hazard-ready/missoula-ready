@@ -77,10 +77,10 @@ get winter weather ready: 0
 This site is a collaboration of HazardReady, the University of Montana, Missoula County, and the City of Missoula.
 
 ###### Area Name
-Missoula County
+Western Montana
 
 ###### Site title
-Missoula Ready
+Western Montana Ready
 
 ###### URL
 https://hazardready.org/

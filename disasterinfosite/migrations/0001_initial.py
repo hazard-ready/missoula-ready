@@ -23,15 +23,18 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='DataOverviewImage',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False, verbose_name='ID')),
                 ('link_text', models.CharField(default='', max_length=100)),
-                ('image', models.ImageField(storage=disasterinfosite.models.OverwriteStorage(), upload_to='data')),
+                ('image', models.ImageField(
+                    storage=disasterinfosite.models.OverwriteStorage(), upload_to='data')),
             ],
         ),
         migrations.CreateModel(
             name='Location',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False, verbose_name='ID')),
             ],
             options={
                 'verbose_name': 'Location Information',
@@ -40,10 +43,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PreparednessAction',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.TextField(default='')),
                 ('image', models.ImageField(upload_to='prepare_images')),
-                ('cost', models.IntegerField(default=0, validators=[django.contrib.postgres.validators.RangeMinValueValidator(0), django.contrib.postgres.validators.RangeMaxValueValidator(4)])),
+                ('cost', models.IntegerField(default=0, validators=[django.contrib.postgres.validators.RangeMinValueValidator(
+                    0), django.contrib.postgres.validators.RangeMaxValueValidator(4)])),
                 ('happy_text', models.TextField(default='')),
                 ('useful_text', models.TextField(default='')),
                 ('property_text', models.TextField(default='')),
