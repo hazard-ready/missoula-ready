@@ -70,12 +70,6 @@ var input_lat;
 var input_lng;
 var $locationInput;
 
-// the page language, as ISO 639-1
-let lang = document.documentElement.lang;
-if (lang == "cn") {
-  lang = "zh";
-}
-
 // grab the position, if possible
 const query_lat = getURLParameter("lat");
 const query_lng = getURLParameter("lng");
@@ -123,7 +117,7 @@ function reverseGeocodeLocation(lat, lng) {
     url: "https://api.geoapify.com/v1/geocode/reverse",
     data: {
       apiKey: GEOAPIFY_KEY,
-      lang: lang,
+      lang: "en",
       lat: lat,
       lon: lng,
       format: "json",
@@ -135,11 +129,12 @@ function reverseGeocodeLocation(lat, lng) {
       if (response.results.length) {
         return response.results[0].formatted;
       } else {
-        console.log("Reverse geocoding error; response: ", response);
+        console.log("No geocoding results");
+        return "This Location";
       }
     })
     .catch(function (error) {
-      console.log("reverse geocoding error", error);
+      console.log("reverse geocoding error");
     });
 }
 
