@@ -19,20 +19,17 @@ urlpatterns = [
     path('accounts/update_profile/',
          views.update_profile, name="update_profile"),
     path('accounts/update_prepare_action/',
-         views.prepare_action_update, name='prepare_action_update')
-]
+         views.prepare_action_update, name='prepare_action_update'),
 
-# # user-facing URLs
-# urlpatterns += i18n_patterns(path('', views.app_view, name='index'))
-# urlpatterns += i18n_patterns(path('about/', views.about_view, name='about'))
-# urlpatterns += i18n_patterns(path('prepare/',
-#                                   views.prepare_view, name='prepare'))
-# urlpatterns += i18n_patterns(path('data/', views.data_view, name='data'))
+    # user-facing URLs
+    path('', views.app_view, name='index'),
+    path('about/', views.about_view, name='about'),
+    path('prepare/',
+         views.prepare_view, name='prepare'),
+    path('data/', views.data_view, name='data'),
 
-# # enable translations in javascript
-# urlpatterns += i18n_patterns(path("jsi18n/", JavaScriptCatalog.as_view(),
-#                                   name="javascript-catalog"))
-
-
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # enable translations in javascript
+    path("jsi18n/", JavaScriptCatalog.as_view(),
+         name="javascript-catalog"),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
+    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

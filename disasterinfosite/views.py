@@ -27,12 +27,6 @@ import re
 logger = logging.getLogger(__name__)
 
 
-def reverse_no_i18n(viewname, *args, **kwargs):
-    result = reverse(viewname, *args, **kwargs)
-    m = re.match(r'(/[^/]*)(/.*$)', result)
-    return m.groups()[1]
-
-
 @require_http_methods(["POST"])
 def create_user(request):
     try:
@@ -88,7 +82,8 @@ def create_user(request):
 
     login(request, user)
     return render(request, "registration/simple_message.html", {
-        'message': _("Thanks for signing up! We'll get ahold of you with relevant news and information. You can come back anytime to update your address."),
+        'message': _(f"Thanks for signing up! We'll get ahold of you with relevant news and information. "
+                     f"You can come back anytime to update your address."),
         'error': True
     })
 
@@ -123,7 +118,7 @@ def update_profile(request):
 @ensure_csrf_cookie
 def about_view(request):
     renderData = {
-        'nextPath': reverse_no_i18n('about')
+        'nextPath': 'about'
     }
     return render(request, "about.html", renderData)
 
@@ -131,7 +126,7 @@ def about_view(request):
 @ensure_csrf_cookie
 def data_view(request):
     renderData = {
-        'nextPath': reverse_no_i18n('data'),
+        'nextPath': 'data',
         'quick_data_overview': DataOverviewImage.objects.all()
 
     }
@@ -143,7 +138,7 @@ def prepare_view(request):
     renderData = {
         'actions': PreparednessAction.objects.all().order_by('cost'),
         'logged_in': False,
-        'nextPath': reverse_no_i18n('prepare')
+        'nextPath': 'prepare'
     }
 
     if request.user.is_authenticated:
@@ -181,7 +176,7 @@ def prepare_action_update(request):
 def app_view(request):
     username = None
     profile = None
-    path = reverse_no_i18n('index')
+    path = 'index'
 
     if 'QUERY_STRING' in request.META:
         path = path + '?' + request.META['QUERY_STRING']
@@ -225,8 +220,11 @@ def app_view(request):
                             if snugget.percentage is not None:
                                 group.percentage = snugget.percentage
                             if snugget.__class__ == SlideshowSnugget:
-                                snugget.photos = sorted(PastEventsPhoto.objects.filter(
-                                    snugget=snugget), key=lambda p: (p.image.height / p.image.width) + len(p.caption), reverse=True)
+                                snugget.photos = sorted(
+                                    PastEventsPhoto.objects.filter(snugget=snugget),
+                                    key=lambda p: (p.image.height / p.image.width) + len(p.caption),
+                                    reverse=True
+                                )
 
                             if snugget.section.collapsible:
                                 if not snugget.section in data[group]['collapsible']:
