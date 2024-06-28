@@ -6,81 +6,65 @@ The project is a custom instance of the [Disaster Preparedness](https://github.c
 
 Information that is unique to this instance of Hazard Ready is below.
 
+# Values for importing
+
+### All county shapefiles have the following groups: `wildfire, winter, summer, quake, flood`
+### fire_wui_wmt: `wildfire`
+### Burned_perimeter: `wildfire`
+### WHP_FINAL: `wildfire`
+### MergedEQs: `quake`
+### FloodMaps_MT: `flood`
+### CMZ_mt: `flood`
+
+Note that there is no *prepare* page in this instance of Hazard Ready.
+
 # Values to put in Django Admin
 
-### Tabs
+### Tabs / Shapefile Groups
 
-######Fire
+######wildfire
     Display Name: Wildfire
     Order: 0
-    Likely Scenario Title: Likely Wildfire Scenario
-    Likely Scenario Text: Wildfire season stretches from spring to fall in Missoula County. In a low snowpack year the potential for fires increases. Is the area where you live at risk for a potential burn?
 
-######Flooding
-    Display Name: Flooding
+######flood
+    Display Name: Flood
     Order: 1
-    Likely Scenario Title: Likely Flood Scenario
-    Likely Scenario Text: It’s springtime in Missoula County and the temperature has been steadily rising causing the snowpack to melt. It has been raining for many days and the rivers begin flooding. Will you feel the flood effects?
 
-######Winter Weather
+######winter
     Display Name: Winter Weather
     Order: 2
-    Likely Scenario Title: Likely Winter Storm Scenario
-    Likely Scenario Text: In the wintertime in Missoula County you can expect to see low temperatures, inches to feet of snow, and inversions causing poor air quality in the valleys. This can stretch from October to May depending on the year. Go get some good winter boots and bundle up! What might your winter look like?
+    Note: Please note: Because weather hazards change daily, this section contains a region-wide report. To view real-time weather and hazards for a specific location, visit the <a href="https://www.weather.gov/" target="_blank" rel="noopener">National Weather Service website. All non-weather sections have information specific to the location you searched.
 
-######Summer Weather
+######summer
     Display Name: Summer Weather
     Order: 3
-    Likely Scenario Title: Likely Summer Storm Scenario
-    Likely Scenario Text: In the summertime temperatures rise in Missoula County, sometimes into the 100s! There is potential for thunderstorms, high winds, and heat waves.  Besides planning your summer adventures, what should you prepare for?
+    Note: Please note: Because weather hazards change daily, this section contains a region-wide report. To view real-time weather and hazards for a specific location, visit the <a href="https://www.weather.gov/" target="_blank" rel="noopener">National Weather Service website. All non-weather sections have information specific to the location you searched.
 
-######Earthquake
+######quake
     Display Name: Earthquake
     Order: 4
-    Likely Scenario Title: Earthquake
-    Likely Scenario Text: Earthquakes can happen anytime. In Missoula County there are five faults that are considered active. It is most likely that a small earthquake of magnitude 4 to 5 would strike here. What kind of shaking might you experience?
-
-######Landslide:
-    Display Name: Landslide
-    Order: 5
-    Likely Scenario Title: Landslide
-    Likely Scenario Text: Landslides typically happen after rainstorms come through and especially in burned areas without vegetation to stabilize the slopes. Find out if you should be concerned in your area.
-
 
 ### Section orders
 
 ###### Snugget Section
-What to expect: 0
-How to prepare: 1
-Past events: 2
-
-###### Snugget Subsection
-potential: 0
-flood zones: 1
-ground shaking: 1
-worst case scenario: 2
-safety issues: 3
-historic events: 0
-get earthquake ready: 0
-get flood ready: 0
-get wildfire ready: 0
-get landslide ready: 0
-stay tuned: 1
-a word from your emergency managers: 2
-get summer weather ready: 0
-get winter weather ready: 0
+What you can expect: 0, not collapsible
+What's the worst that could happen: 1, not collapsible
+Be ready, get prepared: 2, not collapsible
+Other important details for your location: 3
+During a / an (disaster): 4
+Past (disaster)s in the region: 5
 
 
-### Settings
+### Site Settings
 
 ###### About Text
-This site is a collaboration of HazardReady, the University of Montana, Missoula County, and the City of Missoula.
+This site is a collaboration between HazardReady, the University of Montana, Missoula County, and the City of Missoula.
 
 ###### Area Name
-Missoula County
+Montana
 
 ###### Site title
-Missoula Ready
+Montana Ready
 
 ###### URL
 https://hazardready.org/
@@ -89,7 +73,7 @@ https://hazardready.org/
 A disaster preparedness website
 
 ###### Intro Text
-A natural disaster could strike your area at any time. Find out about where you live, work, or play in Western Montana.
+A natural disaster could strike your area at any time. Find out about where you live, work, or play in Montana.
 
 ###### Who Made This
 Have questions? View the <a href="/about" target="_blank">About</a> page or <a href="mailto:software@hazardready.org">email the Hazard Ready creators</a> for more information.

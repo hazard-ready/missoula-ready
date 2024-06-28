@@ -33,7 +33,6 @@
     {% for group, hazard in data.items %}
       <a class="hazard-link caps" href="#{{group.name}}">{{group.display_name}}</a>
     {% endfor %}
-    <a class="prepare-link caps" href="{% url 'prepare' %}" target="_blank">{% trans "Prepare!" %}</a>
   </div>
 {% endblock hazard-menu %}
 
