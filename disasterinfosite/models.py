@@ -141,6 +141,26 @@ class Location(SingletonModel):
             # GENERATED CODE GOES HERE
             # DO NOT MANUALLY EDIT CODE IN THIS SECTION- IT WILL BE OVERWRITTEN
             # locationsList
+            'Ravalli_co': Ravalli_co.objects.data_bounds(),
+            'Silverbow_co': Silverbow_co.objects.data_bounds(),
+            'AllCounties': AllCounties.objects.data_bounds(),
+            'fire_wui_wmt': fire_wui_wmt.objects.data_bounds(),
+            'Burned_perimeter': Burned_perimeter.objects.data_bounds(),
+            'WHP_FINAL': WHP_FINAL.objects.data_bounds(),
+            'DeerLodge_co': DeerLodge_co.objects.data_bounds(),
+            'Missoula_co': Missoula_co.objects.data_bounds(),
+            'Granite_co': Granite_co.objects.data_bounds(),
+            'Flathead_co': Flathead_co.objects.data_bounds(),
+            'Beaverhead_co': Beaverhead_co.objects.data_bounds(),
+            'Gallatin_co': Gallatin_co.objects.data_bounds(),
+            'Lincoln_co': Lincoln_co.objects.data_bounds(),
+            'MergedEQs': MergedEQs.objects.data_bounds(),
+            'Mineral_co': Mineral_co.objects.data_bounds(),
+            'FloodMaps_MT': FloodMaps_MT.objects.data_bounds(),
+            'Lake_co': Lake_co.objects.data_bounds(),
+            'Sanders_co': Sanders_co.objects.data_bounds(),
+            'Madison_co': Madison_co.objects.data_bounds(),
+            'CMZ_mt': CMZ_mt.objects.data_bounds()
             # END OF GENERATED CODE BLOCK
             ######################################################
         }
@@ -196,6 +216,186 @@ class ShapefileGroup(models.Model):
 # GENERATED CODE GOES HERE
 # DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
 # modelsClasses
+class Ravalli_co(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Silverbow_co(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class AllCounties(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class fire_wui_wmt(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Burned_perimeter(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class WHP_FINAL(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class DeerLodge_co(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Missoula_co(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Granite_co(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Flathead_co(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Beaverhead_co(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Gallatin_co(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Lincoln_co(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class MergedEQs(models.Model):
+    lookup_val = models.IntegerField()
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Mineral_co(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class FloodMaps_MT(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Lake_co(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Sanders_co(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class Madison_co(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
+class CMZ_mt(models.Model):
+    lookup_val = models.CharField(max_length=80)
+    geom = models.MultiPolygonField(srid=4326)
+    objects = ShapeManager()
+
+    groups = models.ManyToManyField(ShapefileGroup)
+    def __str__(self):
+        return str(self.lookup_val)
+
 # END OF GENERATED CODE BLOCK
 ######################################################
 
@@ -307,7 +507,26 @@ class Snugget(models.Model):
 # GENERATED CODE GOES HERE
 # DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
 # modelsFilters
-
+    Ravalli_co_filter = models.ForeignKey(Ravalli_co, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Silverbow_co_filter = models.ForeignKey(Silverbow_co, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    AllCounties_filter = models.ForeignKey(AllCounties, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    fire_wui_wmt_filter = models.ForeignKey(fire_wui_wmt, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Burned_perimeter_filter = models.ForeignKey(Burned_perimeter, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    WHP_FINAL_filter = models.ForeignKey(WHP_FINAL, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    DeerLodge_co_filter = models.ForeignKey(DeerLodge_co, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Missoula_co_filter = models.ForeignKey(Missoula_co, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Granite_co_filter = models.ForeignKey(Granite_co, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Flathead_co_filter = models.ForeignKey(Flathead_co, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Beaverhead_co_filter = models.ForeignKey(Beaverhead_co, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Gallatin_co_filter = models.ForeignKey(Gallatin_co, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Lincoln_co_filter = models.ForeignKey(Lincoln_co, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    MergedEQs_filter = models.ForeignKey(MergedEQs, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Mineral_co_filter = models.ForeignKey(Mineral_co, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    FloodMaps_MT_filter = models.ForeignKey(FloodMaps_MT, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Lake_co_filter = models.ForeignKey(Lake_co, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Sanders_co_filter = models.ForeignKey(Sanders_co, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    Madison_co_filter = models.ForeignKey(Madison_co, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
+    CMZ_mt_filter = models.ForeignKey(CMZ_mt, related_name='+', on_delete=models.PROTECT, blank=True, null=True)
 # END OF GENERATED CODE BLOCK
 ######################################################
 
@@ -333,6 +552,145 @@ class Snugget(models.Model):
 # GENERATED CODE GOES HERE
 # DO NOT MANUALLY EDIT CODE IN THIS SECTION - IT WILL BE OVERWRITTEN
 # modelsGeoFilters
+        qs_Ravalli_co = Ravalli_co.objects.filter(geom__contains=pnt)
+        Ravalli_co_rating = qs_Ravalli_co.values_list('lookup_val', flat=True)
+        for rating in Ravalli_co_rating:
+            Ravalli_co_snuggets = Snugget.objects.filter(Ravalli_co_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in Ravalli_co_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_Silverbow_co = Silverbow_co.objects.filter(geom__contains=pnt)
+        Silverbow_co_rating = qs_Silverbow_co.values_list('lookup_val', flat=True)
+        for rating in Silverbow_co_rating:
+            Silverbow_co_snuggets = Snugget.objects.filter(Silverbow_co_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in Silverbow_co_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_AllCounties = AllCounties.objects.filter(geom__contains=pnt)
+        AllCounties_rating = qs_AllCounties.values_list('lookup_val', flat=True)
+        for rating in AllCounties_rating:
+            AllCounties_snuggets = Snugget.objects.filter(AllCounties_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in AllCounties_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_fire_wui_wmt = fire_wui_wmt.objects.filter(geom__contains=pnt)
+        fire_wui_wmt_rating = qs_fire_wui_wmt.values_list('lookup_val', flat=True)
+        for rating in fire_wui_wmt_rating:
+            fire_wui_wmt_snuggets = Snugget.objects.filter(fire_wui_wmt_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in fire_wui_wmt_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_Burned_perimeter = Burned_perimeter.objects.filter(geom__contains=pnt)
+        Burned_perimeter_rating = qs_Burned_perimeter.values_list('lookup_val', flat=True)
+        for rating in Burned_perimeter_rating:
+            Burned_perimeter_snuggets = Snugget.objects.filter(Burned_perimeter_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in Burned_perimeter_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_WHP_FINAL = WHP_FINAL.objects.filter(geom__contains=pnt)
+        WHP_FINAL_rating = qs_WHP_FINAL.values_list('lookup_val', flat=True)
+        for rating in WHP_FINAL_rating:
+            WHP_FINAL_snuggets = Snugget.objects.filter(WHP_FINAL_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in WHP_FINAL_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_DeerLodge_co = DeerLodge_co.objects.filter(geom__contains=pnt)
+        DeerLodge_co_rating = qs_DeerLodge_co.values_list('lookup_val', flat=True)
+        for rating in DeerLodge_co_rating:
+            DeerLodge_co_snuggets = Snugget.objects.filter(DeerLodge_co_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in DeerLodge_co_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_Missoula_co = Missoula_co.objects.filter(geom__contains=pnt)
+        Missoula_co_rating = qs_Missoula_co.values_list('lookup_val', flat=True)
+        for rating in Missoula_co_rating:
+            Missoula_co_snuggets = Snugget.objects.filter(Missoula_co_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in Missoula_co_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_Granite_co = Granite_co.objects.filter(geom__contains=pnt)
+        Granite_co_rating = qs_Granite_co.values_list('lookup_val', flat=True)
+        for rating in Granite_co_rating:
+            Granite_co_snuggets = Snugget.objects.filter(Granite_co_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in Granite_co_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_Flathead_co = Flathead_co.objects.filter(geom__contains=pnt)
+        Flathead_co_rating = qs_Flathead_co.values_list('lookup_val', flat=True)
+        for rating in Flathead_co_rating:
+            Flathead_co_snuggets = Snugget.objects.filter(Flathead_co_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in Flathead_co_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_Beaverhead_co = Beaverhead_co.objects.filter(geom__contains=pnt)
+        Beaverhead_co_rating = qs_Beaverhead_co.values_list('lookup_val', flat=True)
+        for rating in Beaverhead_co_rating:
+            Beaverhead_co_snuggets = Snugget.objects.filter(Beaverhead_co_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in Beaverhead_co_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_Gallatin_co = Gallatin_co.objects.filter(geom__contains=pnt)
+        Gallatin_co_rating = qs_Gallatin_co.values_list('lookup_val', flat=True)
+        for rating in Gallatin_co_rating:
+            Gallatin_co_snuggets = Snugget.objects.filter(Gallatin_co_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in Gallatin_co_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_Lincoln_co = Lincoln_co.objects.filter(geom__contains=pnt)
+        Lincoln_co_rating = qs_Lincoln_co.values_list('lookup_val', flat=True)
+        for rating in Lincoln_co_rating:
+            Lincoln_co_snuggets = Snugget.objects.filter(Lincoln_co_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in Lincoln_co_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_MergedEQs = MergedEQs.objects.filter(geom__contains=pnt)
+        MergedEQs_rating = qs_MergedEQs.values_list('lookup_val', flat=True)
+        for rating in MergedEQs_rating:
+            MergedEQs_snuggets = Snugget.objects.filter(MergedEQs_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in MergedEQs_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_Mineral_co = Mineral_co.objects.filter(geom__contains=pnt)
+        Mineral_co_rating = qs_Mineral_co.values_list('lookup_val', flat=True)
+        for rating in Mineral_co_rating:
+            Mineral_co_snuggets = Snugget.objects.filter(Mineral_co_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in Mineral_co_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_FloodMaps_MT = FloodMaps_MT.objects.filter(geom__contains=pnt)
+        FloodMaps_MT_rating = qs_FloodMaps_MT.values_list('lookup_val', flat=True)
+        for rating in FloodMaps_MT_rating:
+            FloodMaps_MT_snuggets = Snugget.objects.filter(FloodMaps_MT_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in FloodMaps_MT_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_Lake_co = Lake_co.objects.filter(geom__contains=pnt)
+        Lake_co_rating = qs_Lake_co.values_list('lookup_val', flat=True)
+        for rating in Lake_co_rating:
+            Lake_co_snuggets = Snugget.objects.filter(Lake_co_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in Lake_co_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_Sanders_co = Sanders_co.objects.filter(geom__contains=pnt)
+        Sanders_co_rating = qs_Sanders_co.values_list('lookup_val', flat=True)
+        for rating in Sanders_co_rating:
+            Sanders_co_snuggets = Snugget.objects.filter(Sanders_co_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in Sanders_co_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_Madison_co = Madison_co.objects.filter(geom__contains=pnt)
+        Madison_co_rating = qs_Madison_co.values_list('lookup_val', flat=True)
+        for rating in Madison_co_rating:
+            Madison_co_snuggets = Snugget.objects.filter(Madison_co_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in Madison_co_snuggets:
+                groupsDict[s.group].append(s)
+
+        qs_CMZ_mt = CMZ_mt.objects.filter(geom__contains=pnt)
+        CMZ_mt_rating = qs_CMZ_mt.values_list('lookup_val', flat=True)
+        for rating in CMZ_mt_rating:
+            CMZ_mt_snuggets = Snugget.objects.filter(CMZ_mt_filter__lookup_val__exact=rating).order_by('order').select_subclasses()
+            for s in CMZ_mt_snuggets:
+                groupsDict[s.group].append(s)
 
 # END OF GENERATED CODE BLOCK
 ######################################################
