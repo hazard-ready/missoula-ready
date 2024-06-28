@@ -355,7 +355,7 @@ $(document).ready(function () {
       data: {
         apiKey: GEOAPIFY_KEY,
         text: location_query_text,
-        lang: lang,
+        lang: "en",
         format: "json",
         filter: `rect:${GEOAPIFY_MAP_BOUNDS_STRING}`,
       },
