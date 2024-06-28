@@ -16,6 +16,7 @@ Information that is unique to this instance of Hazard Ready is below.
 ### FloodMaps_MT: `flood`
 ### CMZ_mt: `flood`
 
+Note that there is no *prepare* page in this instance of Hazard Ready.
 
 # Values to put in Django Admin
 

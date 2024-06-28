@@ -24,8 +24,8 @@ urlpatterns = [
     # user-facing URLs
     path('', views.app_view, name='index'),
     path('about/', views.about_view, name='about'),
-    path('prepare/',
-         views.prepare_view, name='prepare'),
+    # path('prepare/',
+    #      views.prepare_view, name='prepare'),
     path('data/', views.data_view, name='data'),
 
     # enable translations in javascript
