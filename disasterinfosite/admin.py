@@ -14,6 +14,11 @@ from .actions import export_as_csv_action
 # admin.site.register(PastEventsPhoto, TranslationAdmin)
 # admin.site.register(DataOverviewImage, TranslationAdmin)
 
+admin.site.register(SnuggetSection)
+admin.site.register(ShapefileGroup)
+admin.site.register(PastEventsPhoto)
+admin.site.register(DataOverviewImage)
+
 
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
