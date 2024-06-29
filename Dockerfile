@@ -16,7 +16,7 @@ ENV EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
 ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
 ENV C_INCLUDE_PATH=/usr/include/gdal
 
-ff we need to install Node and other dependencies
+# we need to install Node and other dependencies
 RUN apt-get update && apt-get upgrade -yqq && apt-get install -yqq wget gnupg
 
 # Include PPA for latest Node version, then install GDAL and front-end dependencies
