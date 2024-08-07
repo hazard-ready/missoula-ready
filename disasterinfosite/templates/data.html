@@ -14,7 +14,7 @@
 <body>
 {% include "simple-header.html" %}
   <div class="content-container">
-    <h2>{% trans "Data overview images for Hazard Ready" %}</h2>
+    <h2>{% trans "Data overview images for Montana Ready" %}</h2>
     <div class="data__list">
       {% for item in quick_data_overview %}
         <div class="data__image">
@@ -24,6 +24,44 @@
           </a>
         </div>
       {% endfor %}
+    </div>
+  </div>
+  <div class="content-container">
+    <h2>{% trans "Data sources for Montana Ready" %}</h2>
+    <div class="data-source-container">
+      <div class="hazard-sources">
+        <h4 class="hazard-header quake">{% trans 'Earthquake' %}</h4>
+        <h5>Earthquake Hazard Map</h5>
+        <p class="hazard-source">U.S. Geological Survey, 2016, M 7.2 Scenario Earthquake - Bitterroot Fault: <a href="https://earthquake.usgs.gov/scenarios/eventpage/mt2016montana_663_se/executive" target="_blank" rel="noopener">https://earthquake.usgs.gov/scenarios/eventpage/mt2016montana_663_se/executive</a>, accessed June 30, 2024.</p>
+        <p class="hazard-source">U.S. Geological Survey, 2016, M 7.2 Scenario Earthquake - Swan Fault: <a href="https://earthquake.usgs.gov/scenarios/eventpage/mt2016montana_700_se/executive" target="_blank" rel="noopener">https://earthquake.usgs.gov/scenarios/eventpage/mt2016montana_700_se/executive</a>, accessed June 30, 2024.</p>
+        <p class="hazard-source">U.S. Geological Survey, 2016, M 6.8 Scenario Earthquake - Tobacco Root Fault: <a href="https://earthquake.usgs.gov/scenarios/eventpage/mt2016montana_649_se/executive" target="_blank" rel="noopener">https://earthquake.usgs.gov/scenarios/eventpage/mt2016montana_649_se/executive</a>, accessed June 30, 2024.</p>
+      </div>
+      <div class="hazard-sources">
+        <h4 class="hazard-header flood">{% trans 'Flood' %}</h4>
+        <h5>Flood Map</h5>
+        <p class="hazard-source">Federal Emergency Management Agency, 2021, National Flood Hazard Layer: <a href="https://www.fema.gov/flood-maps/national-flood-hazard-layer" target="_blank" rel="noopener">https://www.fema.gov/flood-maps/national-flood-hazard-layer</a>, accessed June 30, 2024.</p>
+        <h5>Channel Migration Zones Map</h5>
+        <p class="hazard-source">Montana State Library, 2014, Montana Channel Migration Zone Studies: <a href="https://msl.mt.gov/geoinfo/data/montana_channel_migration_zones/projects/" target="_blank" rel="noopener">https://msl.mt.gov/geoinfo/data/montana_channel_migration_zones/projects/</a>, accessed June 30, 2024.</p>
+      </div>
+      <div class="hazard-sources">
+        <h4 class="hazard-header wildfire">{% trans 'Wildfire' %}</h4>
+        <h5>Wildfire Potential Map</h5>
+        <p class="hazard-source">Dillon, G.K., Gilbertson-Day, J.W. (2020). Wildfire Hazard Potential for the United States (270-m), version 2020. 3rd Edition. Fort Collins, CO: Forest Service Research Data Archive. <a href="https://doi.org/10.2737/RDS-2015-0047-3" target="_blank" rel="noopener">https://doi.org/10.2737/RDS-2015-0047-3</a>. Accessed June 30, 2024.</p>
+        <h5>Wildland Urban Interface Map</h5>
+        <p class="hazard-source">Radeloff, Volker C.; Helmers, David P.; Mockrin, Miranda H.; Carlson, Amanda R.; Hawbaker, Todd J.; Martinuzzi, Sebastián. 2023. The 1990-2020 wildland-urban interface of the conterminous United States - geospatial data. 4th Edition. Fort Collins, CO: Forest Service Research Data Archive. <a href="https://doi.org/10.2737/RDS-2015-0012-4" target="_blank" rel="noopener">https://doi.org/10.2737/RDS-2015-0012-4</a>.</p>
+        <h5>Burned Perimeters Map</h5>
+        <p class="hazard-source">MTBS Data Access: Burned Areas Boundaries Dataset. 2017. MTBS Project (USDA Forest Service/U.S. Geological Survey). <a href="http://mtbs.gov/direct-download" target="_blank" rel="noopener">http://mtbs.gov/direct-download</a>, accessed June 30, 2024.</p>
+      </div>
+    </div>
+    <div class="data-source-container">
+      {% trans 'Questions or concerns about the data? Contact:' %}
+      <ul>
+        <li><a href="https://msc.fema.gov/portal/resources/contact" target="_blank" rel="noopener">Federal Emergency Management Agency (FEMA)</a> - <i>{% trans 'flood' %}</i></li>
+        <li><a href="https://answers.usgs.gov/" target="_blank" rel="noopener">United States Geological Survey (USGS)</a> - <i>{% trans 'earthquake' %}</i></li>
+        <li><a href="https://msl.mt.gov/geoinfo/data/montana_channel_migration_zones/contacts" target="_blank" rel="noopener">Montana State Library</a> - <i>Channel Migration Zones</i></li>
+        <li><a href="https://www.fs.usda.gov/rds/archive/contactus" target="_blank" rel="noopener">United States Forest Service</a> - <i>Wildfire Potential, Wildland Urban Interface</i></li>
+        <li><a href="https://mtbs.gov/" target="_blank" rel="noopener">Monitoring Trends in Burn Severity (United States Forest Service and United States Geological Survery)</a> - <i>Burned Perimeters</i></li>
+      </ul>
     </div>
   </div>
 {% include "geek_box.html" %}
