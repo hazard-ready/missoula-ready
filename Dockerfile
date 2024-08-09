@@ -53,7 +53,7 @@ USER django
 # Install dependencies:
 COPY requirements.txt .
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --no-warn-script-location -r requirements.txt
 
 # verify pip install
 RUN pip list
