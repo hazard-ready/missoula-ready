@@ -66,7 +66,6 @@ RUN rm -rf data && unzip -o data.zip
 RUN mkdir -p media/img/photos
 RUN mkdir -p media/img/data
 
-RUN npm rebuild node-sass
 RUN npm install && npm run webpack
 
 # build translated files (not needed for this project right now)
