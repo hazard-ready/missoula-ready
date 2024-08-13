@@ -156,8 +156,8 @@ else:
     # So for our current test server,
     # testing.hazardready.org/region/ , we need:
     # STATIC_URL = '/region/static/'
-    FORCE_SCRIPT_NAME = '/missoula/'
-    STATIC_URL = '/missoula/static/'
+    FORCE_SCRIPT_NAME = '/montana/'
+    STATIC_URL = '/montana/static/'
 
 WHITENOISE_STATIC_PREFIX = '/static/'
 STORAGES = {
@@ -178,4 +178,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media', 'img')
 if DEBUG:
     MEDIA_URL = '/media/img/'
 else:
-    MEDIA_URL = '/missoula/static/img/'
+    MEDIA_URL = '/montana/static/img/'
