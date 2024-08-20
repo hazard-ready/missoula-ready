@@ -67,13 +67,13 @@ Montana
 Montana Ready
 
 ###### URL
-https://hazardready.org/
+https://hazardready.org/montana
 
 ###### Site description
 A disaster preparedness website
 
 ###### Intro Text
-A natural disaster could strike your area at any time. Find out about where you live, work, or play in Montana.
+A natural disaster could strike your area at any time. Find out about where you live, work, or play in Western Montana.
 
 ###### Who Made This
 Have questions? View the <a href="/about" target="_blank">About</a> page or <a href="mailto:software@hazardready.org">email the Hazard Ready creators</a> for more information.
