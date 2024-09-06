@@ -150,6 +150,7 @@
     font-size: 16px;
     margin: 0;
     margin-top: 10px;
+    text-align: center;
 
     @include breakpoint(large-and-up) {
       font-size: 18px;
