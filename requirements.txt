@@ -11,5 +11,5 @@ django-solo==2.0.0
 Pillow==10.3.0
 django-modeltranslation==0.18.9
 django-webpack-loader==1.8.1
-setuptools==70.1.0
+setuptools==78.1.1
 whitenoise==6.4.0
