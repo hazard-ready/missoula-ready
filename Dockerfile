@@ -16,13 +16,8 @@ ENV EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
 ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
 ENV C_INCLUDE_PATH=/usr/include/gdal
 
-# we need to install Node and other dependencies
-RUN apt-get update && apt-get upgrade -yqq && apt-get install -yqq wget gnupg
-
-# Include PPA for latest Node version, then install GDAL and front-end dependencies
-RUN echo "deb https://deb.nodesource.com/node_20.x bookworm main" > /etc/apt/sources.list.d/nodesource.list && \
-  wget -qO- https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
-  apt-get update && apt-get upgrade -yqq && \
+# install GDAL and front-end dependencies
+RUN apt-get update && apt-get upgrade -yqq && \
   apt-get install -y --no-install-recommends \
     binutils          \
     build-essential   \
@@ -32,12 +27,14 @@ RUN echo "deb https://deb.nodesource.com/node_20.x bookworm main" > /etc/apt/sou
     gettext           \
     libgdal-dev       \
     nodejs            \
+    npm               \
     postgresql-client \
     unzip             \
     zip               \
     && rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g npm@latest
+RUN apt-get install --only-upgrade nodejs npm
+RUN npm update -g npm
 
 RUN groupadd -r django && useradd --no-log-init -r -g django django
 RUN mkdir /home/django && chown -R django:django /home/django
