@@ -61,7 +61,7 @@ Past (disaster)s in the region: 5
 This site is a collaboration between HazardReady, the University of Montana, Missoula County, and the City of Missoula.
 
 ###### Area Name
-Montana
+Western Montana
 
 ###### Site title
 Montana Ready
