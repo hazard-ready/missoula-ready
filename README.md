@@ -1,3 +1,6 @@
+
+# This repository has been archived as of September 2026. You're welcome to contact the maintainers with any questions you may have.
+
 # Montana Ready
 
 The project is a custom instance of the [Disaster Preparedness](https://github.com/missoula-ready/disaster-preparedness) project, which is an adaptation of [a pioneering project from Oregon](https://github.com/Oregon-Public-Broadcasting/earthquake-preparedness) but has been generalized to make it easy to clone and tailor to other regions.
